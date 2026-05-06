@@ -11,7 +11,8 @@ class ResearchTopic extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'topic', 'content_type', 'tone', 'language', 'status',
+        'user_id', 'news_article_id', 'topic', 'content_type', 'tone', 'language',
+        'depth', 'audience_language', 'status',
         'research_summary', 'script', 'outline', 'sources',
         'thumbnail_path', 'metadata', 'completed_at',
     ];
@@ -26,5 +27,10 @@ class ResearchTopic extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function newsArticle(): BelongsTo
+    {
+        return $this->belongsTo(NewsArticle::class);
     }
 }
