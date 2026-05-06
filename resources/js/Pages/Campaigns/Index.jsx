@@ -22,8 +22,32 @@ const Icon = ({ d, className = 'w-4 h-4' }) => (
 
 export default function CampaignsIndex({ campaigns, segments, templates, filters }) {
     const [showCreate, setShowCreate] = useState(false);
+    const [editing, setEditing] = useState(null);
+    const [selected, setSelected] = useState(new Set());
+
+    const toggle = (id) => setSelected((s) => {
+        const next = new Set(s);
+        next.has(id) ? next.delete(id) : next.add(id);
+        return next;
+    });
+    const toggleAll = () => {
+        const ids = campaigns.data.map((c) => c.id);
+        setSelected((s) => s.size === ids.length ? new Set() : new Set(ids));
+    };
+    const bulk = (action) => {
+        if (selected.size === 0) return;
+        if (action === 'delete' && !confirm(`Delete ${selected.size} campaign(s)? This cannot be undone.`)) return;
+        router.post(route('campaigns.bulk'), { action, ids: Array.from(selected) }, {
+            preserveScroll: true,
+            onSuccess: () => setSelected(new Set()),
+        });
+    };
     const form = useForm({
         name: '', type: 'promotional', segment_id: '', template_id: '',
+        message_body: '', media_url: '', media_type: '', scheduled_at: '',
+    });
+    const editForm = useForm({
+        name: '', type: 'promotional', status: 'draft', segment_id: '', template_id: '',
         message_body: '', media_url: '', media_type: '', scheduled_at: '',
     });
 
@@ -31,6 +55,28 @@ export default function CampaignsIndex({ campaigns, segments, templates, filters
         e.preventDefault();
         form.post(route('campaigns.store'), {
             onSuccess: () => { form.reset(); setShowCreate(false); },
+        });
+    };
+
+    const openEdit = (c) => {
+        editForm.setData({
+            name: c.name || '',
+            type: c.type || 'promotional',
+            status: c.status || 'draft',
+            segment_id: c.segment_id || '',
+            template_id: c.template_id || '',
+            message_body: c.message_body || '',
+            media_url: c.media_url || '',
+            media_type: c.media_type || '',
+            scheduled_at: c.scheduled_at ? c.scheduled_at.slice(0, 16) : '',
+        });
+        setEditing(c);
+    };
+
+    const submitEdit = (e) => {
+        e.preventDefault();
+        editForm.patch(route('campaigns.update', editing.id), {
+            onSuccess: () => setEditing(null),
         });
     };
 
@@ -46,7 +92,17 @@ export default function CampaignsIndex({ campaigns, segments, templates, filters
             <Head title="Campaigns" />
 
             <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-                <div className="flex-1"></div>
+                <div className="flex-1">
+                    {selected.size > 0 && (
+                        <div className="inline-flex items-center gap-2 bg-brand-light border border-brand/30 rounded-xl px-3 py-2 text-sm">
+                            <span className="font-medium text-brand-dark">{selected.size} selected</span>
+                            <button onClick={() => bulk('pause')} className="px-2 py-0.5 rounded-lg bg-amber-50 text-amber-700 hover:bg-amber-100 text-xs">Pause</button>
+                            <button onClick={() => bulk('resume')} className="px-2 py-0.5 rounded-lg bg-green-50 text-green-700 hover:bg-green-100 text-xs">Resume</button>
+                            <button onClick={() => bulk('delete')} className="px-2 py-0.5 rounded-lg bg-red-50 text-red-700 hover:bg-red-100 text-xs">Delete</button>
+                            <button onClick={() => setSelected(new Set())} className="text-xs text-gray-500 hover:underline">Clear</button>
+                        </div>
+                    )}
+                </div>
                 <button onClick={() => setShowCreate(true)} className="btn-brand">
                     <Icon d="M12 4v16m8-8H4"/>
                     New Campaign
@@ -86,7 +142,12 @@ export default function CampaignsIndex({ campaigns, segments, templates, filters
                     <table className="w-full text-sm">
                         <thead>
                             <tr className="bg-gray-50 text-gray-500 text-xs uppercase tracking-wide">
-                                <th className="text-left px-5 py-3.5 font-medium">Campaign Name</th>
+                                <th className="px-5 py-3.5 w-5">
+                                    <input type="checkbox" className="rounded accent-brand"
+                                           checked={campaigns.data.length > 0 && selected.size === campaigns.data.length}
+                                           onChange={toggleAll}/>
+                                </th>
+                                <th className="text-left px-3 py-3.5 font-medium">Campaign Name</th>
                                 <th className="text-left px-3 py-3.5 font-medium">Type</th>
                                 <th className="text-left px-3 py-3.5 font-medium">Audience</th>
                                 <th className="text-left px-3 py-3.5 font-medium">Status</th>
@@ -98,7 +159,7 @@ export default function CampaignsIndex({ campaigns, segments, templates, filters
                         </thead>
                         <tbody className="divide-y divide-gray-50">
                             {campaigns.data.length === 0 && (
-                                <tr><td colSpan="8" className="text-center py-12 text-gray-400 text-sm">No campaigns yet. Click "New Campaign" to create one.</td></tr>
+                                <tr><td colSpan="9" className="text-center py-12 text-gray-400 text-sm">No campaigns yet. Click "New Campaign" to create one.</td></tr>
                             )}
                             {campaigns.data.map((c) => {
                                 const sent = c.sent_count || 0;
@@ -108,6 +169,11 @@ export default function CampaignsIndex({ campaigns, segments, templates, filters
                                 return (
                                     <tr key={c.id} className="hover:bg-gray-50/50 transition group">
                                         <td className="px-5 py-4">
+                                            <input type="checkbox" className="rounded accent-brand"
+                                                   checked={selected.has(c.id)}
+                                                   onChange={() => toggle(c.id)}/>
+                                        </td>
+                                        <td className="px-3 py-4">
                                             <p className="font-semibold text-gray-800" dir={/[؀-ۿ]/.test(c.name) ? 'rtl' : 'ltr'}>{c.name}</p>
                                             <p className="text-gray-400 text-xs mt-0.5">Created {new Date(c.created_at).toLocaleDateString()}</p>
                                         </td>
@@ -145,7 +211,7 @@ export default function CampaignsIndex({ campaigns, segments, templates, filters
                                                         <Icon d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
                                                     </button>
                                                 )}
-                                                <button title="Edit" className="p-1.5 hover:bg-blue-50 rounded-lg text-blue-500">
+                                                <button onClick={() => openEdit(c)} title="Edit" className="p-1.5 hover:bg-blue-50 rounded-lg text-blue-500">
                                                     <Icon d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                                                 </button>
                                                 <button onClick={() => remove(c)} title="Delete" className="p-1.5 hover:bg-red-50 rounded-lg text-red-400">
@@ -234,6 +300,100 @@ export default function CampaignsIndex({ campaigns, segments, templates, filters
                             <button type="button" onClick={() => setShowCreate(false)} className="btn-outline text-sm">Cancel</button>
                             <button disabled={form.processing} className="btn-brand text-sm">
                                 {form.processing ? 'Creating…' : 'Create Campaign'}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            )}
+
+            {editing && (
+                <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4">
+                    <form onSubmit={submitEdit} className="bg-white rounded-2xl shadow-2xl w-full max-w-lg p-6 space-y-4">
+                        <div className="flex items-center justify-between">
+                            <h3 className="font-bold text-gray-800 text-lg">Edit Campaign</h3>
+                            <button type="button" onClick={() => setEditing(null)} className="text-gray-400 hover:text-gray-700 p-1 rounded-lg hover:bg-gray-100">✕</button>
+                        </div>
+                        <div className="space-y-3">
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Campaign Name</label>
+                                <input value={editForm.data.name} onChange={(e) => editForm.setData('name', e.target.value)}
+                                       className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm bg-gray-50 focus:outline-none focus:ring-2 focus:ring-brand" required/>
+                                {editForm.errors.name && <div className="text-xs text-red-600 mt-1">{editForm.errors.name}</div>}
+                            </div>
+                            <div className="grid grid-cols-3 gap-3">
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-1">Type</label>
+                                    <select value={editForm.data.type} onChange={(e) => editForm.setData('type', e.target.value)}
+                                            className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm bg-gray-50">
+                                        <option value="promotional">Promotional</option>
+                                        <option value="transactional">Transactional</option>
+                                        <option value="broadcast">Broadcast</option>
+                                        <option value="drip">Drip</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                                    <select value={editForm.data.status} onChange={(e) => editForm.setData('status', e.target.value)}
+                                            className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm bg-gray-50">
+                                        <option value="draft">Draft</option>
+                                        <option value="scheduled">Scheduled</option>
+                                        <option value="active">Active</option>
+                                        <option value="paused">Paused</option>
+                                        <option value="completed">Completed</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-1">Audience</label>
+                                    <select value={editForm.data.segment_id} onChange={(e) => editForm.setData('segment_id', e.target.value)}
+                                            className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm bg-gray-50">
+                                        <option value="">All active</option>
+                                        {segments.map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Template (optional)</label>
+                                <select value={editForm.data.template_id} onChange={(e) => editForm.setData('template_id', e.target.value)}
+                                        className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm bg-gray-50">
+                                    <option value="">None — use message body</option>
+                                    {templates.map((t) => <option key={t.id} value={t.id}>{t.name}</option>)}
+                                </select>
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Message body</label>
+                                <textarea rows={4} value={editForm.data.message_body} onChange={(e) => editForm.setData('message_body', e.target.value)}
+                                          className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm bg-gray-50 focus:outline-none focus:ring-2 focus:ring-brand resize-none"/>
+                            </div>
+                            <div className="grid grid-cols-2 gap-3">
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-1">Media URL</label>
+                                    <input value={editForm.data.media_url} onChange={(e) => editForm.setData('media_url', e.target.value)}
+                                           placeholder="https://..."
+                                           className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm bg-gray-50"/>
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-1">Media type</label>
+                                    <select value={editForm.data.media_type} onChange={(e) => editForm.setData('media_type', e.target.value)}
+                                            className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm bg-gray-50">
+                                        <option value="">—</option>
+                                        <option value="image">Image</option>
+                                        <option value="video">Video</option>
+                                        <option value="document">Document</option>
+                                        <option value="audio">Audio</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Schedule for (optional)</label>
+                                <input type="datetime-local" value={editForm.data.scheduled_at}
+                                       onChange={(e) => editForm.setData('scheduled_at', e.target.value)}
+                                       className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm bg-gray-50"/>
+                            </div>
+                        </div>
+                        <div className="flex justify-end gap-3 pt-2">
+                            <button type="button" onClick={() => setEditing(null)} className="btn-outline text-sm">Cancel</button>
+                            <button disabled={editForm.processing} className="btn-brand text-sm">
+                                {editForm.processing ? 'Saving…' : 'Save Changes'}
                             </button>
                         </div>
                     </form>
