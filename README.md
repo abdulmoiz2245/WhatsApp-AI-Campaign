@@ -1,114 +1,132 @@
-# WhatsApp AI Campaign Chatbot — UI Mock
+# WhatsApp AI Campaign
 
-> Pure HTML + Tailwind CDN mock UI. No build step required. Open any HTML file directly in your browser.
+Production-ready Laravel 12 + React (Inertia) starter app for running AI-driven
+WhatsApp marketing campaigns. Pluggable WhatsApp providers, pluggable AI
+providers, and a content-generation pipeline (script → voiceover → video →
+thumbnail → WhatsApp upload) with a built-in scheduler that auto-publishes at
+your configured time.
 
----
+## Features
 
-## Folder Structure
+- **Dashboard** — KPIs, 14-day delivery trend, campaigns by type, recent activity
+- **Campaigns** — Promotional / transactional / broadcast / drip, segments, templates, scheduled, paused/resumed
+- **Contacts & Segments** — CSV import, segments, opt-out / blocked statuses
+- **AI Research** — Topic input → research summary, outline, script, sources, thumbnail prompt
+- **AI Pipeline** — Script → ElevenLabs voiceover → DALL-E thumbnail → FFmpeg video (or HeyGen avatar) → WhatsApp media upload
+- **Scheduler** — Calendar with auto-publish at configured time (default 19:00 in `APP_TIMEZONE`)
+- **Settings** — Per-user encrypted secrets, driver switching for every integration
+- **Webhooks** — Verifies and ingests Meta and Twilio status callbacks; updates campaign delivery/read counts and inbound replies
 
-```
-WhatsApp Campaing Ai Chatbot/
-├── index.html              ← Mock Login page
-├── admin.html              ← Redirect → dashboard
-│
-├── pages/
-│   ├── dashboard.html      ← KPI cards, charts, activity feed
-│   ├── campaigns.html      ← Campaign table, create/edit modal
-│   ├── research.html       ← AI Research topic input + content preview
-│   ├── pipeline.html       ← Script → Voiceover → Video → Thumbnail → WA Upload
-│   ├── scheduler.html      ← Calendar + 7:00 PM PKT auto-publish
-│   ├── contacts.html       ← Contacts list, segments, broadcast groups
-│   └── settings.html       ← WhatsApp API, AI config, notifications, account
-│
-└── assets/
-    ├── layout.js           ← Shared sidebar + topbar injector
-    └── style.css           ← CSS custom properties, badge helpers, card styles
-```
+## Tech Stack
 
----
+- Laravel 12, PHP 8.4, MySQL 8
+- Inertia.js + React 18, TailwindCSS, Vite
+- Queue: database / Redis (Horizon-ready)
+- Tests: Pest
 
-## How to Open
+## Pluggable Drivers
 
-### Option 1 — Double-click
-Double-click `index.html` in your file manager. It opens in the browser.  
-Click **"Sign In"** → goes to `admin.html` → redirects to `pages/dashboard.html`.
+| Concern   | Drivers                          | Env switch         |
+| --------- | -------------------------------- | ------------------ |
+| WhatsApp  | `meta` (Cloud API), `twilio`     | `WHATSAPP_DRIVER`  |
+| AI text   | `openai`, `anthropic`            | `AI_TEXT_DRIVER`   |
+| AI image  | `openai` (DALL-E)                | `AI_IMAGE_DRIVER`  |
+| TTS       | `elevenlabs`, `openai`           | `TTS_DRIVER`       |
+| Video     | `ffmpeg` (slideshow), `heygen`   | `VIDEO_DRIVER`     |
 
-### Option 2 — VS Code Live Server (recommended)
-1. Install the **Live Server** extension in VS Code.
-2. Right-click `index.html` → **"Open with Live Server"**.
-3. Navigate between pages using the sidebar.
+Drivers can be overridden per-user in **Settings**; secrets are encrypted with
+Laravel's `encrypted` cast and never returned from the API.
 
-### Option 3 — Python simple server
+## Setup
+
 ```bash
-cd "/home/abdul-moiz/Desktop/WhatsApp Campaing Ai Chatbot"
-python3 -m http.server 5500
+git clone <repo> && cd whatsapp-ai-campaign
+composer install
+npm install
+cp .env.example .env
+php artisan key:generate
 ```
-Then open: [http://localhost:5500](http://localhost:5500)
 
----
+Create your MySQL database, then:
 
-## Pages & Features
-
-| Page | Route | Features |
-|------|-------|----------|
-| Login | `index.html` | Email/password mock, WhatsApp SSO button |
-| Dashboard | `pages/dashboard.html` | KPI cards, delivery trend chart, campaign type donut, activity feed |
-| Campaigns | `pages/campaigns.html` | Full table with status badges, progress bars, create modal, pagination |
-| AI Research | `pages/research.html` | Topic input, content type picker, live progress animation, script/voiceover/thumbnail preview |
-| AI Pipeline | `pages/pipeline.html` | 6-step stepper, render progress, video preview placeholder, job queue |
-| Scheduler | `pages/scheduler.html` | Monthly calendar, today highlight, 7:00 PM PKT live clock, auto-publish toggles |
-| Contacts | `pages/contacts.html` | Segments panel, contact table with avatars, import CSV button |
-| Settings | `pages/settings.html` | Tabbed: WhatsApp API keys, AI model config, scheduler timezone, notifications, account |
-
----
-
-## Tech Stack (UI only)
-- **Tailwind CSS** v3 via CDN
-- **Google Fonts** — Inter
-- **Vanilla JS** — sidebar inject, tab switchers, live clock, research progress animation
-- No frameworks, no build step
-
-> **IMPORTANT:** This repository is strictly a **static UI mockup**. There is no backend logic, no API calls, and no real data. All interactions are faked using simple JavaScript and placeholder values. You can freely browse and modify everything without any live processes running.
-
-## Deploying / Making the UI Live
-
-Because the entire project consists of static HTML, CSS, and JavaScript files, you can host it anywhere that serves static files. Popular free options include:
-
-1. **GitHub Pages**
-    - Push the repository to GitHub.
-    - In repo settings, enable **Pages** and point the source to the `main` branch (or `gh-pages`) and the root folder.
-    - The site will be available at `https://<username>.github.io/<repo>/`.
-
-2. **Netlify / Vercel**
-    - Connect your GitHub repository to Netlify or Vercel.
-    - Both services detect static projects automatically and require no build command. Just deploy and they'll give you a live URL (e.g. `https://your-site.netlify.app`).
-
-3. **Any static file host or CDN**
-    - Upload the contents of the project directory to a static web host such as Firebase Hosting, Surge.sh, Amazon S3, or even an `http.server` on your own server.
-
-### Local testing
-If you want to preview the site locally, use the built-in Python server as described above, or run
 ```bash
-npx serve .
+php artisan migrate --seed
+php artisan storage:link
+npm run build
 ```
-from the project root (npm required).
 
-Once deployed, visitors can navigate the UI just like you do locally; all data remains mocked. If you later add a backend, you can swap out the mock scripts with real API endpoints.
+The seeder creates `demo@local.test` / `password` with sample contacts and a campaign.
 
-### No‑GitHub Alternatives
+### Run dev
 
-If you prefer **not to push anything to GitHub**, you still have simple options:
+```bash
+php artisan serve
+npm run dev
+php artisan queue:work       # required for AI pipeline + campaigns
+php artisan schedule:work    # required for the auto-publisher
+```
 
-* **Run a local server and share with ngrok** – install [`ngrok`](https://ngrok.com/), then:
-    ```bash
-    cd "/home/abdul-moiz/Desktop/WhatsApp Campaing Ai Chatbot"
-    python3 -m http.server 5500 &                # start local server
-    ngrok http 5500                              # expose it via a public URL
-    ```
-    ngrok gives you a temporary `https://...` URL you can send to others.
+### Production checklist
 
-* **Manual deploy with Netlify drag‑and‑drop** – go to [Netlify Drop](https://app.netlify.com/drop) and simply drag the project folder onto the page; it will upload the files and give you a live site without any Git integration.
+- Use **Redis** for cache, sessions, and queues (`CACHE_STORE=redis`, `SESSION_DRIVER=redis`, `QUEUE_CONNECTION=redis`)
+- Run a queue worker (Supervisor / systemd) and Laravel Scheduler (`* * * * * php artisan schedule:run`)
+- Install `ffmpeg` and `ffprobe` for the FFmpeg video driver
+- Configure S3 (`FILESYSTEM_DISK=s3`) for media so it's reachable by WhatsApp / Twilio
+- Set the public webhook URL: `https://YOURAPP/api/webhooks/whatsapp` in your provider console
+- Rotate `META_WA_VERIFY_TOKEN` to a long random string
 
-* **Host on your own machine or a VPS** – if you have a server or Raspberry Pi, just copy the directory there and run any static web server (`nginx`, `http-server`, etc.). No GitHub involved.
+## WhatsApp Webhooks
 
-* **Use a USB stick or network share** – the UI works offline; any colleague can open `index.html` locally from a shared drive.
+Single endpoint handles both Meta and Twilio:
+
+- `GET  /api/webhooks/whatsapp` — Meta verification challenge
+- `POST /api/webhooks/whatsapp` — Status callbacks + inbound replies
+
+The driver selected by `WHATSAPP_DRIVER` (or per-user setting) determines how
+the payload is parsed. All raw payloads are persisted to the `webhook_events`
+table for replay and debugging.
+
+## Domain Schema
+
+`users`, `user_settings`, `contacts`, `segments`, `contact_segment`,
+`message_templates`, `campaigns`, `messages`, `research_topics`,
+`pipeline_jobs`, `scheduled_posts`, `webhook_events` — see
+`database/migrations/`.
+
+## Tests
+
+```bash
+vendor/bin/pest
+```
+
+39 tests covering:
+- Auth flows (Breeze defaults)
+- Campaign CRUD, dispatch, ownership
+- Contact CSV import
+- Settings encryption + don't-overwrite-blank-secrets
+- Meta + Twilio drivers (HTTP mocks)
+- Webhook ingest updates message + campaign counters
+
+## Module Map
+
+| URL          | Page                       | Controller              |
+| ------------ | -------------------------- | ----------------------- |
+| `/dashboard` | Dashboard                  | `DashboardController`   |
+| `/campaigns` | Campaigns                  | `CampaignController`    |
+| `/contacts`  | Contacts + Segments        | `ContactController`     |
+| `/research`  | AI Research                | `ResearchController`    |
+| `/pipeline`  | AI Pipeline                | `PipelineController`    |
+| `/scheduler` | Scheduler (calendar)       | `SchedulerController`   |
+| `/settings`  | Provider + scheduler config| `SettingsController`    |
+
+## Background Jobs
+
+- `RunResearchJob` — calls the configured AI text driver, persists summary/outline/script
+- `RunPipelineJob` — orchestrates script → TTS → image → video → WhatsApp upload
+- `DispatchCampaignJob` — fans out per-recipient `SendCampaignMessageJob`
+- `SendCampaignMessageJob` — sends one message via the user's WhatsApp driver
+- `PublishScheduledPostJob` — publishes a scheduled post when its time arrives
+
+## License
+
+MIT
