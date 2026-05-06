@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use App\Models\Message;
 use App\Models\Segment;
+use App\Services\WhatsApp\WhatsAppManager;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 use Inertia\Response;
+use Throwable;
 
 class ContactController extends Controller
 {
@@ -47,6 +50,64 @@ class ContactController extends Controller
             'stats' => $stats,
             'filters' => $request->only('q', 'segment', 'status'),
         ]);
+    }
+
+    public function show(Request $request, Contact $contact): Response
+    {
+        $this->authorizeOwn($request, $contact);
+        $contact->load('segments:id,name,color');
+
+        $messages = Message::where('user_id', $request->user()->id)
+            ->where('contact_id', $contact->id)
+            ->latest()
+            ->limit(100)
+            ->get(['id', 'direction', 'type', 'body', 'media_url', 'status', 'sent_at', 'delivered_at', 'read_at', 'failed_at', 'created_at'])
+            ->reverse()
+            ->values();
+
+        return Inertia::render('Contacts/Show', [
+            'contact' => $contact,
+            'messages' => $messages,
+        ]);
+    }
+
+    public function sendMessage(Request $request, Contact $contact, WhatsAppManager $wa): RedirectResponse
+    {
+        $this->authorizeOwn($request, $contact);
+        $data = $request->validate([
+            'body' => ['required', 'string', 'max:4096'],
+        ]);
+
+        $msg = Message::create([
+            'user_id' => $request->user()->id,
+            'contact_id' => $contact->id,
+            'direction' => 'outbound',
+            'to_phone' => $contact->phone,
+            'provider' => $request->user()->effectiveSettings()->whatsapp_driver ?: config('services.whatsapp.driver'),
+            'type' => 'text',
+            'body' => $data['body'],
+            'status' => Message::STATUS_SENDING,
+        ]);
+
+        try {
+            $result = $wa->for($request->user())->sendText($contact->phone, $data['body']);
+            $msg->update([
+                'provider_message_id' => $result['provider_message_id'] ?? null,
+                'status' => Message::STATUS_SENT,
+                'sent_at' => now(),
+                'payload' => $result['raw'] ?? null,
+            ]);
+            $contact->update(['last_messaged_at' => now()]);
+        } catch (Throwable $e) {
+            $msg->update([
+                'status' => Message::STATUS_FAILED,
+                'failed_at' => now(),
+                'error' => ['message' => $e->getMessage()],
+            ]);
+            return back()->with('error', 'Send failed: ' . $e->getMessage());
+        }
+
+        return back()->with('success', 'Message sent.');
     }
 
     public function store(Request $request): RedirectResponse

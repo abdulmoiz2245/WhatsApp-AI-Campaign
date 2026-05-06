@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\WhatsApp\WhatsAppManager;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 use Inertia\Response;
+use Throwable;
 
 class SettingsController extends Controller
 {
@@ -88,5 +92,95 @@ class SettingsController extends Controller
         $s->update($data);
 
         return back()->with('success', 'Settings saved.');
+    }
+
+    /**
+     * Verify the user's currently saved credentials by hitting a cheap
+     * read endpoint on each provider. Returns per-provider ok/error JSON.
+     */
+    public function testConnection(Request $request, WhatsAppManager $waManager): JsonResponse
+    {
+        $request->validate([
+            'provider' => ['required', Rule::in(['whatsapp', 'openai', 'anthropic', 'elevenlabs'])],
+        ]);
+
+        $user = $request->user();
+        $s = $user->effectiveSettings();
+
+        try {
+            switch ($request->provider) {
+                case 'whatsapp':
+                    $driver = $waManager->for($user);
+                    if ($driver->name() === 'meta') {
+                        $token = $s->meta_access_token ?: (string) config('services.whatsapp.meta.access_token');
+                        $phoneId = $s->meta_phone_number_id ?: (string) config('services.whatsapp.meta.phone_number_id');
+                        $version = (string) config('services.whatsapp.meta.api_version', 'v21.0');
+                        if (! $token || ! $phoneId) {
+                            return response()->json(['ok' => false, 'message' => 'Missing access token or phone number ID.'], 422);
+                        }
+                        $resp = Http::withToken($token)->acceptJson()->timeout(15)
+                            ->get("https://graph.facebook.com/{$version}/{$phoneId}");
+                        if (! $resp->successful()) {
+                            return response()->json(['ok' => false, 'message' => $resp->json('error.message') ?? 'Meta API rejected the request.'], 422);
+                        }
+                        return response()->json(['ok' => true, 'message' => 'Connected to WhatsApp via Meta.', 'detail' => $resp->json('display_phone_number') ?? $resp->json('verified_name')]);
+                    }
+                    if ($driver->name() === 'twilio') {
+                        $sid = $s->twilio_account_sid ?: (string) config('services.whatsapp.twilio.sid');
+                        $token = $s->twilio_auth_token ?: (string) config('services.whatsapp.twilio.token');
+                        if (! $sid || ! $token) {
+                            return response()->json(['ok' => false, 'message' => 'Missing Twilio SID or auth token.'], 422);
+                        }
+                        $resp = Http::withBasicAuth($sid, $token)->acceptJson()->timeout(15)
+                            ->get("https://api.twilio.com/2010-04-01/Accounts/{$sid}.json");
+                        if (! $resp->successful()) {
+                            return response()->json(['ok' => false, 'message' => 'Twilio rejected the credentials.'], 422);
+                        }
+                        return response()->json(['ok' => true, 'message' => 'Connected to Twilio.', 'detail' => $resp->json('friendly_name')]);
+                    }
+                    return response()->json(['ok' => false, 'message' => 'Unknown WhatsApp driver.'], 422);
+
+                case 'openai':
+                    $key = $s->openai_api_key ?: (string) config('services.openai.key');
+                    if (! $key) return response()->json(['ok' => false, 'message' => 'No OpenAI API key set.'], 422);
+                    $resp = Http::withToken($key)->acceptJson()->timeout(15)->get('https://api.openai.com/v1/models');
+                    if (! $resp->successful()) {
+                        return response()->json(['ok' => false, 'message' => $resp->json('error.message') ?? 'OpenAI rejected the request.'], 422);
+                    }
+                    return response()->json(['ok' => true, 'message' => 'OpenAI key is valid.']);
+
+                case 'anthropic':
+                    $key = $s->anthropic_api_key ?: (string) config('services.anthropic.key');
+                    if (! $key) return response()->json(['ok' => false, 'message' => 'No Anthropic API key set.'], 422);
+                    // Cheap canary call.
+                    $resp = Http::withHeaders([
+                            'x-api-key' => $key,
+                            'anthropic-version' => '2023-06-01',
+                        ])->acceptJson()->timeout(15)
+                        ->post('https://api.anthropic.com/v1/messages', [
+                            'model' => $s->anthropic_text_model ?: (string) config('services.anthropic.text_model'),
+                            'max_tokens' => 8,
+                            'messages' => [['role' => 'user', 'content' => 'ping']],
+                        ]);
+                    if (! $resp->successful()) {
+                        return response()->json(['ok' => false, 'message' => $resp->json('error.message') ?? 'Anthropic rejected the request.'], 422);
+                    }
+                    return response()->json(['ok' => true, 'message' => 'Anthropic key is valid.']);
+
+                case 'elevenlabs':
+                    $key = $s->elevenlabs_api_key ?: (string) config('services.elevenlabs.key');
+                    if (! $key) return response()->json(['ok' => false, 'message' => 'No ElevenLabs API key set.'], 422);
+                    $resp = Http::withHeaders(['xi-api-key' => $key])->acceptJson()->timeout(15)
+                        ->get('https://api.elevenlabs.io/v1/user/subscription');
+                    if (! $resp->successful()) {
+                        return response()->json(['ok' => false, 'message' => 'ElevenLabs rejected the credentials.'], 422);
+                    }
+                    return response()->json(['ok' => true, 'message' => 'ElevenLabs key is valid.', 'detail' => $resp->json('tier')]);
+            }
+        } catch (Throwable $e) {
+            return response()->json(['ok' => false, 'message' => $e->getMessage()], 500);
+        }
+
+        return response()->json(['ok' => false, 'message' => 'Unsupported provider.'], 422);
     }
 }

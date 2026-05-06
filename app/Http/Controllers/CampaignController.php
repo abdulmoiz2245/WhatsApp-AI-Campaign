@@ -80,6 +80,30 @@ class CampaignController extends Controller
         return back()->with('success', 'Campaign resumed.');
     }
 
+    public function bulk(Request $request): RedirectResponse
+    {
+        $data = $request->validate([
+            'action' => ['required', Rule::in(['pause', 'resume', 'delete'])],
+            'ids' => ['required', 'array', 'min:1'],
+            'ids.*' => ['integer', 'exists:campaigns,id'],
+        ]);
+
+        $query = Campaign::where('user_id', $request->user()->id)->whereIn('id', $data['ids']);
+
+        if ($data['action'] === 'pause') {
+            $query->whereIn('status', [Campaign::STATUS_ACTIVE, Campaign::STATUS_SCHEDULED])
+                  ->update(['status' => Campaign::STATUS_PAUSED]);
+            return back()->with('success', count($data['ids']) . ' campaign(s) paused.');
+        }
+        if ($data['action'] === 'resume') {
+            $query->where('status', Campaign::STATUS_PAUSED)
+                  ->update(['status' => Campaign::STATUS_ACTIVE]);
+            return back()->with('success', count($data['ids']) . ' campaign(s) resumed.');
+        }
+        $query->delete();
+        return back()->with('success', count($data['ids']) . ' campaign(s) deleted.');
+    }
+
     protected function validateCampaign(Request $request): array
     {
         return $request->validate([
