@@ -28,9 +28,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index');
     Route::post('/contacts', [ContactController::class, 'store'])->name('contacts.store');
+    Route::post('/contacts/import', [ContactController::class, 'import'])->name('contacts.import');
+    Route::get('/contacts/{contact}', [ContactController::class, 'show'])->name('contacts.show');
     Route::patch('/contacts/{contact}', [ContactController::class, 'update'])->name('contacts.update');
     Route::delete('/contacts/{contact}', [ContactController::class, 'destroy'])->name('contacts.destroy');
-    Route::post('/contacts/import', [ContactController::class, 'import'])->name('contacts.import');
+    Route::post('/contacts/{contact}/messages', [ContactController::class, 'sendMessage'])->name('contacts.send');
 
     Route::post('/segments', [SegmentController::class, 'store'])->name('segments.store');
     Route::patch('/segments/{segment}', [SegmentController::class, 'update'])->name('segments.update');
@@ -38,6 +40,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/campaigns', [CampaignController::class, 'index'])->name('campaigns.index');
     Route::post('/campaigns', [CampaignController::class, 'store'])->name('campaigns.store');
+    Route::post('/campaigns/bulk', [CampaignController::class, 'bulk'])->name('campaigns.bulk');
     Route::patch('/campaigns/{campaign}', [CampaignController::class, 'update'])->name('campaigns.update');
     Route::delete('/campaigns/{campaign}', [CampaignController::class, 'destroy'])->name('campaigns.destroy');
     Route::post('/campaigns/{campaign}/start', [CampaignController::class, 'start'])->name('campaigns.start');
@@ -64,6 +67,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/settings', [SettingsController::class, 'edit'])->name('settings.edit');
     Route::patch('/settings', [SettingsController::class, 'update'])->name('settings.update');
+    Route::post('/settings/test-connection', [SettingsController::class, 'testConnection'])->name('settings.test');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

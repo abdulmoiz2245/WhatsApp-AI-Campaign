@@ -126,13 +126,14 @@ export default function ContactsIndex({ contacts, segments, stats, filters }) {
                             <tbody className="divide-y divide-gray-50">
                                 {contacts.data.length === 0 && <tr><td colSpan="6" className="text-center py-12 text-gray-400 text-sm">No contacts in this segment.</td></tr>}
                                 {contacts.data.map((c) => (
-                                    <tr key={c.id} className="hover:bg-gray-50/50 group">
+                                    <tr key={c.id} className="hover:bg-gray-50/50 group cursor-pointer"
+                                        onClick={() => router.get(route('contacts.show', c.id))}>
                                         <td className="px-5 py-3">
                                             <div className="flex items-center gap-3">
                                                 <img src={`https://ui-avatars.com/api/?name=${encodeURIComponent(c.name || c.phone)}&background=128C7E&color=fff&size=64`}
                                                      alt="" className="w-8 h-8 rounded-full"/>
                                                 <div>
-                                                    <p className="font-medium text-gray-800">{c.name || '—'}</p>
+                                                    <p className="font-medium text-gray-800 hover:underline">{c.name || '—'}</p>
                                                     <p className="text-xs text-gray-400">{c.email || ''}</p>
                                                 </div>
                                             </div>
@@ -152,7 +153,7 @@ export default function ContactsIndex({ contacts, segments, stats, filters }) {
                                         </td>
                                         <td className="px-3 py-3 text-xs text-gray-500">{c.last_messaged_at ? new Date(c.last_messaged_at).toLocaleDateString() : '—'}</td>
                                         <td className="px-5 py-3 text-right">
-                                            <button onClick={() => remove(c)} className="opacity-0 group-hover:opacity-100 p-1.5 hover:bg-red-50 rounded-lg text-red-400 transition">
+                                            <button onClick={(e) => { e.stopPropagation(); remove(c); }} className="opacity-0 group-hover:opacity-100 p-1.5 hover:bg-red-50 rounded-lg text-red-400 transition">
                                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
                                                 </svg>

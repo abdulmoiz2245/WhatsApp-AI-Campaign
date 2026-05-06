@@ -43,6 +43,8 @@ const ConnectedPill = ({ connected, label = 'Connected' }) => (
 
 export default function SettingsIndex({ settings, configured, webhook_url }) {
     const [tab, setTab] = useState('wa');
+    const [testing, setTesting] = useState(null);
+    const [testResult, setTestResult] = useState({});
     const form = useForm({
         ...settings,
         meta_access_token: '', twilio_auth_token: '', openai_api_key: '',
@@ -51,6 +53,41 @@ export default function SettingsIndex({ settings, configured, webhook_url }) {
 
     const submit = (e) => { e.preventDefault(); form.patch(route('settings.update'), { preserveScroll: true }); };
     const set = (k) => (v) => form.setData(k, v);
+
+    const testConnection = async (provider) => {
+        setTesting(provider);
+        try {
+            const csrf = document.querySelector('meta[name="csrf-token"]')?.content
+                || decodeURIComponent(document.cookie.split('; ').find((c) => c.startsWith('XSRF-TOKEN='))?.split('=')[1] || '');
+            const resp = await fetch(route('settings.test'), {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', Accept: 'application/json', 'X-XSRF-TOKEN': csrf },
+                credentials: 'same-origin',
+                body: JSON.stringify({ provider }),
+            });
+            const data = await resp.json().catch(() => ({}));
+            setTestResult((r) => ({ ...r, [provider]: { ok: resp.ok && data.ok, message: data.message || (resp.ok ? 'OK' : 'Failed') } }));
+        } catch (e) {
+            setTestResult((r) => ({ ...r, [provider]: { ok: false, message: e.message } }));
+        } finally {
+            setTesting(null);
+        }
+    };
+
+    const TestButton = ({ provider, label = 'Test Connection' }) => (
+        <div className="inline-flex items-center gap-3">
+            <button type="button" onClick={() => testConnection(provider)}
+                    disabled={testing === provider}
+                    className="btn-outline text-sm">
+                {testing === provider ? 'Testing…' : label}
+            </button>
+            {testResult[provider] && (
+                <span className={`text-xs font-medium px-2 py-1 rounded-full ${testResult[provider].ok ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'}`}>
+                    {testResult[provider].ok ? '✓ ' : '✕ '}{testResult[provider].message}
+                </span>
+            )}
+        </div>
+    );
 
     return (
         <AuthenticatedLayout title="Settings" subtitle="WhatsApp API · AI Config · Notifications · Account · ترتیبات">
@@ -108,9 +145,9 @@ export default function SettingsIndex({ settings, configured, webhook_url }) {
                             </>}
                         </div>
 
-                        <div className="flex gap-3 pt-2">
-                            <button type="button" className="btn-outline text-sm">Test Connection</button>
-                            <button disabled={form.processing} className="btn-brand text-sm">Save API Settings</button>
+                        <div className="flex flex-wrap gap-3 pt-2 items-center">
+                            <TestButton provider="whatsapp"/>
+                            <button disabled={form.processing} className="btn-brand text-sm ml-auto">Save API Settings</button>
                         </div>
                     </div>
                 )}
@@ -153,8 +190,10 @@ export default function SettingsIndex({ settings, configured, webhook_url }) {
                             <Field label="Anthropic model"><Input value={form.data.anthropic_text_model} onChange={set('anthropic_text_model')} placeholder="claude-sonnet-4-6"/></Field>
                         </div>
 
-                        <div className="flex justify-end pt-2">
-                            <button disabled={form.processing} className="btn-brand text-sm">Save AI Config</button>
+                        <div className="flex flex-wrap gap-3 pt-2 items-center">
+                            <TestButton provider="openai" label="Test OpenAI"/>
+                            <TestButton provider="anthropic" label="Test Anthropic"/>
+                            <button disabled={form.processing} className="btn-brand text-sm ml-auto">Save AI Config</button>
                         </div>
                     </div>
                 )}
@@ -198,8 +237,9 @@ export default function SettingsIndex({ settings, configured, webhook_url }) {
                             </>}
                         </div>
 
-                        <div className="flex justify-end pt-2">
-                            <button disabled={form.processing} className="btn-brand text-sm">Save Voice & Video</button>
+                        <div className="flex flex-wrap gap-3 pt-2 items-center">
+                            <TestButton provider="elevenlabs" label="Test ElevenLabs"/>
+                            <button disabled={form.processing} className="btn-brand text-sm ml-auto">Save Voice & Video</button>
                         </div>
                     </div>
                 )}
