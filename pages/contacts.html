@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contacts · WA AI Chatbot</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../assets/style.css"/>
+  <script>tailwind.config={theme:{extend:{colors:{brand:{DEFAULT:'#25D366',dark:'#128C7E',light:'#dcfce7'}},fontFamily:{sans:['Inter','ui-sans-serif']}}}}</script>
+</head>
+<body class="bg-gray-50 font-sans flex">
+  <div id="sidebar-root"></div>
+  <div class="flex-1 flex flex-col min-w-0">
+    <div id="topbar-root"></div>
+
+    <main class="p-6 space-y-6">
+
+      <div class="flex flex-col sm:flex-row sm:items-center gap-3">
+        <div class="flex-1">
+          <h2 class="text-xl font-bold text-gray-800">Contacts & Audience</h2>
+          <p class="text-gray-400 text-sm mt-0.5">WhatsApp contacts, segments and broadcast groups · رابطے اور ناظرین</p>
+        </div>
+        <div class="flex gap-3">
+          <button class="btn-outline text-sm py-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+            Import CSV
+          </button>
+          <button class="btn-brand text-sm py-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            Add Contact
+          </button>
+        </div>
+      </div>
+
+      <!-- Stats row -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div class="card p-4 text-center">
+          <p class="text-2xl font-bold text-gray-800">24,810</p>
+          <p class="text-xs text-gray-500 mt-1">Total Contacts</p>
+        </div>
+        <div class="card p-4 text-center">
+          <p class="text-2xl font-bold text-green-600">22,405</p>
+          <p class="text-xs text-gray-500 mt-1">Active</p>
+        </div>
+        <div class="card p-4 text-center">
+          <p class="text-2xl font-bold text-amber-500">1,840</p>
+          <p class="text-xs text-gray-500 mt-1">Unsubscribed</p>
+        </div>
+        <div class="card p-4 text-center">
+          <p class="text-2xl font-bold text-red-500">565</p>
+          <p class="text-xs text-gray-500 mt-1">Blocked</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+        <!-- Segments -->
+        <div class="card p-5">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="font-semibold text-gray-800">Segments</h3>
+            <button class="text-xs text-brand-dark font-medium hover:underline">+ New</button>
+          </div>
+          <div class="space-y-2">
+            <div class="flex items-center justify-between p-3 rounded-xl bg-brand-light cursor-pointer">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-brand"></span>
+                <span class="text-sm font-medium text-gray-800">All Contacts</span>
+              </div>
+              <span class="text-xs font-bold text-gray-700">24,810</span>
+            </div>
+            <div class="flex items-center justify-between p-3 rounded-xl hover:bg-gray-50 cursor-pointer">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-blue-400"></span>
+                <span class="text-sm text-gray-700">Tech Segment</span>
+              </div>
+              <span class="text-xs font-bold text-gray-700">6,200</span>
+            </div>
+            <div class="flex items-center justify-between p-3 rounded-xl hover:bg-gray-50 cursor-pointer">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-green-400"></span>
+                <span class="text-sm text-gray-700">General Subscribers</span>
+              </div>
+              <span class="text-xs font-bold text-gray-700">15,000</span>
+            </div>
+            <div class="flex items-center justify-between p-3 rounded-xl hover:bg-gray-50 cursor-pointer">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-purple-400"></span>
+                <span class="text-sm text-gray-700">Health Group</span>
+              </div>
+              <span class="text-xs font-bold text-gray-700">12,000</span>
+            </div>
+            <div class="flex items-center justify-between p-3 rounded-xl hover:bg-gray-50 cursor-pointer">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                <span class="text-sm text-gray-700">Premium List</span>
+              </div>
+              <span class="text-xs font-bold text-gray-700">5,000</span>
+            </div>
+            <div class="flex items-center justify-between p-3 rounded-xl hover:bg-gray-50 cursor-pointer">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-red-300"></span>
+                <span class="text-sm text-gray-700">VIP Clients</span>
+              </div>
+              <span class="text-xs font-bold text-gray-700">810</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contacts table -->
+        <div class="lg:col-span-2 card overflow-hidden">
+          <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <input type="text" placeholder="Search contacts…" class="flex-1 border border-gray-200 rounded-xl px-3 py-2 text-sm bg-gray-50 focus:outline-none focus:ring-2 focus:ring-brand"/>
+            <select class="border border-gray-200 rounded-xl px-3 py-2 text-sm bg-gray-50 text-gray-600 focus:outline-none">
+              <option>All Segments</option><option>Tech</option><option>Health</option>
+            </select>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="bg-gray-50 text-gray-500 text-xs uppercase tracking-wide">
+                  <th class="text-left px-5 py-3 font-medium"><input type="checkbox" class="rounded accent-brand"/></th>
+                  <th class="text-left px-3 py-3 font-medium">Name</th>
+                  <th class="text-left px-3 py-3 font-medium">WhatsApp</th>
+                  <th class="text-left px-3 py-3 font-medium">Segment</th>
+                  <th class="text-left px-3 py-3 font-medium">Status</th>
+                  <th class="text-left px-3 py-3 font-medium">Actions</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-50">
+                <tr class="hover:bg-gray-50/50 transition">
+                  <td class="px-5 py-3"><input type="checkbox" class="rounded accent-brand"/></td>
+                  <td class="px-3 py-3">
+                    <div class="flex items-center gap-2">
+                      <img src="https://ui-avatars.com/api/?name=Ahmed+Khan&background=128C7E&color=fff&size=28" class="w-7 h-7 rounded-full"/>
+                      <span class="font-medium text-gray-800">Ahmed Khan</span>
+                    </div>
+                  </td>
+                  <td class="px-3 py-3 text-gray-600">+92 300 1234567</td>
+                  <td class="px-3 py-3"><span class="bg-blue-50 text-blue-600 text-xs px-2 py-0.5 rounded-full">Tech</span></td>
+                  <td class="px-3 py-3"><span class="badge-active text-xs px-2 py-0.5 rounded-full">Active</span></td>
+                  <td class="px-3 py-3">
+                    <div class="flex gap-1">
+                      <button class="p-1 rounded-lg hover:bg-blue-50 text-blue-400"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
+                      <button class="p-1 rounded-lg hover:bg-red-50 text-red-400"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
+                    </div>
+                  </td>
+                </tr>
+                <tr class="hover:bg-gray-50/50 transition">
+                  <td class="px-5 py-3"><input type="checkbox" class="rounded accent-brand"/></td>
+                  <td class="px-3 py-3">
+                    <div class="flex items-center gap-2">
+                      <img src="https://ui-avatars.com/api/?name=Fatima+Ali&background=6366f1&color=fff&size=28" class="w-7 h-7 rounded-full"/>
+                      <span class="font-medium text-gray-800">Fatima Ali</span>
+                    </div>
+                  </td>
+                  <td class="px-3 py-3 text-gray-600">+92 321 9876543</td>
+                  <td class="px-3 py-3"><span class="bg-green-50 text-green-600 text-xs px-2 py-0.5 rounded-full">General</span></td>
+                  <td class="px-3 py-3"><span class="badge-active text-xs px-2 py-0.5 rounded-full">Active</span></td>
+                  <td class="px-3 py-3"><div class="flex gap-1"><button class="p-1 rounded-lg hover:bg-blue-50 text-blue-400"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button><button class="p-1 rounded-lg hover:bg-red-50 text-red-400"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button></div></td>
+                </tr>
+                <tr class="hover:bg-gray-50/50 transition">
+                  <td class="px-5 py-3"><input type="checkbox" class="rounded accent-brand"/></td>
+                  <td class="px-3 py-3">
+                    <div class="flex items-center gap-2">
+                      <img src="https://ui-avatars.com/api/?name=Usman+Rao&background=f59e0b&color=fff&size=28" class="w-7 h-7 rounded-full"/>
+                      <span class="font-medium text-gray-800">Usman Rao</span>
+                    </div>
+                  </td>
+                  <td class="px-3 py-3 text-gray-600">+92 333 5554321</td>
+                  <td class="px-3 py-3"><span class="bg-amber-50 text-amber-600 text-xs px-2 py-0.5 rounded-full">Premium</span></td>
+                  <td class="px-3 py-3"><span class="badge-paused text-xs px-2 py-0.5 rounded-full">Unsubscribed</span></td>
+                  <td class="px-3 py-3"><div class="flex gap-1"><button class="p-1 rounded-lg hover:bg-blue-50 text-blue-400"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button><button class="p-1 rounded-lg hover:bg-red-50 text-red-400"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button></div></td>
+                </tr>
+                <tr class="hover:bg-gray-50/50 transition">
+                  <td class="px-5 py-3"><input type="checkbox" class="rounded accent-brand"/></td>
+                  <td class="px-3 py-3">
+                    <div class="flex items-center gap-2">
+                      <img src="https://ui-avatars.com/api/?name=Sara+Malik&background=ec4899&color=fff&size=28" class="w-7 h-7 rounded-full"/>
+                      <span class="font-medium text-gray-800">Sara Malik</span>
+                    </div>
+                  </td>
+                  <td class="px-3 py-3 text-gray-600">+92 345 1112222</td>
+                  <td class="px-3 py-3"><span class="bg-purple-50 text-purple-600 text-xs px-2 py-0.5 rounded-full">Health</span></td>
+                  <td class="px-3 py-3"><span class="badge-active text-xs px-2 py-0.5 rounded-full">Active</span></td>
+                  <td class="px-3 py-3"><div class="flex gap-1"><button class="p-1 rounded-lg hover:bg-blue-50 text-blue-400"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button><button class="p-1 rounded-lg hover:bg-red-50 text-red-400"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button></div></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="flex items-center justify-between px-5 py-3 border-t border-gray-100 text-sm text-gray-500">
+            <span>Showing 4 of 24,810</span>
+            <div class="flex gap-1">
+              <button class="px-3 py-1.5 rounded-lg hover:bg-gray-100 text-gray-400">←</button>
+              <button class="px-3 py-1.5 rounded-lg bg-brand text-white text-xs font-semibold">1</button>
+              <button class="px-3 py-1.5 rounded-lg hover:bg-gray-100">2</button>
+              <button class="px-3 py-1.5 rounded-lg hover:bg-gray-100 text-gray-400">→</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/layout.js"></script>
+  <script>Layout.init({ active:'contacts', title:'Contacts & Audience' })</script>
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard · WA AI Chatbot</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../assets/style.css"/>
+  <script>tailwind.config={theme:{extend:{colors:{brand:{DEFAULT:'#25D366',dark:'#128C7E',light:'#dcfce7'}},fontFamily:{sans:['Inter','ui-sans-serif']}}}}</script>
+</head>
+<body class="bg-gray-50 font-sans flex">
+
+  <!-- Sidebar -->
+  <div id="sidebar-root"></div>
+
+  <!-- Page wrapper -->
+  <div class="flex-1 flex flex-col min-w-0">
+    <div id="topbar-root"></div>
+
+    <main class="p-6 space-y-6">
+
+      <!-- Greeting banner -->
+      <div class="rounded-2xl p-6 text-white flex flex-col sm:flex-row items-start sm:items-center gap-4" style="background:linear-gradient(135deg,#128C7E,#25D366)">
+        <div class="flex-1">
+          <p class="text-emerald-100 text-sm">Good evening, Admin 👋</p>
+          <h2 class="text-2xl font-bold mt-0.5">Campaign Overview</h2>
+          <p class="text-emerald-100 text-sm mt-1">اگلی اشاعت <span class="font-semibold text-white">4 گھنٹے 12 منٹ</span> میں · Asia/Karachi (PKT) — بجٹ 2026 ویڈیو</p>
+        </div>
+        <div class="flex gap-3 flex-wrap">
+          <a href="campaigns.html" class="bg-white/20 backdrop-blur text-white text-sm font-medium px-4 py-2 rounded-xl hover:bg-white/30 transition">New Campaign</a>
+          <a href="research.html" class="bg-white text-brand-dark text-sm font-semibold px-4 py-2 rounded-xl hover:opacity-90 transition">+ AI Research</a>
+        </div>
+      </div>
+
+      <!-- KPI Cards -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- Card template -->
+        <div class="card p-5">
+          <div class="flex items-center justify-between mb-3">
+            <p class="text-gray-500 text-sm">Active Campaigns</p>
+            <span class="w-9 h-9 bg-green-50 rounded-xl flex items-center justify-center">
+              <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/></svg>
+            </span>
+          </div>
+          <p class="text-3xl font-bold text-gray-800">12</p>
+          <p class="text-xs text-green-600 mt-1 flex items-center gap-1">▲ 3 this week</p>
+        </div>
+        <div class="card p-5">
+          <div class="flex items-center justify-between mb-3">
+            <p class="text-gray-500 text-sm">Messages Sent</p>
+            <span class="w-9 h-9 bg-blue-50 rounded-xl flex items-center justify-center">
+              <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+            </span>
+          </div>
+          <p class="text-3xl font-bold text-gray-800">48.2K</p>
+          <p class="text-xs text-blue-600 mt-1">▲ 12% vs last week</p>
+        </div>
+        <div class="card p-5">
+          <div class="flex items-center justify-between mb-3">
+            <p class="text-gray-500 text-sm">Videos Generated</p>
+            <span class="w-9 h-9 bg-purple-50 rounded-xl flex items-center justify-center">
+              <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"/></svg>
+            </span>
+          </div>
+          <p class="text-3xl font-bold text-gray-800">87</p>
+          <p class="text-xs text-purple-600 mt-1">▲ 7 this week</p>
+        </div>
+        <div class="card p-5">
+          <div class="flex items-center justify-between mb-3">
+            <p class="text-gray-500 text-sm">Open Rate</p>
+            <span class="w-9 h-9 bg-amber-50 rounded-xl flex items-center justify-center">
+              <svg class="w-4 h-4 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+            </span>
+          </div>
+          <p class="text-3xl font-bold text-gray-800">74%</p>
+          <p class="text-xs text-amber-600 mt-1">▼ 2% vs last week</p>
+        </div>
+      </div>
+
+      <!-- Charts row -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+
+        <!-- Line chart mock -->
+        <div class="card p-5 lg:col-span-2">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <h3 class="font-semibold text-gray-800">Message Delivery Trend</h3>
+              <p class="text-gray-400 text-xs mt-0.5">Last 14 days</p>
+            </div>
+            <select class="text-xs border border-gray-200 rounded-lg px-2 py-1.5 text-gray-600 bg-white">
+              <option>14 days</option><option>30 days</option><option>90 days</option>
+            </select>
+          </div>
+          <!-- SVG fake chart -->
+          <svg viewBox="0 0 520 120" class="w-full" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#25D366" stop-opacity=".3"/>
+                <stop offset="100%" stop-color="#25D366" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path d="M0,90 C40,80 60,30 120,45 C180,60 200,20 260,35 C320,50 340,10 400,25 C460,40 490,15 520,20 L520,120 L0,120Z" fill="url(#g1)"/>
+            <path d="M0,90 C40,80 60,30 120,45 C180,60 200,20 260,35 C320,50 340,10 400,25 C460,40 490,15 520,20" fill="none" stroke="#25D366" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- dots -->
+            <circle cx="120" cy="45" r="4" fill="#128C7E"/>
+            <circle cx="260" cy="35" r="4" fill="#128C7E"/>
+            <circle cx="400" cy="25" r="4" fill="#128C7E"/>
+            <circle cx="520" cy="20" r="4" fill="#128C7E"/>
+          </svg>
+          <!-- X labels -->
+          <div class="flex justify-between mt-2">
+            <span class="text-gray-400 text-xs">Feb 8</span>
+            <span class="text-gray-400 text-xs">Feb 12</span>
+            <span class="text-gray-400 text-xs">Feb 16</span>
+            <span class="text-gray-400 text-xs">Feb 22</span>
+          </div>
+        </div>
+
+        <!-- Donut chart mock -->
+        <div class="card p-5">
+          <h3 class="font-semibold text-gray-800 mb-1">Campaign Types</h3>
+          <p class="text-gray-400 text-xs mb-4">By category</p>
+          <div class="flex justify-center">
+            <svg viewBox="0 0 120 120" class="w-28 h-28">
+              <circle cx="60" cy="60" r="45" fill="none" stroke="#e2e8f0" stroke-width="20"/>
+              <circle cx="60" cy="60" r="45" fill="none" stroke="#25D366" stroke-width="20" stroke-dasharray="113 170" stroke-dashoffset="0" transform="rotate(-90 60 60)"/>
+              <circle cx="60" cy="60" r="45" fill="none" stroke="#3b82f6" stroke-width="20" stroke-dasharray="68 215" stroke-dashoffset="-113" transform="rotate(-90 60 60)"/>
+              <circle cx="60" cy="60" r="45" fill="none" stroke="#a78bfa" stroke-width="20" stroke-dasharray="34 249" stroke-dashoffset="-181" transform="rotate(-90 60 60)"/>
+              <text x="60" y="64" text-anchor="middle" class="text-xs font-bold" style="font-size:12px;font-weight:700;fill:#1e293b">87</text>
+              <text x="60" y="76" text-anchor="middle" style="font-size:8px;fill:#94a3b8">Total</text>
+            </svg>
+          </div>
+          <div class="space-y-2 mt-4">
+            <div class="flex items-center justify-between text-sm">
+              <div class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-green-400"></span><span class="text-gray-600">Video</span></div>
+              <span class="font-semibold text-gray-800">40%</span>
+            </div>
+            <div class="flex items-center justify-between text-sm">
+              <div class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-blue-400"></span><span class="text-gray-600">Message</span></div>
+              <span class="font-semibold text-gray-800">30%</span>
+            </div>
+            <div class="flex items-center justify-between text-sm">
+              <div class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-violet-400"></span><span class="text-gray-600">Image+Text</span></div>
+              <span class="font-semibold text-gray-800">30%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Campaigns + Activity -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+
+        <!-- Recent campaigns table -->
+        <div class="card lg:col-span-2 overflow-hidden">
+          <div class="flex items-center justify-between px-5 py-4 border-b border-gray-100">
+            <h3 class="font-semibold text-gray-800">Recent Campaigns</h3>
+            <a href="campaigns.html" class="text-brand-dark text-sm font-medium hover:underline">View all →</a>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="bg-gray-50 text-gray-500 text-xs uppercase tracking-wide">
+                  <th class="text-left px-5 py-3 font-medium">Campaign</th>
+                  <th class="text-left px-3 py-3 font-medium">Type</th>
+                  <th class="text-left px-3 py-3 font-medium">Status</th>
+                  <th class="text-left px-3 py-3 font-medium">Sent</th>
+                  <th class="text-left px-3 py-3 font-medium">Schedule</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-50">
+                <tr class="hover:bg-gray-50/50 transition">
+                  <td class="px-5 py-3.5">
+                    <p class="font-medium text-gray-800">پاکستان بجٹ 2026 — اہم نکات</p>
+                    <p class="text-xs text-gray-400 mt-0.5">Pakistan Budget 2026 – Key Highlights</p>
+                  </td>
+                  <td class="px-3 py-3.5 text-gray-500">Video</td>
+                  <td class="px-3 py-3.5"><span class="badge-active text-xs font-medium px-2.5 py-1 rounded-full">Active</span></td>
+                  <td class="px-3 py-3.5 text-gray-700">18,540</td>
+                  <td class="px-3 py-3.5 text-gray-500 text-xs">Daily 7:00 PM</td>
+                </tr>
+                <tr class="hover:bg-gray-50/50 transition">
+                  <td class="px-5 py-3.5">
+                    <p class="font-medium text-gray-800">کراچی موسم — گرمی کی لہر الرٹ</p>
+                    <p class="text-xs text-gray-400 mt-0.5">Karachi Weather – Heatwave Alert</p>
+                  </td>
+                  <td class="px-3 py-3.5 text-gray-500">Message</td>
+                  <td class="px-3 py-3.5"><span class="badge-active text-xs font-medium px-2.5 py-1 rounded-full">Active</span></td>
+                  <td class="px-3 py-3.5 text-gray-700">24,300</td>
+                  <td class="px-3 py-3.5 text-gray-500 text-xs">Daily 7:00 PM</td>
+                </tr>
+                <tr class="hover:bg-gray-50/50 transition">
+                  <td class="px-5 py-3.5">
+                    <p class="font-medium text-gray-800">لاہور میٹرو — نیا روٹ افتتاح</p>
+                    <p class="text-xs text-gray-400 mt-0.5">Lahore Metro – New Route Inauguration</p>
+                  </td>
+                  <td class="px-3 py-3.5 text-gray-500">Video</td>
+                  <td class="px-3 py-3.5"><span class="badge-scheduled text-xs font-medium px-2.5 py-1 rounded-full">Scheduled</span></td>
+                  <td class="px-3 py-3.5 text-gray-700">11,760</td>
+                  <td class="px-3 py-3.5 text-gray-500 text-xs">Sun 7:00 PM</td>
+                </tr>
+                <tr class="hover:bg-gray-50/50 transition">
+                  <td class="px-5 py-3.5">
+                    <p class="font-medium text-gray-800">پاکستان کرکٹ — ورلڈ کپ اسکواڈ</p>
+                    <p class="text-xs text-gray-400 mt-0.5">Pakistan Cricket – World Cup Squad Announced</p>
+                  </td>
+                  <td class="px-3 py-3.5 text-gray-500">Image</td>
+                  <td class="px-3 py-3.5"><span class="badge-active text-xs font-medium px-2.5 py-1 rounded-full">Active</span></td>
+                  <td class="px-3 py-3.5 text-gray-700">31,200</td>
+                  <td class="px-3 py-3.5 text-gray-500 text-xs">Daily 7:00 PM</td>
+                </tr>
+                <tr class="hover:bg-gray-50/50 transition">
+                  <td class="px-5 py-3.5">
+                    <p class="font-medium text-gray-800">اسلام آباد — نئی ہاؤسنگ اسکیم</p>
+                    <p class="text-xs text-gray-400 mt-0.5">Islamabad – New Housing Scheme Launch</p>
+                  </td>
+                  <td class="px-3 py-3.5 text-gray-500">Message</td>
+                  <td class="px-3 py-3.5"><span class="badge-paused text-xs font-medium px-2.5 py-1 rounded-full">Paused</span></td>
+                  <td class="px-3 py-3.5 text-gray-700">6,450</td>
+                  <td class="px-3 py-3.5 text-gray-500 text-xs">Paused</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Activity feed -->
+        <div class="card p-5">
+          <h3 class="font-semibold text-gray-800 mb-4">Recent Activity</h3>
+          <ol class="relative border-l border-gray-100 space-y-5 pl-4">
+            <li>
+              <span class="absolute -left-1.5 w-3 h-3 bg-green-400 rounded-full ring-2 ring-white"></span>
+              <p class="text-sm font-medium text-gray-800">ویڈیو واٹس ایپ پر اپلوڈ ہوئی</p>
+              <p class="text-xs text-gray-400 mt-0.5">بجٹ 2026 · 2 منٹ پہلے</p>
+            </li>
+            <li>
+              <span class="absolute -left-1.5 w-3 h-3 bg-blue-400 rounded-full ring-2 ring-white" style="top:60px"></span>
+              <p class="text-sm font-medium text-gray-800">AI اسکرپٹ تیار ہوئی</p>
+              <p class="text-xs text-gray-400 mt-0.5">کراچی موسم الرٹ · 15 منٹ پہلے</p>
+            </li>
+            <li>
+              <span class="absolute -left-1.5 w-3 h-3 bg-purple-400 rounded-full ring-2 ring-white" style="top:120px"></span>
+              <p class="text-sm font-medium text-gray-800">تھمب نیل بنایا گیا</p>
+              <p class="text-xs text-gray-400 mt-0.5">لاہور میٹرو خبر · 38 منٹ پہلے</p>
+            </li>
+            <li>
+              <span class="absolute -left-1.5 w-3 h-3 bg-amber-400 rounded-full ring-2 ring-white" style="top:180px"></span>
+              <p class="text-sm font-medium text-gray-800">کمپین روک دی گئی</p>
+              <p class="text-xs text-gray-400 mt-0.5">اسلام آباد ہاؤسنگ · 1 گھنٹہ پہلے</p>
+            </li>
+            <li>
+              <span class="absolute -left-1.5 w-3 h-3 bg-gray-300 rounded-full ring-2 ring-white" style="top:240px"></span>
+              <p class="text-sm font-medium text-gray-800">91,250 پیغامات ڈیلیور ہوئے</p>
+              <p class="text-xs text-gray-400 mt-0.5">تمام کمپینز · 2 گھنٹے پہلے</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="../assets/layout.js"></script>
+  <script>Layout.init({ active:'dashboard', title:'Dashboard' })</script>
+</body>
+</html>

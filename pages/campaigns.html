@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Campaigns · WA AI Chatbot</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../assets/style.css"/>
+  <script>tailwind.config={theme:{extend:{colors:{brand:{DEFAULT:'#25D366',dark:'#128C7E',light:'#dcfce7'}},fontFamily:{sans:['Inter','ui-sans-serif']}}}}</script>
+</head>
+<body class="bg-gray-50 font-sans flex">
+  <div id="sidebar-root"></div>
+  <div class="flex-1 flex flex-col min-w-0">
+    <div id="topbar-root"></div>
+
+    <main class="p-6 space-y-6">
+
+      <!-- Page header -->
+      <div class="flex flex-col sm:flex-row sm:items-center gap-3">
+        <div class="flex-1">
+          <h2 class="text-xl font-bold text-gray-800">Campaign Management</h2>
+          <p class="text-gray-400 text-sm mt-0.5">Manage, schedule and send WhatsApp campaigns · کمپین مینجمنٹ</p>
+        </div>
+        <button onclick="document.getElementById('modal').classList.remove('hidden')" class="btn-brand">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          New Campaign
+        </button>
+      </div>
+
+      <!-- Filter bar -->
+      <div class="card px-4 py-3 flex flex-wrap gap-3 items-center">
+        <input type="text" placeholder="Search campaigns…" class="border border-gray-200 rounded-xl text-sm px-3 py-2 flex-1 min-w-[200px] focus:outline-none focus:ring-2 focus:ring-brand bg-gray-50"/>
+        <select class="border border-gray-200 rounded-xl text-sm px-3 py-2 bg-gray-50 text-gray-600 focus:outline-none">
+          <option>All Types</option><option>Video</option><option>Message</option><option>Image</option>
+        </select>
+        <select class="border border-gray-200 rounded-xl text-sm px-3 py-2 bg-gray-50 text-gray-600 focus:outline-none">
+          <option>All Status</option><option>Active</option><option>Scheduled</option><option>Paused</option><option>Draft</option>
+        </select>
+        <button class="btn-outline text-xs py-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707L13 13.414V19a1 1 0 01-.553.894l-4 2A1 1 0 017 21v-7.586L3.293 6.707A1 1 0 013 6V4z"/></svg>
+          Filter
+        </button>
+      </div>
+
+      <!-- Campaigns table -->
+      <div class="card overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="bg-gray-50 text-gray-500 text-xs uppercase tracking-wide">
+                <th class="text-left px-5 py-3.5 font-medium w-5"><input type="checkbox" class="rounded accent-brand"/></th>
+                <th class="text-left px-3 py-3.5 font-medium">Campaign Name</th>
+                <th class="text-left px-3 py-3.5 font-medium">Type</th>
+                <th class="text-left px-3 py-3.5 font-medium">Audience</th>
+                <th class="text-left px-3 py-3.5 font-medium">Status</th>
+                <th class="text-left px-3 py-3.5 font-medium">Sent / Total</th>
+                <th class="text-left px-3 py-3.5 font-medium">Open Rate</th>
+                <th class="text-left px-3 py-3.5 font-medium">Schedule</th>
+                <th class="text-left px-3 py-3.5 font-medium">Actions</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-50">
+
+              <!-- Row macro -->
+              <tr class="hover:bg-gray-50/50 transition group">
+                <td class="px-5 py-4"><input type="checkbox" class="rounded accent-brand"/></td>
+                <td class="px-3 py-4">
+                  <p class="font-semibold text-gray-800">عمران خان کی رہائی پر عوامی ری ایکشن</p>
+                  <p class="text-gray-400 text-xs">Created Feb 18 · by Admin</p>
+                </td>
+                <td class="px-3 py-4"><span class="bg-purple-50 text-purple-600 text-xs font-medium px-2 py-1 rounded-full">Video</span></td>
+                <td class="px-3 py-4 text-gray-600">General Subscribers</td>
+                <td class="px-3 py-4"><span class="badge-active text-xs font-medium px-2.5 py-1 rounded-full">Active</span></td>
+                <td class="px-3 py-4">
+                  <p class="text-gray-800 font-medium">12,400 / 15,000</p>
+                  <div class="w-24 h-1.5 bg-gray-100 rounded-full mt-1"><div class="h-1.5 bg-green-400 rounded-full" style="width:82%"></div></div>
+                </td>
+                <td class="px-3 py-4 text-gray-700 font-medium">78%</td>
+                <td class="px-3 py-4 text-xs text-gray-500">Daily 7:00 PM PKT</td>
+                <td class="px-3 py-4">
+                  <div class="flex gap-1 opacity-0 group-hover:opacity-100 transition">
+                    <button class="p-1.5 hover:bg-blue-50 rounded-lg text-blue-500" title="Edit">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                    </button>
+                    <button class="p-1.5 hover:bg-yellow-50 rounded-lg text-yellow-500" title="Pause">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </button>
+                    <button class="p-1.5 hover:bg-red-50 rounded-lg text-red-400" title="Delete">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr class="hover:bg-gray-50/50 transition group">
+                <td class="px-5 py-4"><input type="checkbox" class="rounded accent-brand"/></td>
+                <td class="px-3 py-4">
+                  <p class="font-semibold text-gray-800">اسلام آباد جلسے کی تیاریاں</p>
+                  <p class="text-gray-400 text-xs">Created Feb 15 · by Admin</p>
+                </td>
+                <td class="px-3 py-4"><span class="bg-blue-50 text-blue-600 text-xs font-medium px-2 py-1 rounded-full">Message</span></td>
+                <td class="px-3 py-4 text-gray-600">Tech Segment</td>
+                <td class="px-3 py-4"><span class="badge-scheduled text-xs font-medium px-2.5 py-1 rounded-full">Scheduled</span></td>
+                <td class="px-3 py-4">
+                  <p class="text-gray-800 font-medium">8,020 / 10,000</p>
+                  <div class="w-24 h-1.5 bg-gray-100 rounded-full mt-1"><div class="h-1.5 bg-blue-400 rounded-full" style="width:80%"></div></div>
+                </td>
+                <td class="px-3 py-4 text-gray-700 font-medium">71%</td>
+                <td class="px-3 py-4 text-xs text-gray-500">Sun 7:00 PM PKT</td>
+                <td class="px-3 py-4">
+                  <div class="flex gap-1 opacity-0 group-hover:opacity-100 transition">
+                    <button class="p-1.5 hover:bg-blue-50 rounded-lg text-blue-500"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
+                    <button class="p-1.5 hover:bg-yellow-50 rounded-lg text-yellow-500"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></button>
+                    <button class="p-1.5 hover:bg-red-50 rounded-lg text-red-400"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr class="hover:bg-gray-50/50 transition group">
+                <td class="px-5 py-4"><input type="checkbox" class="rounded accent-brand"/></td>
+                <td class="px-3 py-4">
+                  <p class="font-semibold text-gray-800">عدالتی فیصلے پر عوامی ردعمل</p>
+                  <p class="text-gray-400 text-xs">Created Feb 10 · by Admin</p>
+                </td>
+                <td class="px-3 py-4"><span class="bg-amber-50 text-amber-600 text-xs font-medium px-2 py-1 rounded-full">Image</span></td>
+                <td class="px-3 py-4 text-gray-600">Premium List</td>
+                <td class="px-3 py-4"><span class="badge-paused text-xs font-medium px-2.5 py-1 rounded-full">Paused</span></td>
+                <td class="px-3 py-4">
+                  <p class="text-gray-800 font-medium">3,100 / 5,000</p>
+                  <div class="w-24 h-1.5 bg-gray-100 rounded-full mt-1"><div class="h-1.5 bg-amber-400 rounded-full" style="width:62%"></div></div>
+                </td>
+                <td class="px-3 py-4 text-gray-700 font-medium">60%</td>
+                <td class="px-3 py-4 text-xs text-gray-400">—</td>
+                <td class="px-3 py-4">
+                  <div class="flex gap-1 opacity-0 group-hover:opacity-100 transition">
+                    <button class="p-1.5 hover:bg-blue-50 rounded-lg text-blue-500"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
+                    <button class="p-1.5 hover:bg-green-50 rounded-lg text-green-500"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></button>
+                    <button class="p-1.5 hover:bg-red-50 rounded-lg text-red-400"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr class="hover:bg-gray-50/50 transition group">
+                <td class="px-5 py-4"><input type="checkbox" class="rounded accent-brand"/></td>
+                <td class="px-3 py-4">
+                  <p class="font-semibold text-gray-800">پٹرول قیمتوں میں اضافہ</p>
+                  <p class="text-gray-400 text-xs">Created Feb 20 · by Admin</p>
+                </td>
+                <td class="px-3 py-4"><span class="bg-purple-50 text-purple-600 text-xs font-medium px-2 py-1 rounded-full">Video</span></td>
+                <td class="px-3 py-4 text-gray-600">Health Group</td>
+                <td class="px-3 py-4"><span class="badge-active text-xs font-medium px-2.5 py-1 rounded-full">Active</span></td>
+                <td class="px-3 py-4">
+                  <p class="text-gray-800 font-medium">9,870 / 12,000</p>
+                  <div class="w-24 h-1.5 bg-gray-100 rounded-full mt-1"><div class="h-1.5 bg-green-400 rounded-full" style="width:82%"></div></div>
+                </td>
+                <td class="px-3 py-4 text-gray-700 font-medium">74%</td>
+                <td class="px-3 py-4 text-xs text-gray-500">Daily 7:00 PM PKT</td>
+                <td class="px-3 py-4">
+                  <div class="flex gap-1 opacity-0 group-hover:opacity-100 transition">
+                    <button class="p-1.5 hover:bg-blue-50 rounded-lg text-blue-500"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
+                    <button class="p-1.5 hover:bg-yellow-50 rounded-lg text-yellow-500"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></button>
+                    <button class="p-1.5 hover:bg-red-50 rounded-lg text-red-400"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr class="hover:bg-gray-50/50 transition group">
+                <td class="px-5 py-4"><input type="checkbox" class="rounded accent-brand"/></td>
+                <td class="px-3 py-4">
+                  <p class="font-semibold text-gray-800">سینیٹر ملک کو نیا کیس درج</p>
+                  <p class="text-gray-400 text-xs">Created Feb 22 · by Admin</p>
+                </td>
+                <td class="px-3 py-4"><span class="bg-blue-50 text-blue-600 text-xs font-medium px-2 py-1 rounded-full">Message</span></td>
+                <td class="px-3 py-4 text-gray-600">All Contacts</td>
+                <td class="px-3 py-4"><span class="badge-draft text-xs font-medium px-2.5 py-1 rounded-full">Draft</span></td>
+                <td class="px-3 py-4 text-gray-400 text-xs">—</td>
+                <td class="px-3 py-4 text-gray-400">—</td>
+                <td class="px-3 py-4 text-xs text-gray-400">Not set</td>
+                <td class="px-3 py-4">
+                  <div class="flex gap-1 opacity-0 group-hover:opacity-100 transition">
+                    <button class="p-1.5 hover:bg-blue-50 rounded-lg text-blue-500"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
+                    <button class="p-1.5 hover:bg-red-50 rounded-lg text-red-400"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
+                  </div>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+        <!-- Pagination -->
+        <div class="flex items-center justify-between px-5 py-3.5 border-t border-gray-100 text-sm text-gray-500">
+          <span>Showing 5 of 24 campaigns</span>
+          <div class="flex items-center gap-1">
+            <button class="px-3 py-1.5 rounded-lg hover:bg-gray-100 text-gray-400">←</button>
+            <button class="px-3 py-1.5 rounded-lg bg-brand text-white text-xs font-semibold">1</button>
+            <button class="px-3 py-1.5 rounded-lg hover:bg-gray-100">2</button>
+            <button class="px-3 py-1.5 rounded-lg hover:bg-gray-100">3</button>
+            <button class="px-3 py-1.5 rounded-lg hover:bg-gray-100 text-gray-400">→</button>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- New Campaign Modal -->
+  <div id="modal" class="hidden fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg p-6 space-y-4">
+      <div class="flex items-center justify-between">
+        <h3 class="font-bold text-gray-800 text-lg">Create New Campaign</h3>
+        <button onclick="document.getElementById('modal').classList.add('hidden')" class="text-gray-400 hover:text-gray-700 p-1 rounded-lg hover:bg-gray-100">✕</button>
+      </div>
+      <div class="space-y-3">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Campaign Name</label>
+          <input type="text" placeholder="e.g. Summer Sale 2026" class="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm bg-gray-50 focus:outline-none focus:ring-2 focus:ring-brand"/>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Type</label>
+            <select class="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm bg-gray-50 focus:outline-none">
+              <option>Video</option><option>Message</option><option>Image</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Audience</label>
+            <select class="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm bg-gray-50 focus:outline-none">
+              <option>All Contacts</option><option>General Subscribers</option><option>Tech Segment</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Schedule Time (PKT)</label>
+          <input type="time" value="19:00" class="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm bg-gray-50 focus:outline-none focus:ring-2 focus:ring-brand"/>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Message / Script</label>
+          <textarea rows="3" placeholder="Enter your WhatsApp message or paste AI-generated script…" class="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm bg-gray-50 focus:outline-none focus:ring-2 focus:ring-brand resize-none"></textarea>
+        </div>
+      </div>
+      <div class="flex justify-end gap-3 pt-2">
+        <button onclick="document.getElementById('modal').classList.add('hidden')" class="btn-outline text-sm py-2">Cancel</button>
+        <button class="btn-brand text-sm py-2">Save as Draft</button>
+        <button class="btn-brand text-sm py-2" style="background:linear-gradient(135deg,#128C7E,#25D366)">Launch Campaign</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/layout.js"></script>
+  <script>Layout.init({ active:'campaigns', title:'Campaigns' })</script>
+</body>
+</html>

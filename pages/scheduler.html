@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Scheduler · WA AI Chatbot</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../assets/style.css"/>
+  <script>tailwind.config={theme:{extend:{colors:{brand:{DEFAULT:'#25D366',dark:'#128C7E',light:'#dcfce7'}},fontFamily:{sans:['Inter','ui-sans-serif']}}}}</script>
+</head>
+<body class="bg-gray-50 font-sans flex">
+  <div id="sidebar-root"></div>
+  <div class="flex-1 flex flex-col min-w-0">
+    <div id="topbar-root"></div>
+
+    <main class="p-6 space-y-6">
+
+      <div class="flex flex-col sm:flex-row sm:items-center gap-3">
+        <div class="flex-1">
+          <h2 class="text-xl font-bold text-gray-800">Scheduler</h2>
+          <p class="text-gray-400 text-sm mt-0.5">All posts scheduled at 7:00 PM · Asia/Karachi (PKT) · شیڈیولر</p>
+        </div>
+        <button class="btn-brand text-sm py-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          Schedule Post
+        </button>
+      </div>
+
+      <!-- Timezone + clock banner -->
+      <div class="card p-4 flex flex-wrap gap-4 items-center">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center">
+            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-gray-800" id="clock">--:--:--</p>
+            <p class="text-xs text-gray-400">Asia/Karachi (PKT)</p>
+          </div>
+        </div>
+        <div class="h-10 w-px bg-gray-100 hidden sm:block"></div>
+        <div>
+          <p class="text-sm font-semibold text-gray-800">Next Post</p>
+          <p class="text-xs text-gray-400">Today 7:00 PM PKT — Ramadan Offers 2026</p>
+        </div>
+        <div class="h-10 w-px bg-gray-100 hidden sm:block"></div>
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 bg-green-400 rounded-full animate-pulse"></span>
+          <span class="text-sm text-green-700 font-medium">Auto-publish Active</span>
+        </div>
+        <div class="ml-auto">
+          <select class="border border-gray-200 rounded-xl px-3 py-2 text-sm bg-gray-50 text-gray-600 focus:outline-none">
+            <option>February 2026</option><option>March 2026</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+
+        <!-- Calendar -->
+        <div class="xl:col-span-2 card p-5">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-semibold text-gray-800">February 2026</h3>
+            <div class="flex gap-2">
+              <button class="p-1.5 rounded-lg border border-gray-200 hover:bg-gray-50 text-gray-600">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+              </button>
+              <button class="p-1.5 rounded-lg border border-gray-200 hover:bg-gray-50 text-gray-600">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Day headers -->
+          <div class="grid grid-cols-7 gap-1 mb-2">
+            <div class="text-center text-xs font-semibold text-gray-400 py-1">Sun</div>
+            <div class="text-center text-xs font-semibold text-gray-400 py-1">Mon</div>
+            <div class="text-center text-xs font-semibold text-gray-400 py-1">Tue</div>
+            <div class="text-center text-xs font-semibold text-gray-400 py-1">Wed</div>
+            <div class="text-center text-xs font-semibold text-gray-400 py-1">Thu</div>
+            <div class="text-center text-xs font-semibold text-gray-400 py-1">Fri</div>
+            <div class="text-center text-xs font-semibold text-gray-400 py-1">Sat</div>
+          </div>
+
+          <!-- Calendar days (Feb 2026 starts Sunday) -->
+          <div class="grid grid-cols-7 gap-1" id="cal-grid">
+            <!-- Row 1 -->
+            <div class="cal-day p-1 min-h-[72px] rounded-lg"></div><!-- blank (Feb starts on Sunday = no blank needed) -->
+            <div class="cal-day p-1.5 min-h-[72px] rounded-lg border border-transparent hover:border-brand-light cursor-pointer group">
+              <span class="text-xs font-semibold text-gray-700 group-hover:text-brand-dark">1</span>
+              <div class="mt-1 text-xs bg-green-100 text-green-700 rounded px-1 py-0.5 truncate">عمران خان رہائی ویڈیو</div>
+            </div>
+            <div class="cal-day p-1.5 min-h-[72px] rounded-lg border border-transparent hover:border-brand-light cursor-pointer group">
+              <span class="text-xs font-semibold text-gray-700">2</span>
+              <div class="mt-1 text-xs bg-green-100 text-green-700 rounded px-1 py-0.5 truncate">اسلام آباد جلسے رپورٹ</div>
+            </div>
+            <div class="cal-day p-1.5 min-h-[72px] rounded-lg border border-transparent hover:border-brand-light cursor-pointer">
+              <span class="text-xs font-semibold text-gray-700">3</span>
+            </div>
+            <div class="cal-day p-1.5 min-h-[72px] rounded-lg border border-transparent hover:border-brand-light cursor-pointer">
+              <span class="text-xs font-semibold text-gray-700">4</span>
+            </div>
+            <div class="cal-day p-1.5 min-h-[72px] rounded-lg border border-transparent hover:border-brand-light cursor-pointer group">
+              <span class="text-xs font-semibold text-gray-700">5</span>
+              <div class="mt-1 text-xs bg-blue-100 text-blue-700 rounded px-1 py-0.5 truncate">عدالتی فیصلہ خلاصہ</div>
+            </div>
+            <div class="cal-day p-1.5 min-h-[72px] rounded-lg border border-transparent hover:border-brand-light cursor-pointer">
+              <span class="text-xs font-semibold text-gray-700">6</span>
+            </div>
+            <!-- Row 2 -->
+            <div class="cal-day p-1.5 min-h-[72px] rounded-lg border border-transparent hover:border-brand-light cursor-pointer">
+              <span class="text-xs font-semibold text-gray-700">7</span>
+            </div>
+            <div class="cal-day p-1.5 min-h-[72px] rounded-lg border border-transparent hover:border-brand-light cursor-pointer group">
+              <span class="text-xs font-semibold text-gray-700">8</span>
+              <div class="mt-1 text-xs bg-green-100 text-green-700 rounded px-1 py-0.5 truncate">سینیٹر ملک کیس اپ ڈیٹ</div>
+              <div class="mt-0.5 text-xs bg-purple-100 text-purple-700 rounded px-1 py-0.5 truncate">پٹرول قیمت نوٹس</div>
+            </div>
+            <div class="cal-day p-1.5 min-h-[72px] rounded-lg border border-transparent hover:border-brand-light cursor-pointer group">
+              <span class="text-xs font-semibold text-gray-700">9</span>
+              <div class="mt-1 text-xs bg-green-100 text-green-700 rounded px-1 py-0.5 truncate">کراچی موسم الرٹ</div>
+            </div>
+            <div class="cal-day p-1.5 min-h-[72px] rounded-lg border border-transparent hover:border-brand-light cursor-pointer">
+              <span class="text-xs font-semibold text-gray-700">10</span>
+            </div>
+            <div class="cal-day p-1.5 min-h-[72px] rounded-lg border border-transparent hover:border-brand-light cursor-pointer">
+              <span class="text-xs font-semibold text-gray-700">11</span>
+            </div>
+            <div class="cal-day p-1.5 min-h-[72px] rounded-lg border border-transparent hover:border-brand-light cursor-pointer group">
+              <span class="text-xs font-semibold text-gray-700">12</span>
+              <div class="mt-1 text-xs bg-blue-100 text-blue-700 rounded px-1 py-0.5 truncate">نئی ہاؤسنگ اسکیم</div>
+            </div>
+            <div class="cal-day p-1.5 min-h-[72px] rounded-lg border border-transparent hover:border-brand-light cursor-pointer">
+              <span class="text-xs font-semibold text-gray-700">13</span>
+            </div>
+            <!-- Row 3 + Today highlight -->
+            <div class="cal-day p-1.5 min-h-[72px] rounded-lg border border-transparent hover:border-brand-light cursor-pointer">
+              <span class="text-xs font-semibold text-gray-700">14</span>
+            </div>
+            <div class="cal-day p-1.5 min-h-[72px] rounded-lg border border-transparent hover:border-brand-light cursor-pointer group">
+              <span class="text-xs font-semibold text-gray-700">15</span>
+              <div class="mt-1 text-xs bg-green-100 text-green-700 rounded px-1 py-0.5 truncate">عمران خان جلسہ ویڈیو</div>
+            </div>
+            <div class="cal-day p-1.5 min-h-[72px] rounded-lg border border-transparent hover:border-brand-light cursor-pointer group">
+              <span class="text-xs font-semibold text-gray-700">16</span>
+              <div class="mt-1 text-xs bg-green-100 text-green-700 rounded px-1 py-0.5 truncate">Health Tips</div>
+            </div>
+            <div class="cal-day p-1.5 min-h-[72px] rounded-lg border border-transparent hover:border-brand-light cursor-pointer">
+              <span class="text-xs font-semibold text-gray-700">17</span>
+            </div>
+            <div class="cal-day p-1.5 min-h-[72px] rounded-lg border border-transparent hover:border-brand-light cursor-pointer">
+              <span class="text-xs font-semibold text-gray-700">18</span>
+            </div>
+            <div class="cal-day p-1.5 min-h-[72px] rounded-lg border border-transparent hover:border-brand-light cursor-pointer group">
+              <span class="text-xs font-semibold text-gray-700">19</span>
+              <div class="mt-1 text-xs bg-blue-100 text-blue-700 rounded px-1 py-0.5 truncate">Tech News</div>
+            </div>
+            <div class="cal-day p-1.5 min-h-[72px] rounded-lg border border-transparent hover:border-brand-light cursor-pointer">
+              <span class="text-xs font-semibold text-gray-700">20</span>
+            </div>
+            <!-- Row 4 -->
+            <div class="cal-day p-1.5 min-h-[72px] rounded-lg border border-transparent hover:border-brand-light cursor-pointer">
+              <span class="text-xs font-semibold text-gray-700">21</span>
+            </div>
+            <!-- TODAY: 22 -->
+            <div class="cal-day p-1.5 min-h-[72px] rounded-xl border-2 border-brand bg-brand-light cursor-pointer">
+              <span class="text-xs font-bold text-brand-dark flex items-center gap-1">22 <span class="text-xs font-normal bg-brand text-white px-1 rounded-full">Today</span></span>
+              <div class="mt-1 text-xs bg-green-200 text-green-800 rounded px-1 py-0.5 truncate font-semibold">7PM → عمران خان کی رہائی ویڈیو</div>
+              <div class="mt-0.5 text-xs bg-purple-100 text-purple-700 rounded px-1 py-0.5 truncate">پٹرول قیمت رپورٹ</div>
+            </div>
+            <div class="cal-day p-1.5 min-h-[72px] rounded-lg border border-transparent hover:border-brand-light cursor-pointer group">
+              <span class="text-xs font-semibold text-gray-700">23</span>
+              <div class="mt-1 text-xs bg-green-100 text-green-700 rounded px-1 py-0.5 truncate">Health Tips</div>
+            </div>
+            <div class="cal-day p-1.5 min-h-[72px] rounded-lg border border-transparent hover:border-brand-light cursor-pointer">
+              <span class="text-xs font-semibold text-gray-700">24</span>
+            </div>
+            <div class="cal-day p-1.5 min-h-[72px] rounded-lg border border-transparent hover:border-brand-light cursor-pointer">
+              <span class="text-xs font-semibold text-gray-700">25</span>
+            </div>
+            <div class="cal-day p-1.5 min-h-[72px] rounded-lg border border-transparent hover:border-brand-light cursor-pointer group">
+              <span class="text-xs font-semibold text-gray-700">26</span>
+              <div class="mt-1 text-xs bg-blue-100 text-blue-700 rounded px-1 py-0.5 truncate">Tech News</div>
+            </div>
+            <div class="cal-day p-1.5 min-h-[72px] rounded-lg border border-transparent hover:border-brand-light cursor-pointer">
+              <span class="text-xs font-semibold text-gray-700">27</span>
+            </div>
+            <!-- Row 5 -->
+            <div class="cal-day p-1.5 min-h-[72px] rounded-lg border border-transparent hover:border-brand-light cursor-pointer">
+              <span class="text-xs font-semibold text-gray-700">28</span>
+            </div>
+          </div>
+
+          <!-- Legend -->
+          <div class="flex flex-wrap gap-4 mt-4 pt-3 border-t border-gray-100 text-xs text-gray-500">
+            <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-green-400"></span>Active Campaign</div>
+            <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-blue-400"></span>Scheduled</div>
+            <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-purple-400"></span>AI Pipeline</div>
+            <div class="flex items-center gap-1.5"><span class="w-3.5 h-2.5 rounded border-2 border-brand"></span>Today</div>
+          </div>
+        </div>
+
+        <!-- Upcoming posts list -->
+        <div class="space-y-4">
+          <div class="card p-5">
+            <h3 class="font-semibold text-gray-800 mb-3">Upcoming Today</h3>
+            <div class="space-y-3">
+              <div class="flex gap-3 items-start">
+                <div class="text-center min-w-[48px]">
+                  <p class="text-lg font-bold text-brand-dark leading-tight">7:00</p>
+                  <p class="text-xs text-gray-400">PM PKT</p>
+                </div>
+                <div class="flex-1 bg-green-50 rounded-xl p-3">
+                    <p class="text-sm font-semibold text-gray-800">عمران خان رہائی ویڈیو</p>
+                    <p class="text-xs text-gray-500 mt-0.5">Video · 20,000 recipients</p>
+                    <span class="badge-active text-xs px-2 py-0.5 rounded-full mt-1.5 inline-block">Ready</span>
+                </div>
+              </div>
+              <div class="flex gap-3 items-start">
+                <div class="text-center min-w-[48px]">
+                  <p class="text-lg font-bold text-brand-dark leading-tight">7:00</p>
+                  <p class="text-xs text-gray-400">PM PKT</p>
+                </div>
+                <div class="flex-1 bg-purple-50 rounded-xl p-3">
+                    <p class="text-sm font-semibold text-gray-800">اسلام آباد جلسہ رپورٹ</p>
+                    <p class="text-xs text-gray-500 mt-0.5">Video · All contacts</p>
+                    <span class="badge-scheduled text-xs px-2 py-0.5 rounded-full mt-1.5 inline-block">Rendering</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card p-5">
+            <h3 class="font-semibold text-gray-800 mb-3">Tomorrow</h3>
+            <div class="space-y-3">
+              <div class="flex gap-3 items-start">
+                <div class="text-center min-w-[48px]">
+                  <p class="text-lg font-bold text-gray-400 leading-tight">7:00</p>
+                  <p class="text-xs text-gray-400">PM PKT</p>
+                </div>
+                <div class="flex-1 bg-gray-50 rounded-xl p-3">
+                  <p class="text-sm font-semibold text-gray-800">کراچی موسم الرٹ</p>
+                  <p class="text-xs text-gray-500 mt-0.5">Message · Karachi subscribers</p>
+                  <span class="badge-draft text-xs px-2 py-0.5 rounded-full mt-1.5 inline-block">Queued</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card p-5">
+            <h3 class="font-semibold text-gray-800 mb-1">Auto-Publish Rule</h3>
+            <p class="text-gray-400 text-xs mb-3">Active rules for this account</p>
+            <div class="space-y-2 text-sm">
+              <div class="flex items-center justify-between">
+                  <span class="text-gray-600">Daily 7:00 PM PKT (Imran updates)</span>
+                <span class="w-9 h-5 bg-brand rounded-full flex items-center justify-end px-0.5 cursor-pointer"><span class="w-4 h-4 bg-white rounded-full shadow"></span></span>
+              </div>
+              <div class="flex items-center justify-between">
+                  <span class="text-gray-600">Sunday political roundup</span>
+                <span class="w-9 h-5 bg-brand rounded-full flex items-center justify-end px-0.5 cursor-pointer"><span class="w-4 h-4 bg-white rounded-full shadow"></span></span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-gray-600">Auto-retry on fail</span>
+                <span class="w-9 h-5 bg-gray-200 rounded-full flex items-center px-0.5 cursor-pointer"><span class="w-4 h-4 bg-white rounded-full shadow"></span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="../assets/layout.js"></script>
+  <script>
+    Layout.init({ active:'scheduler', title:'Scheduler' });
+    // Live PKT clock
+    function updateClock() {
+      const now = new Date().toLocaleTimeString('en-GB', { timeZone:'Asia/Karachi', hour12:false });
+      const el = document.getElementById('clock');
+      if (el) el.textContent = now;
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+  </script>
+</body>
+</html>

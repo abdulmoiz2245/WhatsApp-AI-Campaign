@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Research · WA AI Chatbot</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../assets/style.css"/>
+  <script>tailwind.config={theme:{extend:{colors:{brand:{DEFAULT:'#25D366',dark:'#128C7E',light:'#dcfce7'}},fontFamily:{sans:['Inter','ui-sans-serif']}}}}</script>
+</head>
+<body class="bg-gray-50 font-sans flex">
+  <div id="sidebar-root"></div>
+  <div class="flex-1 flex flex-col min-w-0">
+    <div id="topbar-root"></div>
+
+    <main class="p-6 space-y-6">
+
+      <!-- Page header -->
+      <div>
+        <h2 class="text-xl font-bold text-gray-800">AI Research</h2>
+        <p class="text-gray-400 text-sm mt-0.5">Chat on Imran Khan / Pakistani news topics → AI researches & creates content → Send on WhatsApp · اے آئی ریسرچ</p>
+      </div>
+
+      <div class="grid grid-cols-1 xl:grid-cols-5 gap-6">
+
+        <!-- Left panel: Topic input + history -->
+        <div class="xl:col-span-2 space-y-4">
+
+          <!-- New research card -->
+          <div class="card p-5">
+            <h3 class="font-semibold text-gray-800 mb-3 flex items-center gap-2">
+              <span class="w-7 h-7 bg-brand-light rounded-lg flex items-center justify-center text-brand-dark">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+              </span>
+              New Research Request
+            </h3>
+            <div class="space-y-3">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Research Topic (Urdu / English)</label>
+                <input type="text" placeholder="e.g. Latest AI trends in 2026 / 2026 میں اے آئی کے رجحانات" class="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm bg-gray-50 focus:outline-none focus:ring-2 focus:ring-brand"/>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Content Type</label>
+                <div class="grid grid-cols-3 gap-2">
+                  <label class="flex flex-col items-center gap-1 p-2 border-2 rounded-xl cursor-pointer border-brand bg-brand-light text-xs font-medium text-brand-dark">
+                    <input type="radio" name="ctype" class="sr-only" checked/>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4"/></svg>
+                    Video
+                  </label>
+                  <label class="flex flex-col items-center gap-1 p-2 border-2 rounded-xl cursor-pointer border-gray-200 hover:border-brand text-xs font-medium text-gray-600">
+                    <input type="radio" name="ctype" class="sr-only"/>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    Image
+                  </label>
+                  <label class="flex flex-col items-center gap-1 p-2 border-2 rounded-xl cursor-pointer border-gray-200 hover:border-brand text-xs font-medium text-gray-600">
+                    <input type="radio" name="ctype" class="sr-only"/>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                    Text
+                  </label>
+                </div>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Depth</label>
+                <select class="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm bg-gray-50 focus:outline-none">
+                  <option>Quick Summary (30 sec video)</option>
+                  <option>Standard (2-3 min video)</option>
+                  <option>Deep Dive (5 min video)</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Audience Language</label>
+                <select class="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm bg-gray-50 focus:outline-none">
+                  <option>Urdu (اردو)</option>
+                  <option>English</option>
+                  <option>Urdu + English (Bilingual)</option>
+                </select>
+              </div>
+              <button onclick="startResearch()" class="btn-brand w-full justify-center py-3 text-sm">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                Start AI Research
+              </button>
+            </div>
+          </div>
+
+          <!-- Past research sessions -->
+          <div class="card p-5">
+            <h3 class="font-semibold text-gray-800 mb-3">Past Research Sessions</h3>
+            <div class="space-y-2">
+              <div class="flex items-start gap-3 p-3 rounded-xl hover:bg-gray-50 cursor-pointer border border-gray-100">
+                <span class="w-8 h-8 bg-purple-50 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <svg class="w-4 h-4 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16"/></svg>
+                </span>
+                <div class="min-w-0">
+                    <p class="text-sm font-medium text-gray-800 truncate">عمران خان کی حالیہ ر رہا ئی</p>
+                    <p class="text-xs text-gray-400">Video · Feb 21 · Done</p>
+                </div>
+                <span class="badge-active text-xs px-2 py-0.5 rounded-full flex-shrink-0">Done</span>
+              </div>
+              <div class="flex items-start gap-3 p-3 rounded-xl hover:bg-gray-50 cursor-pointer border border-gray-100">
+                <span class="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8"/></svg>
+                </span>
+                <div class="min-w-0">
+                    <p class="text-sm font-medium text-gray-800 truncate">سینیٹر ملک کیس اپ ڈیٹ</p>
+                    <p class="text-xs text-gray-400">Text · Feb 20 · Done</p>
+                </div>
+                <span class="badge-active text-xs px-2 py-0.5 rounded-full flex-shrink-0">Done</span>
+              </div>
+              <div class="flex items-start gap-3 p-3 rounded-xl hover:bg-gray-50 cursor-pointer border border-gray-100">
+                <span class="w-8 h-8 bg-amber-50 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <svg class="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586"/></svg>
+                </span>
+                <div class="min-w-0">
+                    <p class="text-sm font-medium text-gray-800 truncate">پاکستان میں مہنگائی کے اثرات</p>
+                    <p class="text-xs text-gray-400">Image · Feb 19 · Done</p>
+                </div>
+                <span class="badge-active text-xs px-2 py-0.5 rounded-full flex-shrink-0">Done</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right panel: AI output preview -->
+        <div class="xl:col-span-3 space-y-4">
+
+          <!-- Status progress bar -->
+          <div id="research-progress" class="card p-5 hidden">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-5 h-5 border-2 border-brand border-t-transparent rounded-full animate-spin"></div>
+              <p class="text-sm font-semibold text-gray-800">AI Research in Progress…</p>
+            </div>
+            <div class="space-y-2">
+              <div class="flex justify-between text-xs text-gray-500 mb-1"><span>Researching topic</span><span>Step 1 / 5</span></div>
+              <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
+                <div id="progress-bar" class="h-2 rounded-full transition-all duration-500" style="width:20%;background:linear-gradient(90deg,#128C7E,#25D366)"></div>
+              </div>
+              <p id="progress-label" class="text-xs text-gray-400">Gathering web data…</p>
+            </div>
+          </div>
+
+          <!-- Generated Script preview -->
+          <div class="card p-5">
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="font-semibold text-gray-800">Generated Script</h3>
+              <div class="flex gap-2">
+                <button class="btn-outline text-xs py-1.5 px-3">Copy</button>
+                <button class="btn-outline text-xs py-1.5 px-3">Edit</button>
+              </div>
+            </div>
+            <div class="bg-gray-50 rounded-xl p-4 text-sm text-gray-700 leading-relaxed min-h-[120px] border border-dashed border-gray-200">
+              <p class="text-gray-400 text-sm italic" id="script-placeholder">AI-generated script will appear here after research is complete…</p>
+              <div id="script-content" class="hidden">
+                <p class="font-semibold text-gray-800 mb-2">📱 WhatsApp Video Script — AI Trends 2026</p>
+                <p>آج ہم بات کریں گے عمران خان کی رہائی اور اس کے سیاسی اثرات کے بارے میں۔</p>
+                <br/>
+                <p><strong>1. عمران خان کی سیاست:</strong> پارٹی میں نئی صورتحال اور عوامی ردعمل.</p>
+                <p><strong>2. عدالت کا فیصلہ:</strong> عدالتی کارروائیوں کا جائزہ اور مستقبل کا لائحہ عمل.</p>
+                <p><strong>3. عوامی مظاہرے:</strong> مختلف شہروں میں احتجاج اور سیکیورٹی انتظامات.</p>
+                <br/>
+                <p class="text-gray-400 text-xs">Duration: ~45 sec · Language: Urdu · Voice: Male (Natural)</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Voiceover + Thumbnail row -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="card p-5">
+              <h3 class="font-semibold text-gray-800 mb-3 flex items-center gap-2">
+                <svg class="w-4 h-4 text-brand-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+                Voiceover
+              </h3>
+              <div class="space-y-2">
+                <select class="w-full border border-gray-200 rounded-xl px-3 py-2 text-sm bg-gray-50">
+                  <option>Male – Natural Urdu</option><option>Female – Natural Urdu</option><option>Male – English</option>
+                </select>
+                <div class="flex items-center gap-2 p-2 bg-gray-50 border border-gray-200 rounded-xl">
+                  <button class="w-8 h-8 bg-brand rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg class="w-3.5 h-3.5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  </button>
+                  <div class="flex-1 h-1.5 bg-gray-200 rounded-full"><div class="h-1.5 bg-brand rounded-full" style="width:35%"></div></div>
+                  <span class="text-xs text-gray-400">0:15</span>
+                </div>
+                <button class="btn-brand w-full justify-center text-xs py-2">Generate Voiceover</button>
+              </div>
+            </div>
+
+            <div class="card p-5">
+              <h3 class="font-semibold text-gray-800 mb-3 flex items-center gap-2">
+                <svg class="w-4 h-4 text-brand-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                Thumbnail
+              </h3>
+              <div class="space-y-2">
+                <div class="h-20 bg-gradient-to-br from-brand-dark to-brand rounded-xl flex items-center justify-center text-white text-xs font-semibold">
+                  AI Generated Preview
+                </div>
+                <button class="btn-brand w-full justify-center text-xs py-2">Regenerate Thumbnail</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Send to campaign -->
+          <div class="card p-5 flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+            <div class="flex-1">
+              <p class="font-semibold text-gray-800">Ready to publish?</p>
+              <p class="text-gray-400 text-sm">Send directly to a campaign or schedule for 7:00 PM PKT</p>
+            </div>
+            <div class="flex gap-3 flex-wrap">
+              <button class="btn-outline text-sm py-2">Add to Campaign</button>
+              <a href="pipeline.html" class="btn-brand text-sm py-2">Go to Pipeline →</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/layout.js"></script>
+  <script>
+    Layout.init({ active:'research', title:'AI Research' });
+
+    const steps = [
+      { w:'20%', label:'Gathering web data…' },
+      { w:'40%', label:'Analysing sources…' },
+      { w:'60%', label:'Generating script (Urdu)…' },
+      { w:'80%', label:'Creating voiceover…' },
+      { w:'100%', label:'Done! ✓' },
+    ];
+
+    function startResearch() {
+      const box = document.getElementById('research-progress');
+      const bar = document.getElementById('progress-bar');
+      const lbl = document.getElementById('progress-label');
+      box.classList.remove('hidden');
+      let i = 0;
+      const iv = setInterval(() => {
+        if (i >= steps.length) { clearInterval(iv); showResult(); return; }
+        bar.style.width = steps[i].w;
+        lbl.textContent = steps[i].label;
+        i++;
+      }, 900);
+    }
+
+    function showResult() {
+      document.getElementById('script-placeholder').classList.add('hidden');
+      document.getElementById('script-content').classList.remove('hidden');
+      document.getElementById('research-progress').classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
