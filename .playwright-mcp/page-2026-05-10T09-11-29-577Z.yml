@@ -1,0 +1,2317 @@
+- generic [active] [ref=e1]:
+  - img
+  - generic [ref=e3]:
+    - generic [ref=e6]:
+      - img [ref=e8]
+      - button [ref=e44] [cursor=pointer]:
+        - img [ref=e45]
+    - generic [ref=e47]:
+      - generic:
+        - img
+      - generic [ref=e48]:
+        - generic [ref=e52]:
+          - heading "WPPConnect API Rest 2.0.0 OAS 3.0" [level=1] [ref=e54]:
+            - text: WPPConnect API Rest
+            - generic [ref=e55]:
+              - generic [ref=e57]: 2.0.0
+              - generic [ref=e59]: OAS 3.0
+          - paragraph [ref=e62]: Welcome to the wppconnect-server API documentation. This API provides a set of endpoints to interact with the wppconnect-server application, allowing you to build integrations and automate interactions with WhatsApp.
+        - button "Authorize" [ref=e66] [cursor=pointer]:
+          - generic [ref=e67]: Authorize
+          - img [ref=e68]
+        - generic [ref=e72]:
+          - generic [ref=e74]:
+            - heading "Auth Collapse operation" [level=3] [ref=e75] [cursor=pointer]:
+              - link "Auth" [ref=e76]:
+                - /url: "#/Auth"
+              - button "Collapse operation" [expanded] [ref=e77]:
+                - img [ref=e78]
+            - generic [ref=e81]:
+              - generic [ref=e84] [cursor=pointer]:
+                - 'button "POST /api/{session}/{secretkey}/generate-token" [ref=e85]':
+                  - generic [ref=e86]: POST
+                  - 'link "/api/{session}/{secretkey}/generate-token" [ref=e89]':
+                    - /url: "#/Auth/post_api__session___secretkey__generate_token"
+                    - generic [ref=e90]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: "/{secretkey}"
+                      - text: /generate-token
+                - generic "Copy to clipboard"
+                - 'button "post /api/{session}/{secretkey}/generate-token" [ref=e93]':
+                  - img [ref=e94]
+              - generic [ref=e98] [cursor=pointer]:
+                - 'button "GET /api/{secretkey}/show-all-sessions" [ref=e99]':
+                  - generic [ref=e100]: GET
+                  - 'link "/api/{secretkey}/show-all-sessions" [ref=e103]':
+                    - /url: "#/Auth/showAllSessions"
+                    - generic [ref=e104]:
+                      - text: /api
+                      - text: "/{secretkey}"
+                      - text: /show-all-sessions
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e107]:
+                  - img [ref=e108]
+                - 'button "get /api/{secretkey}/show-all-sessions" [ref=e110]':
+                  - img [ref=e111]
+              - generic [ref=e115] [cursor=pointer]:
+                - 'button "POST /api/{secretkey}/start-all" [ref=e116]':
+                  - generic [ref=e117]: POST
+                  - 'link "/api/{secretkey}/start-all" [ref=e120]':
+                    - /url: "#/Auth/startAllSessions"
+                    - generic [ref=e121]:
+                      - text: /api
+                      - text: "/{secretkey}"
+                      - text: /start-all
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e124]:
+                  - img [ref=e125]
+                - 'button "post /api/{secretkey}/start-all" [ref=e127]':
+                  - img [ref=e128]
+              - generic [ref=e132] [cursor=pointer]:
+                - 'button "GET /api/{session}/check-connection-session" [ref=e133]':
+                  - generic [ref=e134]: GET
+                  - 'link "/api/{session}/check-connection-session" [ref=e137]':
+                    - /url: "#/Auth/CheckConnectionState"
+                    - generic [ref=e138]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /check-connection-session
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e141]:
+                  - img [ref=e142]
+                - 'button "get /api/{session}/check-connection-session" [ref=e144]':
+                  - img [ref=e145]
+              - generic [ref=e149] [cursor=pointer]:
+                - 'button "GET /api/{session}/qrcode-session" [ref=e150]':
+                  - generic [ref=e151]: GET
+                  - 'link "/api/{session}/qrcode-session" [ref=e154]':
+                    - /url: "#/Auth/getQrCode"
+                    - generic [ref=e155]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /qrcode-session
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e158]:
+                  - img [ref=e159]
+                - 'button "get /api/{session}/qrcode-session" [ref=e161]':
+                  - img [ref=e162]
+              - generic [ref=e166] [cursor=pointer]:
+                - 'button "POST /api/{session}/start-session" [ref=e167]':
+                  - generic [ref=e168]: POST
+                  - 'link "/api/{session}/start-session" [ref=e171]':
+                    - /url: "#/Auth/startSession"
+                    - generic [ref=e172]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /start-session
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e175]:
+                  - img [ref=e176]
+                - 'button "post /api/{session}/start-session" [ref=e178]':
+                  - img [ref=e179]
+              - generic [ref=e183] [cursor=pointer]:
+                - 'button "POST /api/{session}/logout-session" [ref=e184]':
+                  - generic [ref=e185]: POST
+                  - 'link "/api/{session}/logout-session" [ref=e188]':
+                    - /url: "#/Auth/logoutSession"
+                    - generic [ref=e189]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /logout-session
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e192]:
+                  - img [ref=e193]
+                - 'button "post /api/{session}/logout-session" [ref=e195]':
+                  - img [ref=e196]
+              - generic [ref=e200] [cursor=pointer]:
+                - 'button "POST /api/{session}/close-session" [ref=e201]':
+                  - generic [ref=e202]: POST
+                  - 'link "/api/{session}/close-session" [ref=e205]':
+                    - /url: "#/Auth/closeSession"
+                    - generic [ref=e206]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /close-session
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e209]:
+                  - img [ref=e210]
+                - 'button "post /api/{session}/close-session" [ref=e212]':
+                  - img [ref=e213]
+              - generic [ref=e217] [cursor=pointer]:
+                - 'button "GET /api/{session}/status-session" [ref=e218]':
+                  - generic [ref=e219]: GET
+                  - 'link "/api/{session}/status-session" [ref=e222]':
+                    - /url: "#/Auth/closeSession"
+                    - generic [ref=e223]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /status-session
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e226]:
+                  - img [ref=e227]
+                - 'button "get /api/{session}/status-session" [ref=e229]':
+                  - img [ref=e230]
+          - generic [ref=e233]:
+            - heading "Chat Manages chat-related operations. Collapse operation" [level=3] [ref=e234] [cursor=pointer]:
+              - link "Chat" [ref=e235]:
+                - /url: "#/Chat"
+              - paragraph [ref=e238]: Manages chat-related operations.
+              - button "Collapse operation" [expanded] [ref=e239]:
+                - img [ref=e240]
+            - generic [ref=e243]:
+              - generic [ref=e246] [cursor=pointer]:
+                - 'button "GET /api/{session}/all-chats Deprecated in favor of" [ref=e247]':
+                  - generic [ref=e248]: GET
+                  - generic [ref=e249]:
+                    - 'link "/api/{session}/all-chats" [ref=e251]':
+                      - /url: "#/Chat/get_api__session__all_chats"
+                      - generic [ref=e252]:
+                        - text: /api
+                        - text: "/{session}"
+                        - text: /all-chats
+                    - generic [ref=e253]: Deprecated in favor of
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e256]:
+                  - img [ref=e257]
+                - 'button "get /api/{session}/all-chats" [ref=e259]':
+                  - img [ref=e260]
+              - generic [ref=e264] [cursor=pointer]:
+                - 'button "POST /api/{session}/list-chats Retrieve a list of chats" [ref=e265]':
+                  - generic [ref=e266]: POST
+                  - generic [ref=e267]:
+                    - 'link "/api/{session}/list-chats" [ref=e269]':
+                      - /url: "#/Chat/post_api__session__list_chats"
+                      - generic [ref=e270]:
+                        - text: /api
+                        - text: "/{session}"
+                        - text: /list-chats
+                    - generic [ref=e271]: Retrieve a list of chats
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e274]:
+                  - img [ref=e275]
+                - 'button "post /api/{session}/list-chats" [ref=e277]':
+                  - img [ref=e278]
+              - generic [ref=e282] [cursor=pointer]:
+                - 'button "GET /api/{session}/all-chats-archived" [ref=e283]':
+                  - generic [ref=e284]: GET
+                  - 'link "/api/{session}/all-chats-archived" [ref=e287]':
+                    - /url: "#/Chat/get_api__session__all_chats_archived"
+                    - generic [ref=e288]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /all-chats-archived
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e291]:
+                  - img [ref=e292]
+                - 'button "get /api/{session}/all-chats-archived" [ref=e294]':
+                  - img [ref=e295]
+              - generic [ref=e299] [cursor=pointer]:
+                - 'button "GET /api/{session}/all-chats-with-messages Deprecated in favor of list-chats" [ref=e300]':
+                  - generic [ref=e301]: GET
+                  - generic [ref=e302]:
+                    - 'link "/api/{session}/all-chats-with-messages" [ref=e304]':
+                      - /url: "#/Chat/get_api__session__all_chats_with_messages"
+                      - generic [ref=e305]:
+                        - text: /api
+                        - text: "/{session}"
+                        - text: /all-chats-with-messages
+                    - generic [ref=e306]: Deprecated in favor of list-chats
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e309]:
+                  - img [ref=e310]
+                - 'button "get /api/{session}/all-chats-with-messages" [ref=e312]':
+                  - img [ref=e313]
+              - generic [ref=e317] [cursor=pointer]:
+                - 'button "GET /api/{session}/all-messages-in-chat/{phone}" [ref=e318]':
+                  - generic [ref=e319]: GET
+                  - 'link "/api/{session}/all-messages-in-chat/{phone}" [ref=e322]':
+                    - /url: "#/Chat/get_api__session__all_messages_in_chat__phone_"
+                    - generic [ref=e323]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /all-messages-in-chat
+                      - text: "/{phone}"
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e326]:
+                  - img [ref=e327]
+                - 'button "get /api/{session}/all-messages-in-chat/{phone}" [ref=e329]':
+                  - img [ref=e330]
+              - generic [ref=e334] [cursor=pointer]:
+                - 'button "GET /api/{session}/all-new-messages" [ref=e335]':
+                  - generic [ref=e336]: GET
+                  - 'link "/api/{session}/all-new-messages" [ref=e339]':
+                    - /url: "#/Chat/get_api__session__all_new_messages"
+                    - generic [ref=e340]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /all-new-messages
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e343]:
+                  - img [ref=e344]
+                - 'button "get /api/{session}/all-new-messages" [ref=e346]':
+                  - img [ref=e347]
+              - generic [ref=e351] [cursor=pointer]:
+                - 'button "GET /api/{session}/all-unread-messages" [ref=e352]':
+                  - generic [ref=e353]: GET
+                  - 'link "/api/{session}/all-unread-messages" [ref=e356]':
+                    - /url: "#/Chat/get_api__session__all_unread_messages"
+                    - generic [ref=e357]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /all-unread-messages
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e360]:
+                  - img [ref=e361]
+                - 'button "get /api/{session}/all-unread-messages" [ref=e363]':
+                  - img [ref=e364]
+              - generic [ref=e368] [cursor=pointer]:
+                - 'button "GET /api/{session}/chat-by-id/{phone}" [ref=e369]':
+                  - generic [ref=e370]: GET
+                  - 'link "/api/{session}/chat-by-id/{phone}" [ref=e373]':
+                    - /url: "#/Chat/get_api__session__chat_by_id__phone_"
+                    - generic [ref=e374]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /chat-by-id
+                      - text: "/{phone}"
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e377]:
+                  - img [ref=e378]
+                - 'button "get /api/{session}/chat-by-id/{phone}" [ref=e380]':
+                  - img [ref=e381]
+              - generic [ref=e385] [cursor=pointer]:
+                - 'button "GET /api/{session}/message-by-id/{messageId}" [ref=e386]':
+                  - generic [ref=e387]: GET
+                  - 'link "/api/{session}/message-by-id/{messageId}" [ref=e390]':
+                    - /url: "#/Chat/get_api__session__message_by_id__messageId_"
+                    - generic [ref=e391]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /message-by-id
+                      - text: "/{messageId}"
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e394]:
+                  - img [ref=e395]
+                - 'button "get /api/{session}/message-by-id/{messageId}" [ref=e397]':
+                  - img [ref=e398]
+              - generic [ref=e402] [cursor=pointer]:
+                - 'button "GET /api/{session}/chat-is-online/{phone}" [ref=e403]':
+                  - generic [ref=e404]: GET
+                  - 'link "/api/{session}/chat-is-online/{phone}" [ref=e407]':
+                    - /url: "#/Chat/get_api__session__chat_is_online__phone_"
+                    - generic [ref=e408]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /chat-is-online
+                      - text: "/{phone}"
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e411]:
+                  - img [ref=e412]
+                - 'button "get /api/{session}/chat-is-online/{phone}" [ref=e414]':
+                  - img [ref=e415]
+              - generic [ref=e419] [cursor=pointer]:
+                - 'button "GET /api/{session}/last-seen/{phone}" [ref=e420]':
+                  - generic [ref=e421]: GET
+                  - 'link "/api/{session}/last-seen/{phone}" [ref=e424]':
+                    - /url: "#/Chat/get_api__session__last_seen__phone_"
+                    - generic [ref=e425]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /last-seen
+                      - text: "/{phone}"
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e428]:
+                  - img [ref=e429]
+                - 'button "get /api/{session}/last-seen/{phone}" [ref=e431]':
+                  - img [ref=e432]
+              - generic [ref=e436] [cursor=pointer]:
+                - 'button "GET /api/{session}/list-mutes/{type}" [ref=e437]':
+                  - generic [ref=e438]: GET
+                  - 'link "/api/{session}/list-mutes/{type}" [ref=e441]':
+                    - /url: "#/Chat/get_api__session__list_mutes__type_"
+                    - generic [ref=e442]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /list-mutes
+                      - text: "/{type}"
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e445]:
+                  - img [ref=e446]
+                - 'button "get /api/{session}/list-mutes/{type}" [ref=e448]':
+                  - img [ref=e449]
+              - generic [ref=e453] [cursor=pointer]:
+                - 'button "GET /api/{session}/load-messages-in-chat/{phone}" [ref=e454]':
+                  - generic [ref=e455]: GET
+                  - 'link "/api/{session}/load-messages-in-chat/{phone}" [ref=e458]':
+                    - /url: "#/Chat/get_api__session__load_messages_in_chat__phone_"
+                    - generic [ref=e459]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /load-messages-in-chat
+                      - text: "/{phone}"
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e462]:
+                  - img [ref=e463]
+                - 'button "get /api/{session}/load-messages-in-chat/{phone}" [ref=e465]':
+                  - img [ref=e466]
+              - generic [ref=e470] [cursor=pointer]:
+                - 'button "POST /api/{session}/archive-chat" [ref=e471]':
+                  - generic [ref=e472]: POST
+                  - 'link "/api/{session}/archive-chat" [ref=e475]':
+                    - /url: "#/Chat/post_api__session__archive_chat"
+                    - generic [ref=e476]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /archive-chat
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e479]:
+                  - img [ref=e480]
+                - 'button "post /api/{session}/archive-chat" [ref=e482]':
+                  - img [ref=e483]
+              - generic [ref=e487] [cursor=pointer]:
+                - 'button "POST /api/{session}/archive-all-chats" [ref=e488]':
+                  - generic [ref=e489]: POST
+                  - 'link "/api/{session}/archive-all-chats" [ref=e492]':
+                    - /url: "#/Chat/post_api__session__archive_all_chats"
+                    - generic [ref=e493]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /archive-all-chats
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e496]:
+                  - img [ref=e497]
+                - 'button "post /api/{session}/archive-all-chats" [ref=e499]':
+                  - img [ref=e500]
+              - generic [ref=e504] [cursor=pointer]:
+                - 'button "POST /api/{session}/clear-chat" [ref=e505]':
+                  - generic [ref=e506]: POST
+                  - 'link "/api/{session}/clear-chat" [ref=e509]':
+                    - /url: "#/Chat/post_api__session__clear_chat"
+                    - generic [ref=e510]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /clear-chat
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e513]:
+                  - img [ref=e514]
+                - 'button "post /api/{session}/clear-chat" [ref=e516]':
+                  - img [ref=e517]
+              - generic [ref=e521] [cursor=pointer]:
+                - 'button "POST /api/{session}/clear-all-chats" [ref=e522]':
+                  - generic [ref=e523]: POST
+                  - 'link "/api/{session}/clear-all-chats" [ref=e526]':
+                    - /url: "#/Chat/post_api__session__clear_all_chats"
+                    - generic [ref=e527]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /clear-all-chats
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e530]:
+                  - img [ref=e531]
+                - 'button "post /api/{session}/clear-all-chats" [ref=e533]':
+                  - img [ref=e534]
+              - generic [ref=e538] [cursor=pointer]:
+                - 'button "POST /api/{session}/delete-chat" [ref=e539]':
+                  - generic [ref=e540]: POST
+                  - 'link "/api/{session}/delete-chat" [ref=e543]':
+                    - /url: "#/Chat/post_api__session__delete_chat"
+                    - generic [ref=e544]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /delete-chat
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e547]:
+                  - img [ref=e548]
+                - 'button "post /api/{session}/delete-chat" [ref=e550]':
+                  - img [ref=e551]
+              - generic [ref=e555] [cursor=pointer]:
+                - 'button "POST /api/{session}/delete-all-chats" [ref=e556]':
+                  - generic [ref=e557]: POST
+                  - 'link "/api/{session}/delete-all-chats" [ref=e560]':
+                    - /url: "#/Chat/post_api__session__delete_all_chats"
+                    - generic [ref=e561]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /delete-all-chats
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e564]:
+                  - img [ref=e565]
+                - 'button "post /api/{session}/delete-all-chats" [ref=e567]':
+                  - img [ref=e568]
+              - generic [ref=e572] [cursor=pointer]:
+                - 'button "POST /api/{session}/pin-chat" [ref=e573]':
+                  - generic [ref=e574]: POST
+                  - 'link "/api/{session}/pin-chat" [ref=e577]':
+                    - /url: "#/Chat/post_api__session__pin_chat"
+                    - generic [ref=e578]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /pin-chat
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e581]:
+                  - img [ref=e582]
+                - 'button "post /api/{session}/pin-chat" [ref=e584]':
+                  - img [ref=e585]
+              - generic [ref=e589] [cursor=pointer]:
+                - 'button "POST /api/{session}/send-mute" [ref=e590]':
+                  - generic [ref=e591]: POST
+                  - 'link "/api/{session}/send-mute" [ref=e594]':
+                    - /url: "#/Chat/post_api__session__send_mute"
+                    - generic [ref=e595]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /send-mute
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e598]:
+                  - img [ref=e599]
+                - 'button "post /api/{session}/send-mute" [ref=e601]':
+                  - img [ref=e602]
+              - generic [ref=e606] [cursor=pointer]:
+                - 'button "POST /api/{session}/send-seen" [ref=e607]':
+                  - generic [ref=e608]: POST
+                  - 'link "/api/{session}/send-seen" [ref=e611]':
+                    - /url: "#/Chat/post_api__session__send_seen"
+                    - generic [ref=e612]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /send-seen
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e615]:
+                  - img [ref=e616]
+                - 'button "post /api/{session}/send-seen" [ref=e618]':
+                  - img [ref=e619]
+              - generic [ref=e623] [cursor=pointer]:
+                - 'button "POST /api/{session}/chat-state" [ref=e624]':
+                  - generic [ref=e625]: POST
+                  - 'link "/api/{session}/chat-state" [ref=e628]':
+                    - /url: "#/Chat/post_api__session__chat_state"
+                    - generic [ref=e629]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /chat-state
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e632]:
+                  - img [ref=e633]
+                - 'button "post /api/{session}/chat-state" [ref=e635]':
+                  - img [ref=e636]
+              - generic [ref=e640] [cursor=pointer]:
+                - 'button "POST /api/{session}/typing" [ref=e641]':
+                  - generic [ref=e642]: POST
+                  - 'link "/api/{session}/typing" [ref=e645]':
+                    - /url: "#/Chat/post_api__session__typing"
+                    - generic [ref=e646]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /typing
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e649]:
+                  - img [ref=e650]
+                - 'button "post /api/{session}/typing" [ref=e652]':
+                  - img [ref=e653]
+              - generic [ref=e657] [cursor=pointer]:
+                - 'button "POST /api/{session}/recording" [ref=e658]':
+                  - generic [ref=e659]: POST
+                  - 'link "/api/{session}/recording" [ref=e662]':
+                    - /url: "#/Chat/post_api__session__recording"
+                    - generic [ref=e663]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /recording
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e666]:
+                  - img [ref=e667]
+                - 'button "post /api/{session}/recording" [ref=e669]':
+                  - img [ref=e670]
+              - generic [ref=e674] [cursor=pointer]:
+                - 'button "GET /api/{session}/contact/{phone}" [ref=e675]':
+                  - generic [ref=e676]: GET
+                  - 'link "/api/{session}/contact/{phone}" [ref=e679]':
+                    - /url: "#/Chat/get_api__session__contact__phone_"
+                    - generic [ref=e680]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /contact
+                      - text: "/{phone}"
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e683]:
+                  - img [ref=e684]
+                - 'button "get /api/{session}/contact/{phone}" [ref=e686]':
+                  - img [ref=e687]
+              - generic [ref=e691] [cursor=pointer]:
+                - 'button "GET /api/{session}/profile/{phone}" [ref=e692]':
+                  - generic [ref=e693]: GET
+                  - 'link "/api/{session}/profile/{phone}" [ref=e696]':
+                    - /url: "#/Chat/get_api__session__profile__phone_"
+                    - generic [ref=e697]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /profile
+                      - text: "/{phone}"
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e700]:
+                  - img [ref=e701]
+                - 'button "get /api/{session}/profile/{phone}" [ref=e703]':
+                  - img [ref=e704]
+          - generic [ref=e707]:
+            - heading "Contact Handles operations related to contacts, such as managing contact lists, adding or removing contacts, and retrieving contact information. Collapse operation" [level=3] [ref=e708] [cursor=pointer]:
+              - link "Contact" [ref=e709]:
+                - /url: "#/Contact"
+              - paragraph [ref=e712]: Handles operations related to contacts, such as managing contact lists, adding or removing contacts, and retrieving contact information.
+              - button "Collapse operation" [expanded] [ref=e713]:
+                - img [ref=e714]
+            - generic [ref=e717]:
+              - generic [ref=e720] [cursor=pointer]:
+                - 'button "GET /api/{session}/contact/pn-lid/{pnLid}" [ref=e721]':
+                  - generic [ref=e722]: GET
+                  - 'link "/api/{session}/contact/pn-lid/{pnLid}" [ref=e725]':
+                    - /url: "#/Contact/get_api__session__contact_pn_lid__pnLid_"
+                    - generic [ref=e726]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /contact
+                      - text: /pn-lid
+                      - text: "/{pnLid}"
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e729]:
+                  - img [ref=e730]
+                - 'button "get /api/{session}/contact/pn-lid/{pnLid}" [ref=e732]':
+                  - img [ref=e733]
+              - generic [ref=e737] [cursor=pointer]:
+                - 'button "GET /api/{session}/profile-pic/{phone}" [ref=e738]':
+                  - generic [ref=e739]: GET
+                  - 'link "/api/{session}/profile-pic/{phone}" [ref=e742]':
+                    - /url: "#/Contact/get_api__session__profile_pic__phone_"
+                    - generic [ref=e743]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /profile-pic
+                      - text: "/{phone}"
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e746]:
+                  - img [ref=e747]
+                - 'button "get /api/{session}/profile-pic/{phone}" [ref=e749]':
+                  - img [ref=e750]
+              - generic [ref=e754] [cursor=pointer]:
+                - 'button "GET /api/{session}/profile-status/{phone}" [ref=e755]':
+                  - generic [ref=e756]: GET
+                  - 'link "/api/{session}/profile-status/{phone}" [ref=e759]':
+                    - /url: "#/Contact/get_api__session__profile_status__phone_"
+                    - generic [ref=e760]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /profile-status
+                      - text: "/{phone}"
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e763]:
+                  - img [ref=e764]
+                - 'button "get /api/{session}/profile-status/{phone}" [ref=e766]':
+                  - img [ref=e767]
+          - generic [ref=e770]:
+            - heading "Catalog & Bussiness Handles operations related to catalogs and business-related functionalities, such as managing product catalogs and business information. Collapse operation" [level=3] [ref=e771] [cursor=pointer]:
+              - link "Catalog & Bussiness" [ref=e772]:
+                - /url: "#/Catalog%20&%20Bussiness"
+              - paragraph [ref=e775]: Handles operations related to catalogs and business-related functionalities, such as managing product catalogs and business information.
+              - button "Collapse operation" [expanded] [ref=e776]:
+                - img [ref=e777]
+            - generic [ref=e780]:
+              - generic [ref=e783] [cursor=pointer]:
+                - 'button "GET /api/{session}/get-products" [ref=e784]':
+                  - generic [ref=e785]: GET
+                  - 'link "/api/{session}/get-products" [ref=e788]':
+                    - /url: "#/Catalog%20&%20Bussiness/get_api__session__get_products"
+                    - generic [ref=e789]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /get-products
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e792]:
+                  - img [ref=e793]
+                - 'button "get /api/{session}/get-products" [ref=e795]':
+                  - img [ref=e796]
+              - generic [ref=e800] [cursor=pointer]:
+                - 'button "GET /api/{session}/get-product-by-id" [ref=e801]':
+                  - generic [ref=e802]: GET
+                  - 'link "/api/{session}/get-product-by-id" [ref=e805]':
+                    - /url: "#/Catalog%20&%20Bussiness/get_api__session__get_product_by_id"
+                    - generic [ref=e806]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /get-product-by-id
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e809]:
+                  - img [ref=e810]
+                - 'button "get /api/{session}/get-product-by-id" [ref=e812]':
+                  - img [ref=e813]
+              - generic [ref=e817] [cursor=pointer]:
+                - 'button "POST /api/{session}/add-product" [ref=e818]':
+                  - generic [ref=e819]: POST
+                  - 'link "/api/{session}/add-product" [ref=e822]':
+                    - /url: "#/Catalog%20&%20Bussiness/post_api__session__add_product"
+                    - generic [ref=e823]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /add-product
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e826]:
+                  - img [ref=e827]
+                - 'button "post /api/{session}/add-product" [ref=e829]':
+                  - img [ref=e830]
+              - generic [ref=e834] [cursor=pointer]:
+                - 'button "POST /api/{session}/edit-product" [ref=e835]':
+                  - generic [ref=e836]: POST
+                  - 'link "/api/{session}/edit-product" [ref=e839]':
+                    - /url: "#/Catalog%20&%20Bussiness/post_api__session__edit_product"
+                    - generic [ref=e840]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /edit-product
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e843]:
+                  - img [ref=e844]
+                - 'button "post /api/{session}/edit-product" [ref=e846]':
+                  - img [ref=e847]
+              - generic [ref=e851] [cursor=pointer]:
+                - 'button "POST /api/{session}/del-products" [ref=e852]':
+                  - generic [ref=e853]: POST
+                  - 'link "/api/{session}/del-products" [ref=e856]':
+                    - /url: "#/Catalog%20&%20Bussiness/post_api__session__del_products"
+                    - generic [ref=e857]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /del-products
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e860]:
+                  - img [ref=e861]
+                - 'button "post /api/{session}/del-products" [ref=e863]':
+                  - img [ref=e864]
+              - generic [ref=e868] [cursor=pointer]:
+                - 'button "POST /api/{session}/change-product-image" [ref=e869]':
+                  - generic [ref=e870]: POST
+                  - 'link "/api/{session}/change-product-image" [ref=e873]':
+                    - /url: "#/Catalog%20&%20Bussiness/post_api__session__change_product_image"
+                    - generic [ref=e874]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /change-product-image
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e877]:
+                  - img [ref=e878]
+                - 'button "post /api/{session}/change-product-image" [ref=e880]':
+                  - img [ref=e881]
+              - generic [ref=e885] [cursor=pointer]:
+                - 'button "POST /api/{session}/add-product-image" [ref=e886]':
+                  - generic [ref=e887]: POST
+                  - 'link "/api/{session}/add-product-image" [ref=e890]':
+                    - /url: "#/Catalog%20&%20Bussiness/post_api__session__add_product_image"
+                    - generic [ref=e891]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /add-product-image
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e894]:
+                  - img [ref=e895]
+                - 'button "post /api/{session}/add-product-image" [ref=e897]':
+                  - img [ref=e898]
+              - generic [ref=e902] [cursor=pointer]:
+                - 'button "POST /api/{session}/remove-product-image" [ref=e903]':
+                  - generic [ref=e904]: POST
+                  - 'link "/api/{session}/remove-product-image" [ref=e907]':
+                    - /url: "#/Catalog%20&%20Bussiness/post_api__session__remove_product_image"
+                    - generic [ref=e908]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /remove-product-image
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e911]:
+                  - img [ref=e912]
+                - 'button "post /api/{session}/remove-product-image" [ref=e914]':
+                  - img [ref=e915]
+              - generic [ref=e919] [cursor=pointer]:
+                - 'button "GET /api/{session}/get-collections" [ref=e920]':
+                  - generic [ref=e921]: GET
+                  - 'link "/api/{session}/get-collections" [ref=e924]':
+                    - /url: "#/Catalog%20&%20Bussiness/get_api__session__get_collections"
+                    - generic [ref=e925]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /get-collections
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e928]:
+                  - img [ref=e929]
+                - 'button "get /api/{session}/get-collections" [ref=e931]':
+                  - img [ref=e932]
+              - generic [ref=e936] [cursor=pointer]:
+                - 'button "POST /api/{session}/create-collection" [ref=e937]':
+                  - generic [ref=e938]: POST
+                  - 'link "/api/{session}/create-collection" [ref=e941]':
+                    - /url: "#/Catalog%20&%20Bussiness/post_api__session__create_collection"
+                    - generic [ref=e942]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /create-collection
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e945]:
+                  - img [ref=e946]
+                - 'button "post /api/{session}/create-collection" [ref=e948]':
+                  - img [ref=e949]
+              - generic [ref=e953] [cursor=pointer]:
+                - 'button "POST /api/{session}/edit-collection" [ref=e954]':
+                  - generic [ref=e955]: POST
+                  - 'link "/api/{session}/edit-collection" [ref=e958]':
+                    - /url: "#/Catalog%20&%20Bussiness/post_api__session__edit_collection"
+                    - generic [ref=e959]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /edit-collection
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e962]:
+                  - img [ref=e963]
+                - 'button "post /api/{session}/edit-collection" [ref=e965]':
+                  - img [ref=e966]
+              - generic [ref=e970] [cursor=pointer]:
+                - 'button "POST /api/{session}/del-collection" [ref=e971]':
+                  - generic [ref=e972]: POST
+                  - 'link "/api/{session}/del-collection" [ref=e975]':
+                    - /url: "#/Catalog%20&%20Bussiness/post_api__session__del_collection"
+                    - generic [ref=e976]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /del-collection
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e979]:
+                  - img [ref=e980]
+                - 'button "post /api/{session}/del-collection" [ref=e982]':
+                  - img [ref=e983]
+              - generic [ref=e987] [cursor=pointer]:
+                - 'button "POST /api/{session}/set-product-visibility" [ref=e988]':
+                  - generic [ref=e989]: POST
+                  - 'link "/api/{session}/set-product-visibility" [ref=e992]':
+                    - /url: "#/Catalog%20&%20Bussiness/post_api__session__set_product_visibility"
+                    - generic [ref=e993]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /set-product-visibility
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e996]:
+                  - img [ref=e997]
+                - 'button "post /api/{session}/set-product-visibility" [ref=e999]':
+                  - img [ref=e1000]
+              - generic [ref=e1004] [cursor=pointer]:
+                - 'button "POST /api/{session}/set-cart-enabled" [ref=e1005]':
+                  - generic [ref=e1006]: POST
+                  - 'link "/api/{session}/set-cart-enabled" [ref=e1009]':
+                    - /url: "#/Catalog%20&%20Bussiness/post_api__session__set_cart_enabled"
+                    - generic [ref=e1010]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /set-cart-enabled
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1013]:
+                  - img [ref=e1014]
+                - 'button "post /api/{session}/set-cart-enabled" [ref=e1016]':
+                  - img [ref=e1017]
+              - generic [ref=e1021] [cursor=pointer]:
+                - 'button "GET /api/{session}/get-business-profiles-products" [ref=e1022]':
+                  - generic [ref=e1023]: GET
+                  - 'link "/api/{session}/get-business-profiles-products" [ref=e1026]':
+                    - /url: "#/Catalog%20&%20Bussiness/get_api__session__get_business_profiles_products"
+                    - generic [ref=e1027]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /get-business-profiles-products
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1030]:
+                  - img [ref=e1031]
+                - 'button "get /api/{session}/get-business-profiles-products" [ref=e1033]':
+                  - img [ref=e1034]
+              - generic [ref=e1038] [cursor=pointer]:
+                - 'button "GET /api/{session}/get-order-by-messageId/{messageId}" [ref=e1039]':
+                  - generic [ref=e1040]: GET
+                  - 'link "/api/{session}/get-order-by-messageId/{messageId}" [ref=e1043]':
+                    - /url: "#/Catalog%20&%20Bussiness/get_api__session__get_order_by_messageId__messageId_"
+                    - generic [ref=e1044]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /get-order-by-messageId
+                      - text: "/{messageId}"
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1047]:
+                  - img [ref=e1048]
+                - 'button "get /api/{session}/get-order-by-messageId/{messageId}" [ref=e1050]':
+                  - img [ref=e1051]
+          - generic [ref=e1054]:
+            - heading "Community Manage communities. Collapse operation" [level=3] [ref=e1055] [cursor=pointer]:
+              - link "Community" [ref=e1056]:
+                - /url: "#/Community"
+              - paragraph [ref=e1059]: Manage communities.
+              - button "Collapse operation" [expanded] [ref=e1060]:
+                - img [ref=e1061]
+            - generic [ref=e1064]:
+              - generic [ref=e1067] [cursor=pointer]:
+                - 'button "POST /api/{session}/create-community" [ref=e1068]':
+                  - generic [ref=e1069]: POST
+                  - 'link "/api/{session}/create-community" [ref=e1072]':
+                    - /url: "#/Community/post_api__session__create_community"
+                    - generic [ref=e1073]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /create-community
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1076]:
+                  - img [ref=e1077]
+                - 'button "post /api/{session}/create-community" [ref=e1079]':
+                  - img [ref=e1080]
+              - generic [ref=e1084] [cursor=pointer]:
+                - 'button "POST /api/{session}/deactivate-community" [ref=e1085]':
+                  - generic [ref=e1086]: POST
+                  - 'link "/api/{session}/deactivate-community" [ref=e1089]':
+                    - /url: "#/Community/post_api__session__deactivate_community"
+                    - generic [ref=e1090]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /deactivate-community
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1093]:
+                  - img [ref=e1094]
+                - 'button "post /api/{session}/deactivate-community" [ref=e1096]':
+                  - img [ref=e1097]
+              - generic [ref=e1101] [cursor=pointer]:
+                - 'button "POST /api/{session}/add-community-subgroup" [ref=e1102]':
+                  - generic [ref=e1103]: POST
+                  - 'link "/api/{session}/add-community-subgroup" [ref=e1106]':
+                    - /url: "#/Community/post_api__session__add_community_subgroup"
+                    - generic [ref=e1107]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /add-community-subgroup
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1110]:
+                  - img [ref=e1111]
+                - 'button "post /api/{session}/add-community-subgroup" [ref=e1113]':
+                  - img [ref=e1114]
+              - generic [ref=e1118] [cursor=pointer]:
+                - 'button "POST /api/{session}/remove-community-subgroup" [ref=e1119]':
+                  - generic [ref=e1120]: POST
+                  - 'link "/api/{session}/remove-community-subgroup" [ref=e1123]':
+                    - /url: "#/Community/post_api__session__remove_community_subgroup"
+                    - generic [ref=e1124]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /remove-community-subgroup
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1127]:
+                  - img [ref=e1128]
+                - 'button "post /api/{session}/remove-community-subgroup" [ref=e1130]':
+                  - img [ref=e1131]
+              - generic [ref=e1135] [cursor=pointer]:
+                - 'button "POST /api/{session}/promote-community-participant" [ref=e1136]':
+                  - generic [ref=e1137]: POST
+                  - 'link "/api/{session}/promote-community-participant" [ref=e1140]':
+                    - /url: "#/Community/post_api__session__promote_community_participant"
+                    - generic [ref=e1141]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /promote-community-participant
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1144]:
+                  - img [ref=e1145]
+                - 'button "post /api/{session}/promote-community-participant" [ref=e1147]':
+                  - img [ref=e1148]
+              - generic [ref=e1152] [cursor=pointer]:
+                - 'button "POST /api/{session}/demote-community-participant" [ref=e1153]':
+                  - generic [ref=e1154]: POST
+                  - 'link "/api/{session}/demote-community-participant" [ref=e1157]':
+                    - /url: "#/Community/post_api__session__demote_community_participant"
+                    - generic [ref=e1158]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /demote-community-participant
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1161]:
+                  - img [ref=e1162]
+                - 'button "post /api/{session}/demote-community-participant" [ref=e1164]':
+                  - img [ref=e1165]
+              - generic [ref=e1169] [cursor=pointer]:
+                - 'button "GET /api/{session}/community-participants/{id}" [ref=e1170]':
+                  - generic [ref=e1171]: GET
+                  - 'link "/api/{session}/community-participants/{id}" [ref=e1174]':
+                    - /url: "#/Community/get_api__session__community_participants__id_"
+                    - generic [ref=e1175]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /community-participants
+                      - text: "/{id}"
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1178]:
+                  - img [ref=e1179]
+                - 'button "get /api/{session}/community-participants/{id}" [ref=e1181]':
+                  - img [ref=e1182]
+          - generic [ref=e1185]:
+            - heading "Messages Handles message-related operations, including sending, receiving, and managing messages. Collapse operation" [level=3] [ref=e1186] [cursor=pointer]:
+              - link "Messages" [ref=e1187]:
+                - /url: "#/Messages"
+              - paragraph [ref=e1190]: Handles message-related operations, including sending, receiving, and managing messages.
+              - button "Collapse operation" [expanded] [ref=e1191]:
+                - img [ref=e1192]
+            - generic [ref=e1195]:
+              - generic [ref=e1198] [cursor=pointer]:
+                - 'button "GET /api/{session}/get-media-by-message/{messageId}" [ref=e1199]':
+                  - generic [ref=e1200]: GET
+                  - 'link "/api/{session}/get-media-by-message/{messageId}" [ref=e1203]':
+                    - /url: "#/Messages/getMediaByMessage"
+                    - generic [ref=e1204]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /get-media-by-message
+                      - text: "/{messageId}"
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1207]:
+                  - img [ref=e1208]
+                - 'button "get /api/{session}/get-media-by-message/{messageId}" [ref=e1210]':
+                  - img [ref=e1211]
+              - generic [ref=e1215] [cursor=pointer]:
+                - 'button "POST /api/{session}/download-media" [ref=e1216]':
+                  - generic [ref=e1217]: POST
+                  - 'link "/api/{session}/download-media" [ref=e1220]':
+                    - /url: "#/Messages/downloadMediabyMessage"
+                    - generic [ref=e1221]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /download-media
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1224]:
+                  - img [ref=e1225]
+                - 'button "post /api/{session}/download-media" [ref=e1227]':
+                  - img [ref=e1228]
+              - generic [ref=e1232] [cursor=pointer]:
+                - 'button "POST /api/{session}/send-message" [ref=e1233]':
+                  - generic [ref=e1234]: POST
+                  - 'link "/api/{session}/send-message" [ref=e1237]':
+                    - /url: "#/Messages/post_api__session__send_message"
+                    - generic [ref=e1238]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /send-message
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1241]:
+                  - img [ref=e1242]
+                - 'button "post /api/{session}/send-message" [ref=e1244]':
+                  - img [ref=e1245]
+              - generic [ref=e1249] [cursor=pointer]:
+                - 'button "POST /api/{session}/edit-message" [ref=e1250]':
+                  - generic [ref=e1251]: POST
+                  - 'link "/api/{session}/edit-message" [ref=e1254]':
+                    - /url: "#/Messages/post_api__session__edit_message"
+                    - generic [ref=e1255]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /edit-message
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1258]:
+                  - img [ref=e1259]
+                - 'button "post /api/{session}/edit-message" [ref=e1261]':
+                  - img [ref=e1262]
+              - generic [ref=e1266] [cursor=pointer]:
+                - 'button "POST /api/{session}/send-image" [ref=e1267]':
+                  - generic [ref=e1268]: POST
+                  - 'link "/api/{session}/send-image" [ref=e1271]':
+                    - /url: "#/Messages/post_api__session__send_image"
+                    - generic [ref=e1272]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /send-image
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1275]:
+                  - img [ref=e1276]
+                - 'button "post /api/{session}/send-image" [ref=e1278]':
+                  - img [ref=e1279]
+              - generic [ref=e1283] [cursor=pointer]:
+                - 'button "POST /api/{session}/send-sticker" [ref=e1284]':
+                  - generic [ref=e1285]: POST
+                  - 'link "/api/{session}/send-sticker" [ref=e1288]':
+                    - /url: "#/Messages/post_api__session__send_sticker"
+                    - generic [ref=e1289]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /send-sticker
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1292]:
+                  - img [ref=e1293]
+                - 'button "post /api/{session}/send-sticker" [ref=e1295]':
+                  - img [ref=e1296]
+              - generic [ref=e1300] [cursor=pointer]:
+                - 'button "POST /api/{session}/send-sticker-gif" [ref=e1301]':
+                  - generic [ref=e1302]: POST
+                  - 'link "/api/{session}/send-sticker-gif" [ref=e1305]':
+                    - /url: "#/Messages/post_api__session__send_sticker_gif"
+                    - generic [ref=e1306]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /send-sticker-gif
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1309]:
+                  - img [ref=e1310]
+                - 'button "post /api/{session}/send-sticker-gif" [ref=e1312]':
+                  - img [ref=e1313]
+              - generic [ref=e1317] [cursor=pointer]:
+                - 'button "POST /api/{session}/send-reply" [ref=e1318]':
+                  - generic [ref=e1319]: POST
+                  - 'link "/api/{session}/send-reply" [ref=e1322]':
+                    - /url: "#/Messages/post_api__session__send_reply"
+                    - generic [ref=e1323]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /send-reply
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1326]:
+                  - img [ref=e1327]
+                - 'button "post /api/{session}/send-reply" [ref=e1329]':
+                  - img [ref=e1330]
+              - generic [ref=e1334] [cursor=pointer]:
+                - 'button "POST /api/{session}/send-file" [ref=e1335]':
+                  - generic [ref=e1336]: POST
+                  - 'link "/api/{session}/send-file" [ref=e1339]':
+                    - /url: "#/Messages/post_api__session__send_file"
+                    - generic [ref=e1340]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /send-file
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1343]:
+                  - img [ref=e1344]
+                - 'button "post /api/{session}/send-file" [ref=e1346]':
+                  - img [ref=e1347]
+              - generic [ref=e1351] [cursor=pointer]:
+                - 'button "POST /api/{session}/send-file-base64" [ref=e1352]':
+                  - generic [ref=e1353]: POST
+                  - 'link "/api/{session}/send-file-base64" [ref=e1356]':
+                    - /url: "#/Messages/post_api__session__send_file_base64"
+                    - generic [ref=e1357]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /send-file-base64
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1360]:
+                  - img [ref=e1361]
+                - 'button "post /api/{session}/send-file-base64" [ref=e1363]':
+                  - img [ref=e1364]
+              - generic [ref=e1368] [cursor=pointer]:
+                - 'button "POST /api/{session}/send-voice" [ref=e1369]':
+                  - generic [ref=e1370]: POST
+                  - 'link "/api/{session}/send-voice" [ref=e1373]':
+                    - /url: "#/Messages/post_api__session__send_voice"
+                    - generic [ref=e1374]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /send-voice
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1377]:
+                  - img [ref=e1378]
+                - 'button "post /api/{session}/send-voice" [ref=e1380]':
+                  - img [ref=e1381]
+              - generic [ref=e1385] [cursor=pointer]:
+                - 'button "POST /api/{session}/send-voice-base64" [ref=e1386]':
+                  - generic [ref=e1387]: POST
+                  - 'link "/api/{session}/send-voice-base64" [ref=e1390]':
+                    - /url: "#/Messages/post_api__session__send_voice_base64"
+                    - generic [ref=e1391]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /send-voice-base64
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1394]:
+                  - img [ref=e1395]
+                - 'button "post /api/{session}/send-voice-base64" [ref=e1397]':
+                  - img [ref=e1398]
+              - generic [ref=e1402] [cursor=pointer]:
+                - 'button "POST /api/{session}/send-status" [ref=e1403]':
+                  - generic [ref=e1404]: POST
+                  - 'link "/api/{session}/send-status" [ref=e1407]':
+                    - /url: "#/Messages/post_api__session__send_status"
+                    - generic [ref=e1408]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /send-status
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1411]:
+                  - img [ref=e1412]
+                - 'button "post /api/{session}/send-status" [ref=e1414]':
+                  - img [ref=e1415]
+              - generic [ref=e1419] [cursor=pointer]:
+                - 'button "POST /api/{session}/send-link-preview" [ref=e1420]':
+                  - generic [ref=e1421]: POST
+                  - 'link "/api/{session}/send-link-preview" [ref=e1424]':
+                    - /url: "#/Messages/post_api__session__send_link_preview"
+                    - generic [ref=e1425]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /send-link-preview
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1428]:
+                  - img [ref=e1429]
+                - 'button "post /api/{session}/send-link-preview" [ref=e1431]':
+                  - img [ref=e1432]
+              - generic [ref=e1436] [cursor=pointer]:
+                - 'button "POST /api/{session}/send-location" [ref=e1437]':
+                  - generic [ref=e1438]: POST
+                  - 'link "/api/{session}/send-location" [ref=e1441]':
+                    - /url: "#/Messages/post_api__session__send_location"
+                    - generic [ref=e1442]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /send-location
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1445]:
+                  - img [ref=e1446]
+                - 'button "post /api/{session}/send-location" [ref=e1448]':
+                  - img [ref=e1449]
+              - generic [ref=e1453] [cursor=pointer]:
+                - 'button "POST /api/{session}/send-mentioned" [ref=e1454]':
+                  - generic [ref=e1455]: POST
+                  - 'link "/api/{session}/send-mentioned" [ref=e1458]':
+                    - /url: "#/Messages/post_api__session__send_mentioned"
+                    - generic [ref=e1459]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /send-mentioned
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1462]:
+                  - img [ref=e1463]
+                - 'button "post /api/{session}/send-mentioned" [ref=e1465]':
+                  - img [ref=e1466]
+              - generic [ref=e1470] [cursor=pointer]:
+                - 'button "POST /api/{session}/send-buttons" [ref=e1471]':
+                  - generic [ref=e1472]: POST
+                  - 'link "/api/{session}/send-buttons" [ref=e1475]':
+                    - /url: "#/Messages/post_api__session__send_buttons"
+                    - generic [ref=e1476]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /send-buttons
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1479]:
+                  - img [ref=e1480]
+                - 'button "post /api/{session}/send-buttons" [ref=e1482]':
+                  - img [ref=e1483]
+              - generic [ref=e1487] [cursor=pointer]:
+                - 'button "POST /api/{session}/send-list-message" [ref=e1488]':
+                  - generic [ref=e1489]: POST
+                  - 'link "/api/{session}/send-list-message" [ref=e1492]':
+                    - /url: "#/Messages/post_api__session__send_list_message"
+                    - generic [ref=e1493]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /send-list-message
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1496]:
+                  - img [ref=e1497]
+                - 'button "post /api/{session}/send-list-message" [ref=e1499]':
+                  - img [ref=e1500]
+              - generic [ref=e1504] [cursor=pointer]:
+                - 'button "POST /api/{session}/send-order-message" [ref=e1505]':
+                  - generic [ref=e1506]: POST
+                  - 'link "/api/{session}/send-order-message" [ref=e1509]':
+                    - /url: "#/Messages/post_api__session__send_order_message"
+                    - generic [ref=e1510]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /send-order-message
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1513]:
+                  - img [ref=e1514]
+                - 'button "post /api/{session}/send-order-message" [ref=e1516]':
+                  - img [ref=e1517]
+              - generic [ref=e1521] [cursor=pointer]:
+                - 'button "POST /api/{session}/send-poll-message" [ref=e1522]':
+                  - generic [ref=e1523]: POST
+                  - 'link "/api/{session}/send-poll-message" [ref=e1526]':
+                    - /url: "#/Messages/post_api__session__send_poll_message"
+                    - generic [ref=e1527]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /send-poll-message
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1530]:
+                  - img [ref=e1531]
+                - 'button "post /api/{session}/send-poll-message" [ref=e1533]':
+                  - img [ref=e1534]
+              - generic [ref=e1538] [cursor=pointer]:
+                - 'button "POST /api/{session}/send-pix-key" [ref=e1539]':
+                  - generic [ref=e1540]: POST
+                  - 'link "/api/{session}/send-pix-key" [ref=e1543]':
+                    - /url: "#/Messages/post_api__session__send_pix_key"
+                    - generic [ref=e1544]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /send-pix-key
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1547]:
+                  - img [ref=e1548]
+                - 'button "post /api/{session}/send-pix-key" [ref=e1550]':
+                  - img [ref=e1551]
+              - generic [ref=e1555] [cursor=pointer]:
+                - 'button "GET /api/{session}/unread-messages" [ref=e1556]':
+                  - generic [ref=e1557]: GET
+                  - 'link "/api/{session}/unread-messages" [ref=e1560]':
+                    - /url: "#/Messages/get_api__session__unread_messages"
+                    - generic [ref=e1561]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /unread-messages
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1564]:
+                  - img [ref=e1565]
+                - 'button "get /api/{session}/unread-messages" [ref=e1567]':
+                  - img [ref=e1568]
+              - generic [ref=e1572] [cursor=pointer]:
+                - 'button "GET /api/{session}/get-messages/{phone}" [ref=e1573]':
+                  - generic [ref=e1574]: GET
+                  - 'link "/api/{session}/get-messages/{phone}" [ref=e1577]':
+                    - /url: "#/Messages/get_api__session__get_messages__phone_"
+                    - generic [ref=e1578]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /get-messages
+                      - text: "/{phone}"
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1581]:
+                  - img [ref=e1582]
+                - 'button "get /api/{session}/get-messages/{phone}" [ref=e1584]':
+                  - img [ref=e1585]
+              - generic [ref=e1589] [cursor=pointer]:
+                - 'button "POST /api/{session}/delete-message" [ref=e1590]':
+                  - generic [ref=e1591]: POST
+                  - 'link "/api/{session}/delete-message" [ref=e1594]':
+                    - /url: "#/Messages/post_api__session__delete_message"
+                    - generic [ref=e1595]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /delete-message
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1598]:
+                  - img [ref=e1599]
+                - 'button "post /api/{session}/delete-message" [ref=e1601]':
+                  - img [ref=e1602]
+              - generic [ref=e1606] [cursor=pointer]:
+                - 'button "POST /api/{session}/react-message" [ref=e1607]':
+                  - generic [ref=e1608]: POST
+                  - 'link "/api/{session}/react-message" [ref=e1611]':
+                    - /url: "#/Messages/post_api__session__react_message"
+                    - generic [ref=e1612]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /react-message
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1615]:
+                  - img [ref=e1616]
+                - 'button "post /api/{session}/react-message" [ref=e1618]':
+                  - img [ref=e1619]
+              - generic [ref=e1623] [cursor=pointer]:
+                - 'button "POST /api/{session}/forward-messages" [ref=e1624]':
+                  - generic [ref=e1625]: POST
+                  - 'link "/api/{session}/forward-messages" [ref=e1628]':
+                    - /url: "#/Messages/post_api__session__forward_messages"
+                    - generic [ref=e1629]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /forward-messages
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1632]:
+                  - img [ref=e1633]
+                - 'button "post /api/{session}/forward-messages" [ref=e1635]':
+                  - img [ref=e1636]
+              - generic [ref=e1640] [cursor=pointer]:
+                - 'button "POST /api/{session}/mark-unseen" [ref=e1641]':
+                  - generic [ref=e1642]: POST
+                  - 'link "/api/{session}/mark-unseen" [ref=e1645]':
+                    - /url: "#/Messages/post_api__session__mark_unseen"
+                    - generic [ref=e1646]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /mark-unseen
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1649]:
+                  - img [ref=e1650]
+                - 'button "post /api/{session}/mark-unseen" [ref=e1652]':
+                  - img [ref=e1653]
+              - generic [ref=e1657] [cursor=pointer]:
+                - 'button "POST /api/{session}/contact-vcard" [ref=e1658]':
+                  - generic [ref=e1659]: POST
+                  - 'link "/api/{session}/contact-vcard" [ref=e1662]':
+                    - /url: "#/Messages/post_api__session__contact_vcard"
+                    - generic [ref=e1663]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /contact-vcard
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1666]:
+                  - img [ref=e1667]
+                - 'button "post /api/{session}/contact-vcard" [ref=e1669]':
+                  - img [ref=e1670]
+              - generic [ref=e1674] [cursor=pointer]:
+                - 'button "POST /api/{session}/temporary-messages" [ref=e1675]':
+                  - generic [ref=e1676]: POST
+                  - 'link "/api/{session}/temporary-messages" [ref=e1679]':
+                    - /url: "#/Messages/post_api__session__temporary_messages"
+                    - generic [ref=e1680]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /temporary-messages
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1683]:
+                  - img [ref=e1684]
+                - 'button "post /api/{session}/temporary-messages" [ref=e1686]':
+                  - img [ref=e1687]
+              - generic [ref=e1691] [cursor=pointer]:
+                - 'button "POST /api/{session}/star-message" [ref=e1692]':
+                  - generic [ref=e1693]: POST
+                  - 'link "/api/{session}/star-message" [ref=e1696]':
+                    - /url: "#/Messages/post_api__session__star_message"
+                    - generic [ref=e1697]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /star-message
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1700]:
+                  - img [ref=e1701]
+                - 'button "post /api/{session}/star-message" [ref=e1703]':
+                  - img [ref=e1704]
+              - generic [ref=e1708] [cursor=pointer]:
+                - 'button "GET /api/{session}/reactions/{id}" [ref=e1709]':
+                  - generic [ref=e1710]: GET
+                  - 'link "/api/{session}/reactions/{id}" [ref=e1713]':
+                    - /url: "#/Messages/get_api__session__reactions__id_"
+                    - generic [ref=e1714]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /reactions
+                      - text: "/{id}"
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1717]:
+                  - img [ref=e1718]
+                - 'button "get /api/{session}/reactions/{id}" [ref=e1720]':
+                  - img [ref=e1721]
+              - generic [ref=e1725] [cursor=pointer]:
+                - 'button "GET /api/{session}/votes/{id}" [ref=e1726]':
+                  - generic [ref=e1727]: GET
+                  - 'link "/api/{session}/votes/{id}" [ref=e1730]':
+                    - /url: "#/Messages/get_api__session__votes__id_"
+                    - generic [ref=e1731]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /votes
+                      - text: "/{id}"
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1734]:
+                  - img [ref=e1735]
+                - 'button "get /api/{session}/votes/{id}" [ref=e1737]':
+                  - img [ref=e1738]
+              - generic [ref=e1742] [cursor=pointer]:
+                - 'button "POST /api/{session}/send-link-catalog" [ref=e1743]':
+                  - generic [ref=e1744]: POST
+                  - 'link "/api/{session}/send-link-catalog" [ref=e1747]':
+                    - /url: "#/Messages/post_api__session__send_link_catalog"
+                    - generic [ref=e1748]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /send-link-catalog
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1751]:
+                  - img [ref=e1752]
+                - 'button "post /api/{session}/send-link-catalog" [ref=e1754]':
+                  - img [ref=e1755]
+          - generic [ref=e1758]:
+            - heading "Profile Manages user profile-related operations, such as retrieving and updating profile information Collapse operation" [level=3] [ref=e1759] [cursor=pointer]:
+              - link "Profile" [ref=e1760]:
+                - /url: "#/Profile"
+              - paragraph [ref=e1763]: Manages user profile-related operations, such as retrieving and updating profile information
+              - button "Collapse operation" [expanded] [ref=e1764]:
+                - img [ref=e1765]
+            - generic [ref=e1768]:
+              - generic [ref=e1771] [cursor=pointer]:
+                - 'button "POST /api/{session}/set-profile-pic" [ref=e1772]':
+                  - generic [ref=e1773]: POST
+                  - 'link "/api/{session}/set-profile-pic" [ref=e1776]':
+                    - /url: "#/Profile/post_api__session__set_profile_pic"
+                    - generic [ref=e1777]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /set-profile-pic
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1780]:
+                  - img [ref=e1781]
+                - 'button "post /api/{session}/set-profile-pic" [ref=e1783]':
+                  - img [ref=e1784]
+              - generic [ref=e1788] [cursor=pointer]:
+                - 'button "POST /api/{session}/profile-status" [ref=e1789]':
+                  - generic [ref=e1790]: POST
+                  - 'link "/api/{session}/profile-status" [ref=e1793]':
+                    - /url: "#/Profile/post_api__session__profile_status"
+                    - generic [ref=e1794]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /profile-status
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1797]:
+                  - img [ref=e1798]
+                - 'button "post /api/{session}/profile-status" [ref=e1800]':
+                  - img [ref=e1801]
+              - generic [ref=e1805] [cursor=pointer]:
+                - 'button "POST /api/{session}/change-username" [ref=e1806]':
+                  - generic [ref=e1807]: POST
+                  - 'link "/api/{session}/change-username" [ref=e1810]':
+                    - /url: "#/Profile/post_api__session__change_username"
+                    - generic [ref=e1811]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /change-username
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1814]:
+                  - img [ref=e1815]
+                - 'button "post /api/{session}/change-username" [ref=e1817]':
+                  - img [ref=e1818]
+              - generic [ref=e1822] [cursor=pointer]:
+                - 'button "POST /api/{session}/edit-business-profile" [ref=e1823]':
+                  - generic [ref=e1824]: POST
+                  - 'link "/api/{session}/edit-business-profile" [ref=e1827]':
+                    - /url: "#/Profile/editBusinessProfile"
+                    - generic [ref=e1828]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /edit-business-profile
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1831]:
+                  - img [ref=e1832]
+                - 'button "post /api/{session}/edit-business-profile" [ref=e1834]':
+                  - img [ref=e1835]
+          - generic [ref=e1838]:
+            - heading "Status Stories Handles operations related to status stories, such as viewing, updating, and managing status stories Collapse operation" [level=3] [ref=e1839] [cursor=pointer]:
+              - link "Status Stories" [ref=e1840]:
+                - /url: "#/Status%20Stories"
+              - paragraph [ref=e1843]: Handles operations related to status stories, such as viewing, updating, and managing status stories
+              - button "Collapse operation" [expanded] [ref=e1844]:
+                - img [ref=e1845]
+            - generic [ref=e1848]:
+              - generic [ref=e1851] [cursor=pointer]:
+                - 'button "POST /api/{session}/send-text-storie" [ref=e1852]':
+                  - generic [ref=e1853]: POST
+                  - 'link "/api/{session}/send-text-storie" [ref=e1856]':
+                    - /url: "#/Status%20Stories/post_api__session__send_text_storie"
+                    - generic [ref=e1857]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /send-text-storie
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1860]:
+                  - img [ref=e1861]
+                - 'button "post /api/{session}/send-text-storie" [ref=e1863]':
+                  - img [ref=e1864]
+              - generic [ref=e1868] [cursor=pointer]:
+                - 'button "POST /api/{session}/send-image-storie" [ref=e1869]':
+                  - generic [ref=e1870]: POST
+                  - 'link "/api/{session}/send-image-storie" [ref=e1873]':
+                    - /url: "#/Status%20Stories/post_api__session__send_image_storie"
+                    - generic [ref=e1874]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /send-image-storie
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1877]:
+                  - img [ref=e1878]
+                - 'button "post /api/{session}/send-image-storie" [ref=e1880]':
+                  - img [ref=e1881]
+              - generic [ref=e1885] [cursor=pointer]:
+                - 'button "POST /api/{session}/send-video-storie" [ref=e1886]':
+                  - generic [ref=e1887]: POST
+                  - 'link "/api/{session}/send-video-storie" [ref=e1890]':
+                    - /url: "#/Status%20Stories/post_api__session__send_video_storie"
+                    - generic [ref=e1891]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /send-video-storie
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1894]:
+                  - img [ref=e1895]
+                - 'button "post /api/{session}/send-video-storie" [ref=e1897]':
+                  - img [ref=e1898]
+          - generic [ref=e1901]:
+            - heading "Labels Manages labels or tags associated with chats or messages for organization and categorization purposes. Collapse operation" [level=3] [ref=e1902] [cursor=pointer]:
+              - link "Labels" [ref=e1903]:
+                - /url: "#/Labels"
+              - paragraph [ref=e1906]: Manages labels or tags associated with chats or messages for organization and categorization purposes.
+              - button "Collapse operation" [expanded] [ref=e1907]:
+                - img [ref=e1908]
+            - generic [ref=e1911]:
+              - generic [ref=e1914] [cursor=pointer]:
+                - 'button "POST /api/{session}/add-new-label" [ref=e1915]':
+                  - generic [ref=e1916]: POST
+                  - 'link "/api/{session}/add-new-label" [ref=e1919]':
+                    - /url: "#/Labels/post_api__session__add_new_label"
+                    - generic [ref=e1920]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /add-new-label
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1923]:
+                  - img [ref=e1924]
+                - 'button "post /api/{session}/add-new-label" [ref=e1926]':
+                  - img [ref=e1927]
+              - generic [ref=e1931] [cursor=pointer]:
+                - 'button "POST /api/{session}/add-or-remove-label" [ref=e1932]':
+                  - generic [ref=e1933]: POST
+                  - 'link "/api/{session}/add-or-remove-label" [ref=e1936]':
+                    - /url: "#/Labels/post_api__session__add_or_remove_label"
+                    - generic [ref=e1937]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /add-or-remove-label
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1940]:
+                  - img [ref=e1941]
+                - 'button "post /api/{session}/add-or-remove-label" [ref=e1943]':
+                  - img [ref=e1944]
+              - generic [ref=e1948] [cursor=pointer]:
+                - 'button "GET /api/{session}/get-all-labels" [ref=e1949]':
+                  - generic [ref=e1950]: GET
+                  - 'link "/api/{session}/get-all-labels" [ref=e1953]':
+                    - /url: "#/Labels/get_api__session__get_all_labels"
+                    - generic [ref=e1954]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /get-all-labels
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1957]:
+                  - img [ref=e1958]
+                - 'button "get /api/{session}/get-all-labels" [ref=e1960]':
+                  - img [ref=e1961]
+              - generic [ref=e1965] [cursor=pointer]:
+                - 'button "PUT /api/{session}/delete-all-labels" [ref=e1966]':
+                  - generic [ref=e1967]: PUT
+                  - 'link "/api/{session}/delete-all-labels" [ref=e1970]':
+                    - /url: "#/Labels/put_api__session__delete_all_labels"
+                    - generic [ref=e1971]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /delete-all-labels
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1974]:
+                  - img [ref=e1975]
+                - 'button "put /api/{session}/delete-all-labels" [ref=e1977]':
+                  - img [ref=e1978]
+              - generic [ref=e1982] [cursor=pointer]:
+                - 'button "PUT /api/{session}/delete-label/{id}" [ref=e1983]':
+                  - generic [ref=e1984]: PUT
+                  - 'link "/api/{session}/delete-label/{id}" [ref=e1987]':
+                    - /url: "#/Labels/put_api__session__delete_label__id_"
+                    - generic [ref=e1988]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /delete-label
+                      - text: "/{id}"
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e1991]:
+                  - img [ref=e1992]
+                - 'button "put /api/{session}/delete-label/{id}" [ref=e1994]':
+                  - img [ref=e1995]
+          - generic [ref=e1998]:
+            - heading "Group Manages operations related to WhatsApp groups, such as creating, modifying, and managing group settings. Collapse operation" [level=3] [ref=e1999] [cursor=pointer]:
+              - link "Group" [ref=e2000]:
+                - /url: "#/Group"
+              - paragraph [ref=e2003]: Manages operations related to WhatsApp groups, such as creating, modifying, and managing group settings.
+              - button "Collapse operation" [expanded] [ref=e2004]:
+                - img [ref=e2005]
+            - generic [ref=e2008]:
+              - generic [ref=e2011] [cursor=pointer]:
+                - 'button "GET /api/{session}/all-groups Deprecated in favor of" [ref=e2012]':
+                  - generic [ref=e2013]: GET
+                  - generic [ref=e2014]:
+                    - 'link "/api/{session}/all-groups" [ref=e2016]':
+                      - /url: "#/Group/get_api__session__all_groups"
+                      - generic [ref=e2017]:
+                        - text: /api
+                        - text: "/{session}"
+                        - text: /all-groups
+                    - generic [ref=e2018]: Deprecated in favor of
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e2021]:
+                  - img [ref=e2022]
+                - 'button "get /api/{session}/all-groups" [ref=e2024]':
+                  - img [ref=e2025]
+              - generic [ref=e2029] [cursor=pointer]:
+                - 'button "GET /api/{session}/group-members/{groupId}" [ref=e2030]':
+                  - generic [ref=e2031]: GET
+                  - 'link "/api/{session}/group-members/{groupId}" [ref=e2034]':
+                    - /url: "#/Group/get_api__session__group_members__groupId_"
+                    - generic [ref=e2035]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /group-members
+                      - text: "/{groupId}"
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e2038]:
+                  - img [ref=e2039]
+                - 'button "get /api/{session}/group-members/{groupId}" [ref=e2041]':
+                  - img [ref=e2042]
+              - generic [ref=e2046] [cursor=pointer]:
+                - 'button "GET /api/{session}/common-groups/{wid}" [ref=e2047]':
+                  - generic [ref=e2048]: GET
+                  - 'link "/api/{session}/common-groups/{wid}" [ref=e2051]':
+                    - /url: "#/Group/get_api__session__common_groups__wid_"
+                    - generic [ref=e2052]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /common-groups
+                      - text: "/{wid}"
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e2055]:
+                  - img [ref=e2056]
+                - 'button "get /api/{session}/common-groups/{wid}" [ref=e2058]':
+                  - img [ref=e2059]
+              - generic [ref=e2063] [cursor=pointer]:
+                - 'button "GET /api/{session}/group-admins/{groupId}" [ref=e2064]':
+                  - generic [ref=e2065]: GET
+                  - 'link "/api/{session}/group-admins/{groupId}" [ref=e2068]':
+                    - /url: "#/Group/get_api__session__group_admins__groupId_"
+                    - generic [ref=e2069]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /group-admins
+                      - text: "/{groupId}"
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e2072]:
+                  - img [ref=e2073]
+                - 'button "get /api/{session}/group-admins/{groupId}" [ref=e2075]':
+                  - img [ref=e2076]
+              - generic [ref=e2080] [cursor=pointer]:
+                - 'button "GET /api/{session}/group-info/{groupId} Get detailed information about a group" [ref=e2081]':
+                  - generic [ref=e2082]: GET
+                  - generic [ref=e2083]:
+                    - 'link "/api/{session}/group-info/{groupId}" [ref=e2085]':
+                      - /url: "#/Group/get_api__session__group_info__groupId_"
+                      - generic [ref=e2086]:
+                        - text: /api
+                        - text: "/{session}"
+                        - text: /group-info
+                        - text: "/{groupId}"
+                    - generic [ref=e2087]: Get detailed information about a group
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e2090]:
+                  - img [ref=e2091]
+                - 'button "get /api/{session}/group-info/{groupId}" [ref=e2093]':
+                  - img [ref=e2094]
+              - generic [ref=e2098] [cursor=pointer]:
+                - 'button "GET /api/{session}/group-invite-link/{groupId}" [ref=e2099]':
+                  - generic [ref=e2100]: GET
+                  - 'link "/api/{session}/group-invite-link/{groupId}" [ref=e2103]':
+                    - /url: "#/Group/get_api__session__group_invite_link__groupId_"
+                    - generic [ref=e2104]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /group-invite-link
+                      - text: "/{groupId}"
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e2107]:
+                  - img [ref=e2108]
+                - 'button "get /api/{session}/group-invite-link/{groupId}" [ref=e2110]':
+                  - img [ref=e2111]
+              - generic [ref=e2115] [cursor=pointer]:
+                - 'button "GET /api/{session}/group-revoke-link/{groupId}" [ref=e2116]':
+                  - generic [ref=e2117]: GET
+                  - 'link "/api/{session}/group-revoke-link/{groupId}" [ref=e2120]':
+                    - /url: "#/Group/get_api__session__group_revoke_link__groupId_"
+                    - generic [ref=e2121]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /group-revoke-link
+                      - text: "/{groupId}"
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e2124]:
+                  - img [ref=e2125]
+                - 'button "get /api/{session}/group-revoke-link/{groupId}" [ref=e2127]':
+                  - img [ref=e2128]
+              - generic [ref=e2132] [cursor=pointer]:
+                - 'button "GET /api/{session}/group-members-ids/{groupId}" [ref=e2133]':
+                  - generic [ref=e2134]: GET
+                  - 'link "/api/{session}/group-members-ids/{groupId}" [ref=e2137]':
+                    - /url: "#/Group/get_api__session__group_members_ids__groupId_"
+                    - generic [ref=e2138]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /group-members-ids
+                      - text: "/{groupId}"
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e2141]:
+                  - img [ref=e2142]
+                - 'button "get /api/{session}/group-members-ids/{groupId}" [ref=e2144]':
+                  - img [ref=e2145]
+              - generic [ref=e2149] [cursor=pointer]:
+                - 'button "POST /api/{session}/create-group" [ref=e2150]':
+                  - generic [ref=e2151]: POST
+                  - 'link "/api/{session}/create-group" [ref=e2154]':
+                    - /url: "#/Group/post_api__session__create_group"
+                    - generic [ref=e2155]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /create-group
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e2158]:
+                  - img [ref=e2159]
+                - 'button "post /api/{session}/create-group" [ref=e2161]':
+                  - img [ref=e2162]
+              - generic [ref=e2166] [cursor=pointer]:
+                - 'button "POST /api/{session}/leave-group" [ref=e2167]':
+                  - generic [ref=e2168]: POST
+                  - 'link "/api/{session}/leave-group" [ref=e2171]':
+                    - /url: "#/Group/post_api__session__leave_group"
+                    - generic [ref=e2172]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /leave-group
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e2175]:
+                  - img [ref=e2176]
+                - 'button "post /api/{session}/leave-group" [ref=e2178]':
+                  - img [ref=e2179]
+              - generic [ref=e2183] [cursor=pointer]:
+                - 'button "POST /api/{session}/join-code" [ref=e2184]':
+                  - generic [ref=e2185]: POST
+                  - 'link "/api/{session}/join-code" [ref=e2188]':
+                    - /url: "#/Group/post_api__session__join_code"
+                    - generic [ref=e2189]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /join-code
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e2192]:
+                  - img [ref=e2193]
+                - 'button "post /api/{session}/join-code" [ref=e2195]':
+                  - img [ref=e2196]
+              - generic [ref=e2200] [cursor=pointer]:
+                - 'button "POST /api/{session}/add-participant-group" [ref=e2201]':
+                  - generic [ref=e2202]: POST
+                  - 'link "/api/{session}/add-participant-group" [ref=e2205]':
+                    - /url: "#/Group/post_api__session__add_participant_group"
+                    - generic [ref=e2206]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /add-participant-group
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e2209]:
+                  - img [ref=e2210]
+                - 'button "post /api/{session}/add-participant-group" [ref=e2212]':
+                  - img [ref=e2213]
+              - generic [ref=e2217] [cursor=pointer]:
+                - 'button "POST /api/{session}/remove-participant-group" [ref=e2218]':
+                  - generic [ref=e2219]: POST
+                  - 'link "/api/{session}/remove-participant-group" [ref=e2222]':
+                    - /url: "#/Group/post_api__session__remove_participant_group"
+                    - generic [ref=e2223]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /remove-participant-group
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e2226]:
+                  - img [ref=e2227]
+                - 'button "post /api/{session}/remove-participant-group" [ref=e2229]':
+                  - img [ref=e2230]
+              - generic [ref=e2234] [cursor=pointer]:
+                - 'button "POST /api/{session}/promote-participant-group" [ref=e2235]':
+                  - generic [ref=e2236]: POST
+                  - 'link "/api/{session}/promote-participant-group" [ref=e2239]':
+                    - /url: "#/Group/post_api__session__promote_participant_group"
+                    - generic [ref=e2240]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /promote-participant-group
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e2243]:
+                  - img [ref=e2244]
+                - 'button "post /api/{session}/promote-participant-group" [ref=e2246]':
+                  - img [ref=e2247]
+              - generic [ref=e2251] [cursor=pointer]:
+                - 'button "POST /api/{session}/demote-participant-group" [ref=e2252]':
+                  - generic [ref=e2253]: POST
+                  - 'link "/api/{session}/demote-participant-group" [ref=e2256]':
+                    - /url: "#/Group/post_api__session__demote_participant_group"
+                    - generic [ref=e2257]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /demote-participant-group
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e2260]:
+                  - img [ref=e2261]
+                - 'button "post /api/{session}/demote-participant-group" [ref=e2263]':
+                  - img [ref=e2264]
+              - generic [ref=e2268] [cursor=pointer]:
+                - 'button "POST /api/{session}/group-info-from-invite-link" [ref=e2269]':
+                  - generic [ref=e2270]: POST
+                  - 'link "/api/{session}/group-info-from-invite-link" [ref=e2273]':
+                    - /url: "#/Group/post_api__session__group_info_from_invite_link"
+                    - generic [ref=e2274]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /group-info-from-invite-link
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e2277]:
+                  - img [ref=e2278]
+                - 'button "post /api/{session}/group-info-from-invite-link" [ref=e2280]':
+                  - img [ref=e2281]
+              - generic [ref=e2285] [cursor=pointer]:
+                - 'button "POST /api/{session}/group-description" [ref=e2286]':
+                  - generic [ref=e2287]: POST
+                  - 'link "/api/{session}/group-description" [ref=e2290]':
+                    - /url: "#/Group/post_api__session__group_description"
+                    - generic [ref=e2291]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /group-description
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e2294]:
+                  - img [ref=e2295]
+                - 'button "post /api/{session}/group-description" [ref=e2297]':
+                  - img [ref=e2298]
+              - generic [ref=e2302] [cursor=pointer]:
+                - 'button "POST /api/{session}/group-property" [ref=e2303]':
+                  - generic [ref=e2304]: POST
+                  - 'link "/api/{session}/group-property" [ref=e2307]':
+                    - /url: "#/Group/post_api__session__group_property"
+                    - generic [ref=e2308]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /group-property
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e2311]:
+                  - img [ref=e2312]
+                - 'button "post /api/{session}/group-property" [ref=e2314]':
+                  - img [ref=e2315]
+              - generic [ref=e2319] [cursor=pointer]:
+                - 'button "POST /api/{session}/group-subject" [ref=e2320]':
+                  - generic [ref=e2321]: POST
+                  - 'link "/api/{session}/group-subject" [ref=e2324]':
+                    - /url: "#/Group/post_api__session__group_subject"
+                    - generic [ref=e2325]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /group-subject
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e2328]:
+                  - img [ref=e2329]
+                - 'button "post /api/{session}/group-subject" [ref=e2331]':
+                  - img [ref=e2332]
+              - generic [ref=e2336] [cursor=pointer]:
+                - 'button "POST /api/{session}/messages-admins-only" [ref=e2337]':
+                  - generic [ref=e2338]: POST
+                  - 'link "/api/{session}/messages-admins-only" [ref=e2341]':
+                    - /url: "#/Group/post_api__session__messages_admins_only"
+                    - generic [ref=e2342]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /messages-admins-only
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e2345]:
+                  - img [ref=e2346]
+                - 'button "post /api/{session}/messages-admins-only" [ref=e2348]':
+                  - img [ref=e2349]
+              - generic [ref=e2353] [cursor=pointer]:
+                - 'button "POST /api/{session}/group-pic" [ref=e2354]':
+                  - generic [ref=e2355]: POST
+                  - 'link "/api/{session}/group-pic" [ref=e2358]':
+                    - /url: "#/Group/post_api__session__group_pic"
+                    - generic [ref=e2359]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /group-pic
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e2362]:
+                  - img [ref=e2363]
+                - 'button "post /api/{session}/group-pic" [ref=e2365]':
+                  - img [ref=e2366]
+              - generic [ref=e2370] [cursor=pointer]:
+                - 'button "POST /api/{session}/change-privacy-group" [ref=e2371]':
+                  - generic [ref=e2372]: POST
+                  - 'link "/api/{session}/change-privacy-group" [ref=e2375]':
+                    - /url: "#/Group/post_api__session__change_privacy_group"
+                    - generic [ref=e2376]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /change-privacy-group
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e2379]:
+                  - img [ref=e2380]
+                - 'button "post /api/{session}/change-privacy-group" [ref=e2382]':
+                  - img [ref=e2383]
+          - generic [ref=e2386]:
+            - heading "Misc Handles miscellaneous operations that do not fit into other specific categories. Collapse operation" [level=3] [ref=e2387] [cursor=pointer]:
+              - link "Misc" [ref=e2388]:
+                - /url: "#/Misc"
+              - paragraph [ref=e2391]: Handles miscellaneous operations that do not fit into other specific categories.
+              - button "Collapse operation" [expanded] [ref=e2392]:
+                - img [ref=e2393]
+            - generic [ref=e2396]:
+              - generic [ref=e2399] [cursor=pointer]:
+                - 'button "GET /api/{session}/get-platform-from-message/{messageId}" [ref=e2400]':
+                  - generic [ref=e2401]: GET
+                  - 'link "/api/{session}/get-platform-from-message/{messageId}" [ref=e2404]':
+                    - /url: "#/Misc/get_api__session__get_platform_from_message__messageId_"
+                    - generic [ref=e2405]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /get-platform-from-message
+                      - text: "/{messageId}"
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e2408]:
+                  - img [ref=e2409]
+                - 'button "get /api/{session}/get-platform-from-message/{messageId}" [ref=e2411]':
+                  - img [ref=e2412]
+              - generic [ref=e2416] [cursor=pointer]:
+                - 'button "POST /api/{session}/{secretkey}/clear-session-data" [ref=e2417]':
+                  - generic [ref=e2418]: POST
+                  - 'link "/api/{session}/{secretkey}/clear-session-data" [ref=e2421]':
+                    - /url: "#/Misc/post_api__session___secretkey__clear_session_data"
+                    - generic [ref=e2422]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: "/{secretkey}"
+                      - text: /clear-session-data
+                - generic "Copy to clipboard"
+                - 'button "post /api/{session}/{secretkey}/clear-session-data" [ref=e2425]':
+                  - img [ref=e2426]
+              - generic [ref=e2430] [cursor=pointer]:
+                - 'button "POST /api/{session}/subscribe-presence" [ref=e2431]':
+                  - generic [ref=e2432]: POST
+                  - 'link "/api/{session}/subscribe-presence" [ref=e2435]':
+                    - /url: "#/Misc/subscribePresence"
+                    - generic [ref=e2436]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /subscribe-presence
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e2439]:
+                  - img [ref=e2440]
+                - 'button "post /api/{session}/subscribe-presence" [ref=e2442]':
+                  - img [ref=e2443]
+              - generic [ref=e2447] [cursor=pointer]:
+                - 'button "POST /api/{session}/set-online-presence" [ref=e2448]':
+                  - generic [ref=e2449]: POST
+                  - 'link "/api/{session}/set-online-presence" [ref=e2452]':
+                    - /url: "#/Misc/setOnlinePresence"
+                    - generic [ref=e2453]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /set-online-presence
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e2456]:
+                  - img [ref=e2457]
+                - 'button "post /api/{session}/set-online-presence" [ref=e2459]':
+                  - img [ref=e2460]
+              - generic [ref=e2464] [cursor=pointer]:
+                - 'button "GET /api/{session}/all-broadcast-list" [ref=e2465]':
+                  - generic [ref=e2466]: GET
+                  - 'link "/api/{session}/all-broadcast-list" [ref=e2469]':
+                    - /url: "#/Misc/get_api__session__all_broadcast_list"
+                    - generic [ref=e2470]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /all-broadcast-list
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e2473]:
+                  - img [ref=e2474]
+                - 'button "get /api/{session}/all-broadcast-list" [ref=e2476]':
+                  - img [ref=e2477]
+              - generic [ref=e2481] [cursor=pointer]:
+                - 'button "POST /api/{session}/reject-call" [ref=e2482]':
+                  - generic [ref=e2483]: POST
+                  - 'link "/api/{session}/reject-call" [ref=e2486]':
+                    - /url: "#/Misc/post_api__session__reject_call"
+                    - generic [ref=e2487]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /reject-call
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e2490]:
+                  - img [ref=e2491]
+                - 'button "post /api/{session}/reject-call" [ref=e2493]':
+                  - img [ref=e2494]
+              - generic [ref=e2498] [cursor=pointer]:
+                - 'button "GET /api/{session}/check-number-status/{phone}" [ref=e2499]':
+                  - generic [ref=e2500]: GET
+                  - 'link "/api/{session}/check-number-status/{phone}" [ref=e2503]':
+                    - /url: "#/Misc/get_api__session__check_number_status__phone_"
+                    - generic [ref=e2504]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /check-number-status
+                      - text: "/{phone}"
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e2507]:
+                  - img [ref=e2508]
+                - 'button "get /api/{session}/check-number-status/{phone}" [ref=e2510]':
+                  - img [ref=e2511]
+              - generic [ref=e2515] [cursor=pointer]:
+                - 'button "GET /api/{session}/blocklist" [ref=e2516]':
+                  - generic [ref=e2517]: GET
+                  - 'link "/api/{session}/blocklist" [ref=e2520]':
+                    - /url: "#/Misc/get_api__session__blocklist"
+                    - generic [ref=e2521]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /blocklist
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e2524]:
+                  - img [ref=e2525]
+                - 'button "get /api/{session}/blocklist" [ref=e2527]':
+                  - img [ref=e2528]
+              - generic [ref=e2532] [cursor=pointer]:
+                - 'button "POST /api/{session}/block-contact" [ref=e2533]':
+                  - generic [ref=e2534]: POST
+                  - 'link "/api/{session}/block-contact" [ref=e2537]':
+                    - /url: "#/Misc/post_api__session__block_contact"
+                    - generic [ref=e2538]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /block-contact
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e2541]:
+                  - img [ref=e2542]
+                - 'button "post /api/{session}/block-contact" [ref=e2544]':
+                  - img [ref=e2545]
+              - generic [ref=e2549] [cursor=pointer]:
+                - 'button "POST /api/{session}/unblock-contact" [ref=e2550]':
+                  - generic [ref=e2551]: POST
+                  - 'link "/api/{session}/unblock-contact" [ref=e2554]':
+                    - /url: "#/Misc/post_api__session__unblock_contact"
+                    - generic [ref=e2555]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /unblock-contact
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e2558]:
+                  - img [ref=e2559]
+                - 'button "post /api/{session}/unblock-contact" [ref=e2561]':
+                  - img [ref=e2562]
+              - generic [ref=e2566] [cursor=pointer]:
+                - 'button "GET /api/{session}/get-battery-level" [ref=e2567]':
+                  - generic [ref=e2568]: GET
+                  - 'link "/api/{session}/get-battery-level" [ref=e2571]':
+                    - /url: "#/Misc/get_api__session__get_battery_level"
+                    - generic [ref=e2572]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /get-battery-level
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e2575]:
+                  - img [ref=e2576]
+                - 'button "get /api/{session}/get-battery-level" [ref=e2578]':
+                  - img [ref=e2579]
+              - generic [ref=e2583] [cursor=pointer]:
+                - 'button "GET /api/{session}/host-device" [ref=e2584]':
+                  - generic [ref=e2585]: GET
+                  - 'link "/api/{session}/host-device" [ref=e2588]':
+                    - /url: "#/Misc/get_api__session__host_device"
+                    - generic [ref=e2589]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /host-device
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e2592]:
+                  - img [ref=e2593]
+                - 'button "get /api/{session}/host-device" [ref=e2595]':
+                  - img [ref=e2596]
+              - generic [ref=e2600] [cursor=pointer]:
+                - 'button "GET /api/{session}/get-phone-number" [ref=e2601]':
+                  - generic [ref=e2602]: GET
+                  - 'link "/api/{session}/get-phone-number" [ref=e2605]':
+                    - /url: "#/Misc/get_api__session__get_phone_number"
+                    - generic [ref=e2606]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /get-phone-number
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e2609]:
+                  - img [ref=e2610]
+                - 'button "get /api/{session}/get-phone-number" [ref=e2612]':
+                  - img [ref=e2613]
+              - generic [ref=e2617] [cursor=pointer]:
+                - 'button "GET /api/{secretkey}/backup-sessions" [ref=e2618]':
+                  - generic [ref=e2619]: GET
+                  - 'link "/api/{secretkey}/backup-sessions" [ref=e2622]':
+                    - /url: "#/Misc/get_api__secretkey__backup_sessions"
+                    - generic [ref=e2623]:
+                      - text: /api
+                      - text: "/{secretkey}"
+                      - text: /backup-sessions
+                - generic "Copy to clipboard"
+                - 'button "get /api/{secretkey}/backup-sessions" [ref=e2626]':
+                  - img [ref=e2627]
+              - generic [ref=e2631] [cursor=pointer]:
+                - 'button "POST /api/{secretkey}/restore-sessions" [ref=e2632]':
+                  - generic [ref=e2633]: POST
+                  - 'link "/api/{secretkey}/restore-sessions" [ref=e2636]':
+                    - /url: "#/Misc/post_api__secretkey__restore_sessions"
+                    - generic [ref=e2637]:
+                      - text: /api
+                      - text: "/{secretkey}"
+                      - text: /restore-sessions
+                - generic "Copy to clipboard"
+                - 'button "post /api/{secretkey}/restore-sessions" [ref=e2640]':
+                  - img [ref=e2641]
+              - generic [ref=e2645] [cursor=pointer]:
+                - 'button "GET /api/{session}/take-screenshot" [ref=e2646]':
+                  - generic [ref=e2647]: GET
+                  - 'link "/api/{session}/take-screenshot" [ref=e2650]':
+                    - /url: "#/Misc/get_api__session__take_screenshot"
+                    - generic [ref=e2651]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /take-screenshot
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e2654]:
+                  - img [ref=e2655]
+                - 'button "get /api/{session}/take-screenshot" [ref=e2657]':
+                  - img [ref=e2658]
+              - generic [ref=e2662] [cursor=pointer]:
+                - 'button "POST /api/{session}/set-limit" [ref=e2663]':
+                  - generic [ref=e2664]: POST
+                  - 'link "/api/{session}/set-limit" [ref=e2667]':
+                    - /url: "#/Misc/post_api__session__set_limit"
+                    - generic [ref=e2668]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /set-limit
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e2671]:
+                  - img [ref=e2672]
+                - 'button "post /api/{session}/set-limit" [ref=e2674]':
+                  - img [ref=e2675]
+              - generic [ref=e2679] [cursor=pointer]:
+                - 'button "POST /api/{session}/chatwoot" [ref=e2680]':
+                  - generic [ref=e2681]: POST
+                  - 'link "/api/{session}/chatwoot" [ref=e2684]':
+                    - /url: "#/Misc/post_api__session__chatwoot"
+                    - generic [ref=e2685]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /chatwoot
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e2688]:
+                  - img [ref=e2689]
+                - 'button "post /api/{session}/chatwoot" [ref=e2691]':
+                  - img [ref=e2692]
+              - generic [ref=e2696] [cursor=pointer]:
+                - button "GET /healthz" [ref=e2697]:
+                  - generic [ref=e2698]: GET
+                  - link "/healthz" [ref=e2701]:
+                    - /url: "#/Misc/get_healthz"
+                - generic "Copy to clipboard"
+                - button "get /healthz" [ref=e2704]:
+                  - img [ref=e2705]
+              - generic [ref=e2709] [cursor=pointer]:
+                - button "GET /unhealthy" [ref=e2710]:
+                  - generic [ref=e2711]: GET
+                  - link "/unhealthy" [ref=e2714]:
+                    - /url: "#/Misc/get_unhealthy"
+                - generic "Copy to clipboard"
+                - button "get /unhealthy" [ref=e2717]:
+                  - img [ref=e2718]
+              - generic [ref=e2722] [cursor=pointer]:
+                - button "GET /metrics" [ref=e2723]:
+                  - generic [ref=e2724]: GET
+                  - link "/metrics" [ref=e2727]:
+                    - /url: "#/Misc/get_metrics"
+                - generic "Copy to clipboard"
+                - button "get /metrics" [ref=e2730]:
+                  - img [ref=e2731]
+          - generic [ref=e2734]:
+            - heading "default Collapse operation" [level=3] [ref=e2735] [cursor=pointer]:
+              - link "default" [ref=e2736]:
+                - /url: "#/default"
+              - button "Collapse operation" [expanded] [ref=e2737]:
+                - img [ref=e2738]
+            - generic [ref=e2741]:
+              - generic [ref=e2744] [cursor=pointer]:
+                - 'button "GET /api/{session}/all-contacts" [ref=e2745]':
+                  - generic [ref=e2746]: GET
+                  - 'link "/api/{session}/all-contacts" [ref=e2749]':
+                    - /url: "#/default/get_api__session__all_contacts"
+                    - generic [ref=e2750]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /all-contacts
+                - generic "Copy to clipboard"
+                - 'button "get /api/{session}/all-contacts" [ref=e2753]':
+                  - img [ref=e2754]
+              - generic [ref=e2758] [cursor=pointer]:
+                - 'button "POST /api/{session}/newsletter" [ref=e2759]':
+                  - generic [ref=e2760]: POST
+                  - 'link "/api/{session}/newsletter" [ref=e2763]':
+                    - /url: "#/default/createNewsletter"
+                    - generic [ref=e2764]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /newsletter
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e2767]:
+                  - img [ref=e2768]
+                - 'button "post /api/{session}/newsletter" [ref=e2770]':
+                  - img [ref=e2771]
+              - generic [ref=e2775] [cursor=pointer]:
+                - 'button "PUT /api/{session}/newsletter/{id}" [ref=e2776]':
+                  - generic [ref=e2777]: PUT
+                  - 'link "/api/{session}/newsletter/{id}" [ref=e2780]':
+                    - /url: "#/default/editNewsletter"
+                    - generic [ref=e2781]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /newsletter
+                      - text: "/{id}"
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e2784]:
+                  - img [ref=e2785]
+                - 'button "put /api/{session}/newsletter/{id}" [ref=e2787]':
+                  - img [ref=e2788]
+              - generic [ref=e2792] [cursor=pointer]:
+                - 'button "DELETE /api/{session}/newsletter/{id}" [ref=e2793]':
+                  - generic [ref=e2794]: DELETE
+                  - 'link "/api/{session}/newsletter/{id}" [ref=e2797]':
+                    - /url: "#/default/destroyNewsletter"
+                    - generic [ref=e2798]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /newsletter
+                      - text: "/{id}"
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e2801]:
+                  - img [ref=e2802]
+                - 'button "delete /api/{session}/newsletter/{id}" [ref=e2804]':
+                  - img [ref=e2805]
+              - generic [ref=e2809] [cursor=pointer]:
+                - 'button "POST /api/{session}/mute-newsletter/{id}" [ref=e2810]':
+                  - generic [ref=e2811]: POST
+                  - 'link "/api/{session}/mute-newsletter/{id}" [ref=e2814]':
+                    - /url: "#/default/muteNewsletter"
+                    - generic [ref=e2815]:
+                      - text: /api
+                      - text: "/{session}"
+                      - text: /mute-newsletter
+                      - text: "/{id}"
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e2818]:
+                  - img [ref=e2819]
+                - 'button "post /api/{session}/mute-newsletter/{id}" [ref=e2821]':
+                  - img [ref=e2822]
+              - generic [ref=e2826] [cursor=pointer]:
+                - button "GET /api-docs" [ref=e2827]:
+                  - generic [ref=e2828]: GET
+                  - link "/api-docs" [ref=e2831]:
+                    - /url: "#/default/get_api_docs"
+                - generic "Copy to clipboard"
+                - button "get /api-docs" [ref=e2834]:
+                  - img [ref=e2835]
+        - generic [ref=e2839]:
+          - heading "Schemas" [level=4] [ref=e2840] [cursor=pointer]:
+            - button "Schemas" [expanded] [ref=e2841]:
+              - generic [ref=e2842]: Schemas
+              - img [ref=e2843]
+          - button "session" [ref=e2848] [cursor=pointer]:
+            - generic [ref=e2850]: session

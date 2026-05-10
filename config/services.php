@@ -49,6 +49,12 @@ return [
             'token' => env('TWILIO_AUTH_TOKEN'),
             'from' => env('TWILIO_WHATSAPP_FROM'),
         ],
+        'wppconnect' => [
+            'base_url' => env('WPPCONNECT_BASE_URL', 'http://localhost:21465'),
+            'secret' => env('WPPCONNECT_SECRET', 'THISISMYSECURETOKEN'),
+            'session' => env('WPPCONNECT_SESSION', 'default'),
+            'webhook_secret' => env('WPPCONNECT_WEBHOOK_SECRET'),
+        ],
     ],
 
     'ai' => [

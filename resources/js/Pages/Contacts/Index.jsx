@@ -7,13 +7,17 @@ export default function ContactsIndex({ contacts, segments, stats, filters }) {
     const [showImport, setShowImport] = useState(false);
     const [showSegment, setShowSegment] = useState(false);
 
-    const form = useForm({ name: '', phone: '', email: '', country: '', language: 'ur' });
+    const form = useForm({ name: '', phone: '', email: '', country: '', language: 'ur', segments: filters.segment ? [Number(filters.segment)] : [] });
     const importForm = useForm({ file: null });
     const segForm = useForm({ name: '', description: '', color: '#25D366' });
 
     const submitContact = (e) => {
         e.preventDefault();
         form.post(route('contacts.store'), { onSuccess: () => { form.reset(); setShowCreate(false); } });
+    };
+    const openCreate = () => {
+        form.setData('segments', filters.segment ? [Number(filters.segment)] : []);
+        setShowCreate(true);
     };
     const submitImport = (e) => {
         e.preventDefault();
@@ -38,7 +42,7 @@ export default function ContactsIndex({ contacts, segments, stats, filters }) {
                         </svg>
                         Import CSV
                     </button>
-                    <button onClick={() => setShowCreate(true)} className="btn-brand text-sm">
+                    <button onClick={openCreate} className="btn-brand text-sm">
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4"/>
                         </svg>

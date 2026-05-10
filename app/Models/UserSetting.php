@@ -15,6 +15,7 @@ class UserSetting extends Model
     protected $hidden = [
         'meta_access_token', 'twilio_auth_token', 'openai_api_key',
         'anthropic_api_key', 'elevenlabs_api_key', 'heygen_api_key',
+        'wppconnect_secret', 'wppconnect_webhook_secret',
     ];
 
     protected $casts = [
@@ -24,6 +25,8 @@ class UserSetting extends Model
         'anthropic_api_key' => 'encrypted',
         'elevenlabs_api_key' => 'encrypted',
         'heygen_api_key' => 'encrypted',
+        'wppconnect_secret' => 'encrypted',
+        'wppconnect_webhook_secret' => 'encrypted',
     ];
 
     public function user(): BelongsTo

@@ -24,6 +24,7 @@
 /storage/app/public/wa-media
 /storage/pail
 /vendor
+/services/wppconnect-server
 Homestead.json
 Homestead.yaml
 Thumbs.db

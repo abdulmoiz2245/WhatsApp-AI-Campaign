@@ -16,15 +16,27 @@ class PipelineJob extends Model
         'user_id', 'research_topic_id', 'campaign_id', 'title', 'status',
         'current_stage', 'progress', 'stages', 'script', 'voiceover_path',
         'voiceover_duration_ms', 'video_path', 'thumbnail_path',
-        'whatsapp_media_id', 'error', 'started_at', 'completed_at',
+        'whatsapp_media_id', 'error', 'enabled_stages', 'started_at', 'completed_at',
     ];
 
     protected $casts = [
         'stages' => 'array',
         'error' => 'array',
+        'enabled_stages' => 'array',
         'started_at' => 'datetime',
         'completed_at' => 'datetime',
     ];
+
+    public function stageEnabled(string $stage): bool
+    {
+        $flags = $this->enabled_stages ?? [];
+        return $flags[$stage] ?? true;
+    }
+
+    public function stageCompleted(string $stage): bool
+    {
+        return in_array($this->stages[$stage]['status'] ?? null, ['completed', 'skipped'], true);
+    }
 
     public function user(): BelongsTo
     {
@@ -49,7 +61,7 @@ class PipelineJob extends Model
         $this->current_stage = $stage;
 
         $idx = array_search($stage, self::STAGES, true);
-        if ($idx !== false && $status === 'completed') {
+        if ($idx !== false && in_array($status, ['completed', 'skipped'], true)) {
             $next = self::STAGES[$idx + 1] ?? 'done';
             $this->current_stage = $next;
             $this->progress = (int) round((($idx + 1) / (count(self::STAGES) - 1)) * 100);

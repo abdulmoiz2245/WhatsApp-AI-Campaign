@@ -10,6 +10,7 @@ use App\Http\Controllers\ResearchController;
 use App\Http\Controllers\SchedulerController;
 use App\Http\Controllers\SegmentController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\WppConnectController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -44,11 +45,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::patch('/campaigns/{campaign}', [CampaignController::class, 'update'])->name('campaigns.update');
     Route::delete('/campaigns/{campaign}', [CampaignController::class, 'destroy'])->name('campaigns.destroy');
     Route::post('/campaigns/{campaign}/start', [CampaignController::class, 'start'])->name('campaigns.start');
+    Route::post('/campaigns/{campaign}/resend', [CampaignController::class, 'resend'])->name('campaigns.resend');
     Route::post('/campaigns/{campaign}/pause', [CampaignController::class, 'pause'])->name('campaigns.pause');
     Route::post('/campaigns/{campaign}/resume', [CampaignController::class, 'resume'])->name('campaigns.resume');
 
     Route::get('/news', [NewsController::class, 'index'])->name('news.index');
+    Route::post('/news/fetch', [NewsController::class, 'fetch'])->name('news.fetch');
+    Route::post('/news/archive-all', [NewsController::class, 'archiveAll'])->name('news.archiveAll');
+    Route::post('/news/archive-bulk', [NewsController::class, 'archiveBulk'])->name('news.archiveBulk');
     Route::post('/news/{news}/research', [NewsController::class, 'research'])->name('news.research');
+    Route::post('/news/{news}/archive', [NewsController::class, 'archive'])->name('news.archive');
+    Route::post('/news/{news}/unarchive', [NewsController::class, 'unarchive'])->name('news.unarchive');
 
     Route::get('/research', [ResearchController::class, 'index'])->name('research.index');
     Route::post('/research', [ResearchController::class, 'store'])->name('research.store');
@@ -58,6 +65,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/pipeline', [PipelineController::class, 'index'])->name('pipeline.index');
     Route::post('/pipeline', [PipelineController::class, 'store'])->name('pipeline.store');
     Route::get('/pipeline/{pipeline}', [PipelineController::class, 'show'])->name('pipeline.show');
+    Route::post('/pipeline/{pipeline}/retry', [PipelineController::class, 'retry'])->name('pipeline.retry');
+    Route::patch('/pipeline/{pipeline}/script', [PipelineController::class, 'updateScript'])->name('pipeline.script');
+    Route::post('/pipeline/{pipeline}/regenerate/{stage}', [PipelineController::class, 'regenerate'])->name('pipeline.regenerate');
     Route::delete('/pipeline/{pipeline}', [PipelineController::class, 'destroy'])->name('pipeline.destroy');
 
     Route::get('/scheduler', [SchedulerController::class, 'index'])->name('scheduler.index');
@@ -68,6 +78,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/settings', [SettingsController::class, 'edit'])->name('settings.edit');
     Route::patch('/settings', [SettingsController::class, 'update'])->name('settings.update');
     Route::post('/settings/test-connection', [SettingsController::class, 'testConnection'])->name('settings.test');
+
+    Route::get('/settings/wppconnect', [WppConnectController::class, 'page'])->name('settings.wppconnect');
+    Route::get('/settings/wppconnect/status', [WppConnectController::class, 'status'])->name('settings.wppconnect.status');
+    Route::post('/settings/wppconnect/start', [WppConnectController::class, 'start'])->name('settings.wppconnect.start');
+    Route::get('/settings/wppconnect/qr', [WppConnectController::class, 'qr'])->name('settings.wppconnect.qr');
+    Route::post('/settings/wppconnect/logout', [WppConnectController::class, 'logout'])->name('settings.wppconnect.logout');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

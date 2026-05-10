@@ -13,11 +13,12 @@ class NewsArticle extends Model
     protected $fillable = [
         'source', 'source_url', 'language', 'category', 'region',
         'title', 'summary', 'image_url', 'external_id',
-        'published_at', 'trending',
+        'published_at', 'trending', 'archived_at',
     ];
 
     protected $casts = [
         'published_at' => 'datetime',
+        'archived_at' => 'datetime',
         'trending' => 'boolean',
     ];
 

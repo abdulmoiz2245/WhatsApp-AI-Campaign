@@ -14,15 +14,23 @@ class ResearchTopic extends Model
         'user_id', 'news_article_id', 'topic', 'content_type', 'tone', 'language',
         'depth', 'audience_language', 'status',
         'research_summary', 'script', 'outline', 'sources',
-        'thumbnail_path', 'metadata', 'completed_at',
+        'thumbnail_path', 'metadata', 'enabled_stages', 'completed_at',
     ];
 
     protected $casts = [
         'outline' => 'array',
         'sources' => 'array',
         'metadata' => 'array',
+        'enabled_stages' => 'array',
         'completed_at' => 'datetime',
     ];
+
+    public const OPTIONAL_STAGES = ['voiceover', 'thumbnail', 'video', 'upload'];
+
+    public static function defaultEnabledStages(): array
+    {
+        return ['voiceover' => true, 'thumbnail' => true, 'video' => true, 'upload' => true];
+    }
 
     public function user(): BelongsTo
     {

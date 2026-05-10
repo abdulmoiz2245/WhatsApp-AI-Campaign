@@ -33,10 +33,22 @@ class ResearchController extends Controller
     {
         $data = $request->validate([
             'topic' => ['required', 'string', 'max:255'],
-            'content_type' => ['required', Rule::in(['script', 'blog', 'caption', 'ad'])],
+            'content_type' => ['required', Rule::in(['video', 'image', 'text'])],
             'tone' => ['required', 'string', 'max:32'],
             'language' => ['required', 'string', 'max:16'],
+            'depth' => ['nullable', Rule::in(['quick', 'standard', 'deep'])],
+            'audience_language' => ['nullable', 'string', 'max:24'],
+            'enabled_stages' => ['nullable', 'array'],
+            'enabled_stages.voiceover' => ['nullable', 'boolean'],
+            'enabled_stages.thumbnail' => ['nullable', 'boolean'],
+            'enabled_stages.video' => ['nullable', 'boolean'],
+            'enabled_stages.upload' => ['nullable', 'boolean'],
         ]);
+
+        $data['enabled_stages'] = array_merge(
+            ResearchTopic::defaultEnabledStages(),
+            $data['enabled_stages'] ?? []
+        );
 
         $topic = ResearchTopic::create([
             ...$data,

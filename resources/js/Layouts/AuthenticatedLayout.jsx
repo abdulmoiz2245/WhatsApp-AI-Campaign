@@ -40,11 +40,38 @@ const SECTIONS = [
 ];
 
 export default function AuthenticatedLayout({ header, title, subtitle, children }) {
-    const { auth, flash, notifications } = usePage().props;
+    const { auth, flash, notifications, errors } = usePage().props;
     const url = usePage().url;
     const [collapsed, setCollapsed] = useState(false);
     const [toast, setToast] = useState(null);
     const [bellOpen, setBellOpen] = useState(false);
+    const [waStatus, setWaStatus] = useState({ loading: true, connected: false, label: 'Checking…' });
+
+    useEffect(() => {
+        let cancelled = false;
+        const check = async () => {
+            try {
+                const r = await fetch('/settings/wppconnect/status', {
+                    headers: { Accept: 'application/json' },
+                    credentials: 'same-origin',
+                });
+                const d = await r.json().catch(() => ({}));
+                if (cancelled) return;
+                const s = d.status;
+                const connected = s === 'CONNECTED' || s === 'inChat' || s === true || d.state === 'CONNECTED';
+                setWaStatus({
+                    loading: false,
+                    connected,
+                    label: connected ? 'WA Connected' : (typeof s === 'string' ? `WA: ${s}` : 'WA Disconnected'),
+                });
+            } catch (e) {
+                if (!cancelled) setWaStatus({ loading: false, connected: false, label: 'WA Offline' });
+            }
+        };
+        check();
+        const id = setInterval(check, 15000);
+        return () => { cancelled = true; clearInterval(id); };
+    }, []);
 
     useEffect(() => {
         if (flash?.success) setToast({ type: 'success', msg: flash.success });
@@ -54,6 +81,15 @@ export default function AuthenticatedLayout({ header, title, subtitle, children 
             return () => clearTimeout(t);
         }
     }, [flash?.success, flash?.error]);
+
+    const errorList = errors ? Object.values(errors).filter(Boolean) : [];
+    const errorKey = errorList.join('|');
+    useEffect(() => {
+        if (errorList.length === 0) return;
+        setToast({ type: 'error', msg: errorList.length === 1 ? errorList[0] : `${errorList.length} validation errors` });
+        const t = setTimeout(() => setToast(null), 5000);
+        return () => clearTimeout(t);
+    }, [errorKey]);
 
     const isActive = (href) => url === href || url.startsWith(href + '/') || url.startsWith(href + '?');
     const initial = (auth?.user?.name || '?').slice(0, 1).toUpperCase();
@@ -112,10 +148,22 @@ export default function AuthenticatedLayout({ header, title, subtitle, children 
                         {subtitle && <p className="text-gray-400 text-xs">{subtitle}</p>}
                     </div>
                     <div className="ml-auto flex items-center gap-3">
-                        <div className="hidden sm:flex items-center gap-1.5 bg-green-50 border border-green-200 text-green-700 text-xs font-medium px-3 py-1.5 rounded-full">
-                            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                            WA Connected
-                        </div>
+                        <Link href={route('settings.wppconnect')}
+                              title="Open wppconnect QR / status"
+                              className={`hidden sm:flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full border transition ${
+                                  waStatus.loading
+                                      ? 'bg-gray-50 border-gray-200 text-gray-500'
+                                      : waStatus.connected
+                                          ? 'bg-green-50 border-green-200 text-green-700 hover:bg-green-100'
+                                          : 'bg-red-50 border-red-200 text-red-700 hover:bg-red-100'
+                              }`}>
+                            <span className={`w-2 h-2 rounded-full ${
+                                waStatus.loading ? 'bg-gray-400'
+                                : waStatus.connected ? 'bg-green-500 animate-pulse'
+                                : 'bg-red-500 animate-pulse'
+                            }`}></span>
+                            {waStatus.label}
+                        </Link>
                         <div className="hidden md:flex items-center gap-1.5 bg-blue-50 border border-blue-200 text-blue-700 text-xs font-medium px-3 py-1.5 rounded-full">
                             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
@@ -179,8 +227,13 @@ export default function AuthenticatedLayout({ header, title, subtitle, children 
                 </main>
 
                 {toast && (
-                    <div className={`fixed bottom-6 right-6 z-50 px-4 py-3 rounded-xl shadow-lg text-sm text-white ${toast.type === 'success' ? 'bg-emerald-600' : 'bg-red-600'}`}>
-                        {toast.msg}
+                    <div className={`fixed bottom-6 right-6 z-50 max-w-sm px-4 py-3 rounded-xl shadow-lg text-sm text-white ${toast.type === 'success' ? 'bg-emerald-600' : 'bg-red-600'}`}>
+                        <div>{toast.msg}</div>
+                        {toast.type === 'error' && errorList.length > 1 && (
+                            <ul className="mt-2 list-disc list-inside text-xs opacity-90 space-y-0.5">
+                                {errorList.map((m, i) => <li key={i}>{m}</li>)}
+                            </ul>
+                        )}
                     </div>
                 )}
             </div>

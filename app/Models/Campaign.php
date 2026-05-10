@@ -18,8 +18,11 @@ class Campaign extends Model
     public const STATUS_COMPLETED = 'completed';
     public const STATUS_FAILED = 'failed';
 
+    public const SEND_PARTS = ['text', 'image', 'video', 'audio'];
+
     protected $fillable = [
         'user_id', 'name', 'type', 'status', 'segment_id', 'template_id',
+        'research_topic_id', 'pipeline_job_id', 'send_parts',
         'message_body', 'media_url', 'media_type', 'scheduled_at',
         'started_at', 'completed_at', 'total_recipients',
         'sent_count', 'delivered_count', 'read_count', 'failed_count',
@@ -28,10 +31,21 @@ class Campaign extends Model
 
     protected $casts = [
         'settings' => 'array',
+        'send_parts' => 'array',
         'scheduled_at' => 'datetime',
         'started_at' => 'datetime',
         'completed_at' => 'datetime',
     ];
+
+    public function researchTopic(): BelongsTo
+    {
+        return $this->belongsTo(ResearchTopic::class);
+    }
+
+    public function pipelineJob(): BelongsTo
+    {
+        return $this->belongsTo(PipelineJob::class);
+    }
 
     public function user(): BelongsTo
     {

@@ -20,7 +20,14 @@ const Icon = ({ d, className = 'w-4 h-4' }) => (
     </svg>
 );
 
-export default function CampaignsIndex({ campaigns, segments, templates, filters }) {
+const PART_OPTIONS = [
+    { key: 'text', label: 'Text', avail: 'has_text' },
+    { key: 'image', label: 'Image', avail: 'has_image' },
+    { key: 'video', label: 'Video', avail: 'has_video' },
+    { key: 'audio', label: 'Audio', avail: 'has_audio' },
+];
+
+export default function CampaignsIndex({ campaigns, segments, templates, researchTopics = [], filters }) {
     const [showCreate, setShowCreate] = useState(false);
     const [editing, setEditing] = useState(null);
     const [selected, setSelected] = useState(new Set());
@@ -44,12 +51,52 @@ export default function CampaignsIndex({ campaigns, segments, templates, filters
     };
     const form = useForm({
         name: '', type: 'promotional', segment_id: '', template_id: '',
+        research_topic_id: '', send_parts: ['text'],
         message_body: '', media_url: '', media_type: '', scheduled_at: '',
     });
     const editForm = useForm({
         name: '', type: 'promotional', status: 'draft', segment_id: '', template_id: '',
+        research_topic_id: '', send_parts: ['text'],
         message_body: '', media_url: '', media_type: '', scheduled_at: '',
     });
+
+    const togglePart = (f, key) => {
+        const current = f.data.send_parts || [];
+        f.setData('send_parts', current.includes(key) ? current.filter((k) => k !== key) : [...current, key]);
+    };
+
+    const onPickTopic = (f, topicId) => {
+        f.setData('research_topic_id', topicId);
+        const t = researchTopics.find((x) => String(x.id) === String(topicId));
+        if (t && !f.data.message_body) f.setData('message_body', t.script || '');
+    };
+
+    const PartsPicker = ({ f }) => {
+        const topic = researchTopics.find((x) => String(x.id) === String(f.data.research_topic_id));
+        return (
+            <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">WhatsApp parts to send</label>
+                <p className="text-xs text-gray-400 mb-2">{topic ? 'Greyed = asset not generated for this topic.' : 'Select a research topic first to enable image / video / audio.'}</p>
+                <div className="grid grid-cols-4 gap-2">
+                    {PART_OPTIONS.map((p) => {
+                        const available = p.key === 'text' ? true : (topic ? !!topic[p.avail] : false);
+                        const on = (f.data.send_parts || []).includes(p.key);
+                        return (
+                            <button type="button" key={p.key}
+                                    disabled={!available}
+                                    onClick={() => togglePart(f, p.key)}
+                                    className={`p-2 rounded-xl border-2 text-xs font-medium capitalize transition ${
+                                        !available ? 'border-gray-100 bg-gray-50 text-gray-300 cursor-not-allowed' :
+                                        on ? 'border-brand bg-brand-light text-brand-dark' :
+                                        'border-gray-200 hover:border-brand text-gray-600'}`}>
+                                {p.label}
+                            </button>
+                        );
+                    })}
+                </div>
+            </div>
+        );
+    };
 
     const submit = (e) => {
         e.preventDefault();
@@ -65,6 +112,8 @@ export default function CampaignsIndex({ campaigns, segments, templates, filters
             status: c.status || 'draft',
             segment_id: c.segment_id || '',
             template_id: c.template_id || '',
+            research_topic_id: c.research_topic_id || '',
+            send_parts: c.send_parts || ['text'],
             message_body: c.message_body || '',
             media_url: c.media_url || '',
             media_type: c.media_type || '',
@@ -164,7 +213,7 @@ export default function CampaignsIndex({ campaigns, segments, templates, filters
                             {campaigns.data.map((c) => {
                                 const sent = c.sent_count || 0;
                                 const total = c.total_recipients || 0;
-                                const pct = total ? Math.round((sent / total) * 100) : 0;
+                                const pct = total ? Math.min(100, Math.round((sent / total) * 100)) : 0;
                                 const openRate = total ? Math.round(((c.read_count || 0) / Math.max(1, c.delivered_count || sent)) * 100) : 0;
                                 return (
                                     <tr key={c.id} className="hover:bg-gray-50/50 transition group">
@@ -209,6 +258,13 @@ export default function CampaignsIndex({ campaigns, segments, templates, filters
                                                 {c.status === 'paused' && (
                                                     <button onClick={() => action(c, 'resume')} title="Resume" className="p-1.5 hover:bg-green-50 rounded-lg text-green-600">
                                                         <Icon d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+                                                    </button>
+                                                )}
+                                                {(c.status === 'active' || c.status === 'completed' || c.status === 'failed') && (
+                                                    <button onClick={() => { if (confirm('Resend this campaign to all matching contacts?')) action(c, 'resend'); }}
+                                                            title="Resend"
+                                                            className="p-1.5 hover:bg-indigo-50 rounded-lg text-indigo-600">
+                                                        <Icon d="M4 4v5h.582M20 20v-5h-.581M5.165 8.999A7.002 7.002 0 0119 12m-1.165 3.001A7.002 7.002 0 015 12"/>
                                                     </button>
                                                 )}
                                                 <button onClick={() => openEdit(c)} title="Edit" className="p-1.5 hover:bg-blue-50 rounded-lg text-blue-500">
@@ -283,6 +339,22 @@ export default function CampaignsIndex({ campaigns, segments, templates, filters
                                     {templates.map((t) => <option key={t.id} value={t.id}>{t.name}</option>)}
                                 </select>
                             </div>
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Use AI Research (optional)</label>
+                                <select value={form.data.research_topic_id} onChange={(e) => onPickTopic(form, e.target.value)}
+                                        className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm bg-gray-50">
+                                    <option value="">None — manual content</option>
+                                    {researchTopics.map((t) => (
+                                        <option key={t.id} value={t.id}>
+                                            {t.topic} {t.has_video ? '· video' : ''}{t.has_audio ? ' · audio' : ''}{t.has_image ? ' · image' : ''}
+                                        </option>
+                                    ))}
+                                </select>
+                                {form.data.research_topic_id && (
+                                    <p className="text-xs text-gray-400 mt-1">Script & assets auto-loaded from latest completed pipeline.</p>
+                                )}
+                            </div>
+                            <PartsPicker f={form}/>
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-1">Message body</label>
                                 <textarea rows={4} value={form.data.message_body} onChange={(e) => form.setData('message_body', e.target.value)}
@@ -359,6 +431,19 @@ export default function CampaignsIndex({ campaigns, segments, templates, filters
                                     {templates.map((t) => <option key={t.id} value={t.id}>{t.name}</option>)}
                                 </select>
                             </div>
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Use AI Research (optional)</label>
+                                <select value={editForm.data.research_topic_id} onChange={(e) => onPickTopic(editForm, e.target.value)}
+                                        className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm bg-gray-50">
+                                    <option value="">None — manual content</option>
+                                    {researchTopics.map((t) => (
+                                        <option key={t.id} value={t.id}>
+                                            {t.topic} {t.has_video ? '· video' : ''}{t.has_audio ? ' · audio' : ''}{t.has_image ? ' · image' : ''}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                            <PartsPicker f={editForm}/>
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-1">Message body</label>
                                 <textarea rows={4} value={editForm.data.message_body} onChange={(e) => editForm.setData('message_body', e.target.value)}

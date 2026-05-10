@@ -1,6 +1,6 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head, Link, router } from '@inertiajs/react';
-import { useEffect } from 'react';
+import { Head, Link, router, useForm } from '@inertiajs/react';
+import { useEffect, useState } from 'react';
 
 const STEPS = [
     { key: 'research', label: 'Research' },
@@ -33,18 +33,50 @@ const StepCircle = ({ idx, status }) => {
     if (status === 'failed') {
         return <div className="w-10 h-10 rounded-full flex items-center justify-center bg-red-100 border-2 border-red-300 text-red-600 text-sm font-bold">!</div>;
     }
+    if (status === 'skipped') {
+        return <div className="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 border-2 border-gray-300 text-gray-500 text-sm font-bold" title="Skipped">–</div>;
+    }
     return <div className="w-10 h-10 rounded-full border-2 border-gray-200 flex items-center justify-center text-gray-400 text-sm font-bold">{idx + 1}</div>;
 };
 
 export default function PipelineShow({ job }) {
+    const isBusy = job.status === 'queued' || job.status === 'running';
+    const [editScript, setEditScript] = useState(false);
+    const scriptForm = useForm({ script: job.script || '' });
+
     useEffect(() => {
-        if (job.status === 'queued' || job.status === 'running') {
+        if (isBusy) {
             const t = setInterval(() => router.reload({ only: ['job'] }), 3500);
             return () => clearInterval(t);
         }
     }, [job.status]);
 
+    useEffect(() => {
+        if (!editScript) scriptForm.setData('script', job.script || '');
+    }, [job.script]);
+
     const fileBase = (path) => (path ? path.split('/').pop() : null);
+
+    const regen = (stage, label = stage) => {
+        if (isBusy) return;
+        if (!confirm(`Regenerate ${label}? This clears ${label} and any later stages.`)) return;
+        router.post(route('pipeline.regenerate', { pipeline: job.id, stage }), {}, { preserveScroll: true });
+    };
+
+    const saveScript = () => {
+        scriptForm.patch(route('pipeline.script', job.id), {
+            preserveScroll: true,
+            onSuccess: () => setEditScript(false),
+        });
+    };
+
+    const RegenBtn = ({ stage, label, className = '' }) => (
+        <button onClick={() => regen(stage, label)} disabled={isBusy}
+                className={`btn-outline text-xs py-1 px-2 disabled:opacity-40 disabled:cursor-not-allowed ${className}`}
+                title={isBusy ? 'Wait for current run to finish' : `Regenerate ${label}`}>
+            ↻ Regenerate
+        </button>
+    );
 
     return (
         <AuthenticatedLayout title="AI Video Pipeline" subtitle="Research → Script → Voiceover → Video → Thumbnail → WhatsApp Upload">
@@ -72,8 +104,15 @@ export default function PipelineShow({ job }) {
                                         {s.label}
                                     </p>
                                     <p className={`text-xs text-center ${status === 'running' ? 'text-brand' : 'text-gray-400'}`}>
-                                        {status === 'completed' ? 'Done' : status === 'running' ? 'In Progress' : status === 'failed' ? 'Failed' : 'Pending'}
+                                        {status === 'completed' ? 'Done' : status === 'running' ? 'In Progress' : status === 'failed' ? 'Failed' : status === 'skipped' ? 'Skipped' : 'Pending'}
                                     </p>
+                                    {s.key !== 'research' && !isBusy && (status === 'completed' || status === 'failed' || status === 'skipped') && (
+                                        <button onClick={() => regen(s.key, s.label)}
+                                                className="mt-1 text-[11px] text-brand-dark hover:underline"
+                                                title={`Regenerate ${s.label}`}>
+                                            ↻ Regen
+                                        </button>
+                                    )}
                                 </div>
                                 {i < STEPS.length - 1 && (
                                     <div className={`step-connector mb-5 ${connectorDone ? 'done' : ''}`}/>
@@ -160,16 +199,30 @@ export default function PipelineShow({ job }) {
                             <h3 className="font-semibold text-gray-800">Assets</h3>
                             {job.thumbnail_path && (
                                 <div>
-                                    <p className="text-xs text-gray-500 mb-1">Thumbnail</p>
+                                    <div className="flex items-center justify-between mb-1">
+                                        <p className="text-xs text-gray-500">Thumbnail</p>
+                                        <RegenBtn stage="thumbnail" label="thumbnail"/>
+                                    </div>
                                     <img src={`/storage/thumbnails/${fileBase(job.thumbnail_path)}`} alt="" className="w-full rounded-lg"/>
                                 </div>
                             )}
                             {job.voiceover_path && (
                                 <div>
-                                    <p className="text-xs text-gray-500 mb-1">Voiceover</p>
+                                    <div className="flex items-center justify-between mb-1">
+                                        <p className="text-xs text-gray-500">Voiceover</p>
+                                        <RegenBtn stage="voiceover" label="voiceover"/>
+                                    </div>
                                     <audio controls className="w-full">
                                         <source src={`/storage/voiceovers/${fileBase(job.voiceover_path)}`} type="audio/mpeg"/>
                                     </audio>
+                                </div>
+                            )}
+                            {job.video_path && (
+                                <div>
+                                    <div className="flex items-center justify-between mb-1">
+                                        <p className="text-xs text-gray-500">Video</p>
+                                        <RegenBtn stage="video" label="video"/>
+                                    </div>
                                 </div>
                             )}
                         </div>
@@ -177,10 +230,53 @@ export default function PipelineShow({ job }) {
                 </div>
             </div>
 
-            {job.script && (
+            {(job.script || !isBusy) && (
                 <div className="card p-5">
-                    <h3 className="font-semibold text-gray-800 mb-2">Script</h3>
-                    <div className="bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-700 whitespace-pre-wrap">{job.script}</div>
+                    <div className="flex items-center justify-between mb-2 flex-wrap gap-2">
+                        <h3 className="font-semibold text-gray-800">Script</h3>
+                        <div className="flex gap-2">
+                            {!editScript && job.script && !isBusy && (
+                                <>
+                                    <button onClick={() => setEditScript(true)} className="btn-outline text-xs py-1 px-2">
+                                        ✎ Edit
+                                    </button>
+                                    <RegenBtn stage="script" label="script"/>
+                                </>
+                            )}
+                            {editScript && (
+                                <>
+                                    <button onClick={() => { setEditScript(false); scriptForm.setData('script', job.script || ''); }}
+                                            className="btn-outline text-xs py-1 px-2">
+                                        Cancel
+                                    </button>
+                                    <button onClick={saveScript} disabled={scriptForm.processing}
+                                            className="btn-brand text-xs py-1 px-2 disabled:opacity-60">
+                                        {scriptForm.processing ? 'Saving…' : 'Save script'}
+                                    </button>
+                                </>
+                            )}
+                        </div>
+                    </div>
+
+                    {editScript ? (
+                        <>
+                            <textarea
+                                value={scriptForm.data.script}
+                                onChange={(e) => scriptForm.setData('script', e.target.value)}
+                                rows={12}
+                                className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-700 font-mono bg-gray-50 focus:outline-none focus:ring-2 focus:ring-brand whitespace-pre-wrap"
+                                placeholder="Edit narration script…"/>
+                            <div className="flex justify-between text-xs text-gray-400 mt-1">
+                                <span>{(scriptForm.data.script || '').trim().split(/\s+/).filter(Boolean).length} words · {(scriptForm.data.script || '').length} chars</span>
+                                <span>Saving updates the script. Re-run voiceover/video to apply.</span>
+                            </div>
+                            {scriptForm.errors.script && <p className="text-xs text-red-600 mt-1">{scriptForm.errors.script}</p>}
+                        </>
+                    ) : (
+                        <div className="bg-gray-50 rounded-xl px-4 py-3 text-sm text-gray-700 whitespace-pre-wrap">
+                            {job.script || <span className="text-gray-400 italic">Script not generated yet.</span>}
+                        </div>
+                    )}
                 </div>
             )}
 
@@ -206,8 +302,22 @@ export default function PipelineShow({ job }) {
 
             {job.error && (
                 <div className="bg-red-50 border border-red-100 rounded-2xl p-4 text-sm text-red-700">
-                    <div className="font-semibold mb-1">Error in stage: {job.error.stage}</div>
-                    <div>{job.error.message}</div>
+                    <div className="flex items-start justify-between gap-4">
+                        <div className="flex-1">
+                            <div className="font-semibold mb-1">Error in stage: {job.error.stage}</div>
+                            <div>{job.error.message}</div>
+                        </div>
+                        {job.status === 'failed' && (
+                            <button
+                                onClick={() => router.post(route('pipeline.retry', job.id))}
+                                className="btn-brand text-xs whitespace-nowrap">
+                                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                                </svg>
+                                Retry from {job.error.stage}
+                            </button>
+                        )}
+                    </div>
                 </div>
             )}
         </AuthenticatedLayout>

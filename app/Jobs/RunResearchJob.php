@@ -28,7 +28,18 @@ class RunResearchJob implements ShouldQueue
         try {
             $text = $ai->textFor($topic->user);
 
-            $system = "You are an expert AI content researcher creating concise, fact-based research briefs and scripts for short-form WhatsApp campaign videos. Always respond as JSON with keys: summary, outline (array of bullets), script (string, ~120-180 words for ~60s narration), thumbnail_prompt (string), sources (array of strings).";
+            $system = <<<SYS
+            You are an expert AI content researcher creating concise, fact-based research briefs and scripts for short-form WhatsApp campaign videos.
+            Always respond as JSON with keys: summary, outline (array of bullets), script (string, ~120-180 words for ~60s narration), thumbnail_prompt (string), sources (array of strings).
+
+            THUMBNAIL_PROMPT RULES (high-converting news thumbnails):
+            Formula: [Subject/Event] + [Atmosphere/Environment] + [Lighting/Style] + [Aspect Ratio 16:9].
+            - Subject/Event must be GENERIC and SAFE — no real named people, no political party logos, no copyrighted characters, no graphic violence. Replace with anonymous archetypes (e.g. "a generic news anchor", "an unidentified diplomat silhouette", "a stylized modern parliament building").
+            - Atmosphere/Environment: cinematic news-set vibe, world maps, glowing screens, city skylines, rule-of-thirds composition leaving negative space on one side for a text overlay.
+            - Lighting/Style: dramatic high-contrast lighting; bold red/white/black palette for breaking news; cool blue tones for tech/finance; warm tones for human-interest. Ultra-realistic 4K photography or cinematic editorial illustration style.
+            - End the prompt with: "16:9 aspect ratio, leave left-third empty for headline overlay."
+            - One paragraph, 50-90 words, no markdown, no quotes.
+            SYS;
 
             $user = "Topic: {$topic->topic}\nContent type: {$topic->content_type}\nTone: {$topic->tone}\nLanguage: {$topic->language}\n\nReturn ONLY JSON.";
 

@@ -20,7 +20,20 @@ export default function ResearchIndex({ topics }) {
     const form = useForm({
         topic: '', content_type: 'video', tone: 'professional',
         language: 'ur', depth: 'standard', audience_language: 'ur',
+        enabled_stages: { voiceover: true, thumbnail: true, video: true, upload: true },
     });
+
+    const toggleStage = (key) => form.setData('enabled_stages', {
+        ...form.data.enabled_stages,
+        [key]: !form.data.enabled_stages[key],
+    });
+
+    const STAGE_OPTIONS = [
+        { key: 'voiceover', label: 'Voiceover', desc: 'TTS audio from script' },
+        { key: 'thumbnail', label: 'Thumbnail / Image', desc: 'AI generated image' },
+        { key: 'video', label: 'Video', desc: 'Compose audio + image into MP4' },
+        { key: 'upload', label: 'WhatsApp Upload', desc: 'Push final media to WA' },
+    ];
 
     const submit = (e) => {
         e.preventDefault();
@@ -87,6 +100,29 @@ export default function ResearchIndex({ topics }) {
                                     <option value="en">English</option>
                                     <option value="bilingual">Urdu + English (Bilingual)</option>
                                 </select>
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Pipeline Stages to Generate</label>
+                                <p className="text-xs text-gray-400 mb-2">Script/text always generated. Toggle the rest.</p>
+                                <div className="space-y-1.5">
+                                    {STAGE_OPTIONS.map((s) => {
+                                        const on = !!form.data.enabled_stages[s.key];
+                                        return (
+                                            <label key={s.key}
+                                                   className={`flex items-center justify-between gap-2 p-2.5 rounded-xl border-2 cursor-pointer transition ${
+                                                       on ? 'border-brand bg-brand-light' : 'border-gray-200 hover:border-gray-300'}`}>
+                                                <div className="min-w-0">
+                                                    <p className={`text-sm font-medium ${on ? 'text-brand-dark' : 'text-gray-700'}`}>{s.label}</p>
+                                                    <p className="text-xs text-gray-500">{s.desc}</p>
+                                                </div>
+                                                <input type="checkbox" className="sr-only" checked={on} onChange={() => toggleStage(s.key)}/>
+                                                <span className={`w-9 h-5 rounded-full relative transition flex-shrink-0 ${on ? 'bg-brand' : 'bg-gray-300'}`}>
+                                                    <span className={`absolute top-0.5 w-4 h-4 bg-white rounded-full transition-all ${on ? 'left-4' : 'left-0.5'}`}/>
+                                                </span>
+                                            </label>
+                                        );
+                                    })}
+                                </div>
                             </div>
                             <button disabled={form.processing} className="btn-brand w-full justify-center py-3 text-sm">
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

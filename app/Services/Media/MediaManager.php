@@ -14,10 +14,15 @@ class MediaManager
         $s = $user->effectiveSettings();
         $driver = $s->tts_driver ?: config('services.tts.driver', 'elevenlabs');
 
+        $userVoiceId = (string) ($s->elevenlabs_voice_id ?? '');
+        $voiceId = preg_match('/^[A-Za-z0-9]{15,40}$/', $userVoiceId)
+            ? $userVoiceId
+            : (string) config('services.elevenlabs.voice_id');
+
         return match ($driver) {
             'elevenlabs' => new ElevenLabsTTSDriver(
                 apiKey: $s->elevenlabs_api_key ?: (string) config('services.elevenlabs.key'),
-                voiceId: $s->elevenlabs_voice_id ?: (string) config('services.elevenlabs.voice_id'),
+                voiceId: $voiceId,
                 model: (string) config('services.elevenlabs.model', 'eleven_multilingual_v2'),
             ),
             'openai' => new OpenAITTSDriver(

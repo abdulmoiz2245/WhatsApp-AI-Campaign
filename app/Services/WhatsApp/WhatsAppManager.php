@@ -29,6 +29,12 @@ class WhatsAppManager
                 token: $s->twilio_auth_token ?: (string) config('services.whatsapp.twilio.token'),
                 from: $s->twilio_whatsapp_from ?: (string) config('services.whatsapp.twilio.from'),
             ),
+            'wppconnect' => new WppConnectDriver(
+                baseUrl: $s->wppconnect_base_url ?: (string) config('services.whatsapp.wppconnect.base_url'),
+                secret: $s->wppconnect_secret ?: (string) config('services.whatsapp.wppconnect.secret'),
+                session: $s->wppconnect_session ?: (string) config('services.whatsapp.wppconnect.session'),
+                webhookSecret: $s->wppconnect_webhook_secret ?: config('services.whatsapp.wppconnect.webhook_secret'),
+            ),
             default => throw new InvalidArgumentException("Unknown WhatsApp driver: {$driver}"),
         };
     }
@@ -50,6 +56,12 @@ class WhatsAppManager
                 sid: (string) config('services.whatsapp.twilio.sid'),
                 token: (string) config('services.whatsapp.twilio.token'),
                 from: (string) config('services.whatsapp.twilio.from'),
+            ),
+            'wppconnect' => new WppConnectDriver(
+                baseUrl: (string) config('services.whatsapp.wppconnect.base_url'),
+                secret: (string) config('services.whatsapp.wppconnect.secret'),
+                session: (string) config('services.whatsapp.wppconnect.session'),
+                webhookSecret: config('services.whatsapp.wppconnect.webhook_secret'),
             ),
             default => throw new InvalidArgumentException("Unknown WhatsApp driver: {$driver}"),
         };

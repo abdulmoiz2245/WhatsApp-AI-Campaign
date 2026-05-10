@@ -49,6 +49,7 @@ export default function SettingsIndex({ settings, configured, webhook_url }) {
         ...settings,
         meta_access_token: '', twilio_auth_token: '', openai_api_key: '',
         anthropic_api_key: '', elevenlabs_api_key: '', heygen_api_key: '',
+        wppconnect_secret: '', wppconnect_webhook_secret: '',
     });
 
     const submit = (e) => { e.preventDefault(); form.patch(route('settings.update'), { preserveScroll: true }); };
@@ -117,7 +118,11 @@ export default function SettingsIndex({ settings, configured, webhook_url }) {
                                 <h3 className="font-semibold text-gray-800">WhatsApp Business API</h3>
                                 <p className="text-gray-400 text-xs">Connect via Meta Cloud API or Twilio</p>
                             </div>
-                            <ConnectedPill connected={form.data.whatsapp_driver === 'meta' ? configured.meta : configured.twilio}/>
+                            <ConnectedPill connected={
+                                form.data.whatsapp_driver === 'meta' ? configured.meta
+                                : form.data.whatsapp_driver === 'twilio' ? configured.twilio
+                                : configured.wppconnect
+                            }/>
                         </div>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -126,6 +131,7 @@ export default function SettingsIndex({ settings, configured, webhook_url }) {
                                         className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm bg-gray-50">
                                     <option value="meta">Meta Cloud API (official)</option>
                                     <option value="twilio">Twilio</option>
+                                    <option value="wppconnect">wppconnect (self-hosted, QR scan)</option>
                                 </select>
                             </Field>
                             <Field label="Webhook URL" hint="Configure this in your provider's webhook settings.">
@@ -142,6 +148,14 @@ export default function SettingsIndex({ settings, configured, webhook_url }) {
                                 <Field label="Account SID"><Input value={form.data.twilio_account_sid} onChange={set('twilio_account_sid')}/></Field>
                                 <Field label="Auth Token"><Secret configured={configured.twilio} value={form.data.twilio_auth_token} onChange={set('twilio_auth_token')}/></Field>
                                 <Field label="From (whatsapp:+...)"><Input value={form.data.twilio_whatsapp_from} onChange={set('twilio_whatsapp_from')}/></Field>
+                            </>}
+                            {form.data.whatsapp_driver === 'wppconnect' && <>
+                                <Field label="Server Base URL" hint="Where wppconnect-server is reachable (services/wppconnect-server, default port 21465)."><Input value={form.data.wppconnect_base_url} onChange={set('wppconnect_base_url')} placeholder="http://localhost:21465" autoComplete="off"/></Field>
+                                <Field label="Session Name" hint="Logical session id. One QR per session."><Input value={form.data.wppconnect_session} onChange={set('wppconnect_session')} placeholder="default" autoComplete="off"/></Field>
+                                <div className="sm:col-span-2"><Field label="Server Secret Key" hint="Match `secretKey` in wppconnect-server config."><Secret configured={configured.wppconnect} value={form.data.wppconnect_secret} onChange={set('wppconnect_secret')} placeholder="THISISMYSECURETOKEN" autoComplete="new-password"/></Field></div>
+                                <div className="sm:col-span-2 bg-amber-50 border border-amber-200 rounded-xl p-3 text-sm text-amber-800">
+                                    Save settings, then open the <a href={route('settings.wppconnect')} className="underline font-medium">QR Connect page</a> to scan the WhatsApp QR.
+                                </div>
                             </>}
                         </div>
 
